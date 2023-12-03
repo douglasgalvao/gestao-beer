@@ -1,0 +1,47 @@
+<mat-toolbar class="mat-elevation-z3" color="">
+    <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+        <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
+        <p>Gestão Beer</p>
+        <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
+    </span>
+    <span class="example-spacer"></span>
+
+
+    <button mat-button routerLink="home">
+        <mat-icon>home</mat-icon>
+        Home
+    </button>
+    <button [matMenuTriggerFor]="settingsMenu" mat-button>
+        <mat-icon>settings</mat-icon>
+        Settings
+    </button>
+    <mat-menu #settingsMenu>
+        <button mat-menu-item [matMenuTriggerFor]="profile">
+            <mat-icon>account_circle</mat-icon>
+            Profile
+        </button>
+
+        <button mat-menu-item>
+            Log Out
+            <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout" [ariaSetSize]="50"
+                color="warn"></mat-icon>
+        </button>
+    </mat-menu>
+
+    <mat-menu #profile>
+        <button mat-menu-item>Alter name</button>
+        <button mat-menu-item>Alter Password</button>
+        <button mat-menu-item>Alter photo profile</button>
+    </mat-menu>
+
+    <mat-menu #theme>
+        <button mat-menu-item></button>
+        <button mat-menu-item></button>
+        <button mat-menu-item></button>
+    </mat-menu>
+
+
+</mat-toolbar>
