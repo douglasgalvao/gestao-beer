@@ -6,7 +6,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
     exports: [
         MatInputModule,
@@ -15,7 +18,11 @@ import { MatButtonModule } from '@angular/material/button';
         MatSelectModule,
         MatToolbarModule,
         MatMenuModule,
-        MatIconModule
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatTableModule,
+        MatPaginatorModule
     ]
 })
 

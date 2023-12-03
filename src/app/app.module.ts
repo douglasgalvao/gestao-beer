@@ -7,12 +7,16 @@ import { MaterialModule } from './material-module';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { VendasComponent } from './vendas/vendas.component';
+import { BalancoComponent } from './balanco/balanco.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
     HomeComponent,
     SettingsComponent,
+    VendasComponent,
+    BalancoComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,11 +10,24 @@ span {
 
 }
 
+mat-list-item {
+    padding: 1rem 0px;
+
+    button {
+        padding: 3rem;
+    }
+}
+
+mat-toolbar{
+    color:black;
+    background-color: yellow;
+}
 
 
-.toolbarMenu{
+.toolbarMenu {
     padding: 2rem 4rem;
 }
+
 .example-spacer {
     flex: 1 1 auto;
 }

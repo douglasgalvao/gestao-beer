@@ -1,5 +1,5 @@
-<mat-toolbar class="mat-elevation-z3" color="">
-    <button mat-icon-button>
+<mat-toolbar class="mat-elevation-z3">
+    <button (click)="drawer.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
     </button>
     <span>
@@ -10,10 +10,6 @@
     <span class="example-spacer"></span>
 
 
-    <button mat-button routerLink="home">
-        <mat-icon>home</mat-icon>
-        Home
-    </button>
     <button [matMenuTriggerFor]="settingsMenu" mat-button>
         <mat-icon>settings</mat-icon>
         Settings
@@ -32,16 +28,39 @@
     </mat-menu>
 
     <mat-menu #profile>
-        <button mat-menu-item>Alter name</button>
-        <button mat-menu-item>Alter Password</button>
-        <button mat-menu-item>Alter photo profile</button>
+        <button mat-menu-item>Alterar Nome</button>
+        <button mat-menu-item>Alterar Senha</button>
+        <button mat-menu-item [matMenuTriggerFor]="opcoesProfile">Opções</button>
     </mat-menu>
 
-    <mat-menu #theme>
-        <button mat-menu-item></button>
-        <button mat-menu-item></button>
-        <button mat-menu-item></button>
+    <mat-menu #opcoesProfile>
+        <button mat-menu-item>Opcao 1</button>
+        <button mat-menu-item>Opcao 2</button>
+        <button mat-menu-item>Opcao 3</button>
     </mat-menu>
+
 
 
 </mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer #drawer opened="true" mode="over">
+        <mat-nav-list>
+            <mat-list-item>
+                <button mat-button routerLink="home">Home<mat-icon>home</mat-icon></button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="vendas">Vendas<mat-icon>sell</mat-icon></button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="balanco">Balanço<mat-icon>balance</mat-icon></button>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="text-align: center; min-height: 100vh;">
+            <router-outlet>
+            </router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
