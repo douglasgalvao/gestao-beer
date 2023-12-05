@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 @NgModule({
     exports: [
         MatInputModule,
@@ -26,7 +27,8 @@ import { MatCardModule } from '@angular/material/card';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatCardModule
+        MatCardModule,
+        MatCheckboxModule
     ]
 })
 

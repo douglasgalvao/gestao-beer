@@ -1,9 +1,10 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { VENDAS_DATA } from '../vendas/vendas-data';
+import { VENDAS_DATA } from '../../vendas/vendas-data';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 
 export interface VendaElement {
   id: number;
@@ -19,14 +20,15 @@ export interface VendaElement {
 
 
 @Component({
-  selector: 'app-table-sort-pagination',
-  templateUrl: './table-sort-pagination.component.html',
-  styleUrls: ['./table-sort-pagination.component.scss']
+  selector: 'app-table-pagination',
+  templateUrl: './table-pagination.component.html',
+  styleUrls: ['./table-pagination.component.scss']
 })
 export class TableSortPaginationComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'dataHora', 'produtos', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'observacoes', 'actions'];
+  displayedColumns: string[] = ['select', 'id', 'dataHora', 'produtos', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'observacoes', 'actions'];
+  vendas = VENDAS_DATA;
   dataSource = new MatTableDataSource(VENDAS_DATA);
-
+  selection = new SelectionModel<VendaElement>(true, []);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private _liveAnnouncer: LiveAnnouncer) { }
@@ -59,11 +61,28 @@ export class TableSortPaginationComponent implements OnInit {
     return input.replace(/[áéíóúàèìòùãõâêîôûäëïöü]/g, match => accentsMap[match] || match);
   }
 
+  isAllSelected() {
+    return this.selection.selected.length == this.vendas.length;
+  }
+
+  toogleAllVendas(){
+    if(this.isAllSelected()){
+      this.selection.clear()
+    }else{
+      this.selection.select(...this.vendas);
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
+  }
+
+  onProductSelected(venda: VendaElement) {
+    this.selection.toggle(venda);
+
+    console.log(this.selection.selected);
   }
 
 

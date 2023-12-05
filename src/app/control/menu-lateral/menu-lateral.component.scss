@@ -12,22 +12,24 @@ mat-nav-list {
 
 
 mat-list-item {
-    padding: 1rem 0px;
-
-
     button {
         color: white;
-        padding: 3rem;
+        padding: 2rem;
     }
+    margin: 1rem 0px;
 
     button:hover {
+        border: 1px solid;
+        border-color: yellow;
         color: yellow;
         transition: 0.5s;
     }
 }
 
+
 mat-drawer {
     background-color: #121212;
+
     border: none;
 }
 

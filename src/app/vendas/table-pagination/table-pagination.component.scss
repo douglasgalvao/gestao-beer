@@ -1,0 +1,41 @@
+.editActionVendas:hover, .deleteActionVendas:hover ,.informacaoActionVendas:hover{
+    opacity: 1;
+}
+
+
+.editActionVendas, .deleteActionVendas ,.informacaoActionVendas{
+    opacity: 0.7;
+}
+
+td button{
+    margin: 0.1rem;
+    
+}
+
+
+.editActionVendas:hover{
+    background-color: blue;
+    color: white;
+    transition: background-color 0.5s;
+}
+.deleteActionVendas:hover{
+    background-color: red;
+    color: white;
+    transition: background-color 0.5s;
+}
+.informacaoActionVendas:hover{
+    background-color: gray;
+    color: white;
+    transition: background-color 0.5s;
+}
+
+mat-toolbar{
+    width: 100%;
+}
+mat-card{
+    // background-color: #121212;
+    opacity: 1;
+}
+mat-form-field{
+    width: 100%;
+}

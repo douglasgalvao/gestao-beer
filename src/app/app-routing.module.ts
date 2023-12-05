@@ -1,16 +1,16 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { VendasComponent } from './vendas/vendas.component';
-import { ProdutosComponent } from './produtos/produtos.component';
+
 
 
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: 'full' },
-  { path: "home", component: HomeComponent },
-  { path: "vendas", component: VendasComponent },
-  { path: "produtos", component: ProdutosComponent },
+  { path: "home", loadChildren: () => import('./home/home.module').then(module => module.HomeModule) },
+  { path: "vendas", loadChildren: () => import('./vendas/vendas.module').then(module => module.VendasModule) },
+  { path: "produtos", loadChildren: () => import('./components/produtos/produtos.module').then(module => module.ProdutosModule) },
+  { path: "compras", loadChildren: () => import('./compras/compras.module').then(module => module.ComprasModule) }
 ];
 
 @NgModule({

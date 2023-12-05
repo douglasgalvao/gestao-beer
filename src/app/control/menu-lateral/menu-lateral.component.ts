@@ -1,4 +1,4 @@
-import { DrawerService } from './../service/drawer.service';
+import { DrawerService } from '../../service/drawer.service';
 import { Component, OnInit } from '@angular/core';
 import { Menu } from './menu-itens-data';
 
