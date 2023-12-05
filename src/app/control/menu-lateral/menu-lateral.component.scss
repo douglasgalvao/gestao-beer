@@ -1,35 +1,30 @@
-mat-list-item {
-
-    button {
-        padding: 1rem 2rem;
-        min-width: 100%;
-    }
-}
-
 mat-nav-list {
     padding: 0px;
 }
 
+mat-checkbox {
+    color: yellow;
+}
 
 mat-list-item {
     button {
         color: white;
-        padding: 2rem;
+        padding: 3rem;
+        min-width: 100%;
+
     }
-    margin: 1rem 0px;
 
     button:hover {
-        border: 1px solid;
-        border-color: yellow;
-        color: yellow;
-        transition: 0.5s;
+        border-color: none;
+        background-color: yellow;
+        color: #121212;
+        transition: background-color 0.5s;
     }
 }
 
 
 mat-drawer {
     background-color: #121212;
-
     border: none;
 }
 
