@@ -1,10 +1,15 @@
 .mat-mdc-form-field {
     font-size: 14px;
     width: 100%;
+    border: none;
 }
 
-
+.container {
+    margin: 1rem;
+    border: none;
+}
 
 .mat-mdc-row:hover .mat-mdc-cell {
-    border-color: currentColor;
+    border: none;
+    // border-color: currentColor;
 }

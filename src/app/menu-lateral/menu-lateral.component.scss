@@ -1,0 +1,37 @@
+mat-list-item {
+
+    button {
+        padding: 1rem 2rem;
+        min-width: 100%;
+    }
+}
+
+mat-nav-list {
+    padding: 0px;
+}
+
+
+mat-list-item {
+    padding: 1rem 0px;
+
+
+    button {
+        color: white;
+        padding: 3rem;
+    }
+
+    button:hover {
+        color: yellow;
+        transition: 0.5s;
+    }
+}
+
+mat-drawer {
+    background-color: #121212;
+    border: none;
+}
+
+mat-drawer-content {
+    border: none;
+    background-color: #212121;
+}

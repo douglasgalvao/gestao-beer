@@ -1,14 +1,15 @@
 <mat-toolbar class="mat-elevation-z3">
-    <button (click)="drawer.toggle()" mat-icon-button>
+    <button (click)="toggleDrawer()" mat-icon-button>
         <mat-icon>menu</mat-icon>
     </button>
-    <span>
-        <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
-        <p>Gestão Beer</p>
-        <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
-    </span>
+    <a routerLink="/home" class="logoHome">
+        <span>
+            <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
+            <p>Gestão Beer</p>
+            <img src="../../assets/beerPNG.png" alt="" width="48px" height="48px">
+        </span>
+    </a>
     <span class="example-spacer"></span>
-
 
     <button [matMenuTriggerFor]="settingsMenu" mat-button>
         <mat-icon>settings</mat-icon>
@@ -43,24 +44,4 @@
 
 </mat-toolbar>
 
-<mat-drawer-container autosize>
-    <mat-drawer #drawer opened="true" mode="over">
-        <mat-nav-list>
-            <mat-list-item>
-                <button mat-button routerLink="home">Home<mat-icon>home</mat-icon></button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-button routerLink="vendas">Vendas<mat-icon>sell</mat-icon></button>
-            </mat-list-item>
-            <mat-list-item>
-                <button mat-button routerLink="balanco">Balanço<mat-icon>balance</mat-icon></button>
-            </mat-list-item>
-        </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content>
-        <div style="text-align: center; min-height: 100vh;">
-            <router-outlet>
-            </router-outlet>
-        </div>
-    </mat-drawer-content>
-</mat-drawer-container>
+<app-menu-lateral></app-menu-lateral>

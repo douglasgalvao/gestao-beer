@@ -10,17 +10,15 @@ span {
 
 }
 
-mat-list-item {
-    padding: 1rem 0px;
 
-    button {
-        padding: 3rem;
-    }
+.logoHome{
+ text-decoration: none;
+ color:inherit;
 }
 
-mat-toolbar{
-    color:black;
-    background-color: yellow;
+mat-toolbar {
+    color: white;
+    background-color: #121212;
 }
 
 
@@ -30,4 +28,11 @@ mat-toolbar{
 
 .example-spacer {
     flex: 1 1 auto;
+}
+
+
+mat-toolbar {
+    button:hover {
+        color: yellow;
+    }
 }

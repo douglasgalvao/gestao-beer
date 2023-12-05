@@ -1,0 +1,21 @@
+.editActionVendas:hover, .deleteActionVendas:hover ,.informacaoActionVendas:hover{
+    opacity: 1;
+}
+
+
+.editActionVendas, .deleteActionVendas ,.informacaoActionVendas{
+    opacity: 0.7;
+}
+
+td button{
+    margin: 0.1rem;
+}
+
+
+mat-card{
+    // background-color: #121212;
+    opacity: 1;
+}
+mat-form-field{
+    width: 100%;
+}

@@ -8,7 +8,11 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { VendasComponent } from './vendas/vendas.component';
-import { BalancoComponent } from './balanco/balanco.component';
+import { ProdutosComponent } from './produtos/produtos.component';
+import { FinanceiroComponent } from './financeiro/financeiro.component';
+import { ComprasComponent } from './compras/compras.component';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { TableSortPaginationComponent } from './table-sort-pagination/table-sort-pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +20,11 @@ import { BalancoComponent } from './balanco/balanco.component';
     HomeComponent,
     SettingsComponent,
     VendasComponent,
-    BalancoComponent,
+    ProdutosComponent,
+    FinanceiroComponent,
+    ComprasComponent,
+    MenuLateralComponent,
+    TableSortPaginationComponent,
   ],
   imports: [
     BrowserModule,
