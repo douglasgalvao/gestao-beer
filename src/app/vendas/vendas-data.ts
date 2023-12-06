@@ -1,5 +1,6 @@
 
 import { VendaElement } from "./vendas.component";
+
 export const VENDAS_DATA: VendaElement[] = [
     {
         id: 1,

@@ -12,7 +12,7 @@ import { MenuLateralComponent } from './control/menu-lateral/menu-lateral.compon
   declarations: [
     AppComponent,
     MenuBarComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
   ],
   imports: [
     BrowserModule,
