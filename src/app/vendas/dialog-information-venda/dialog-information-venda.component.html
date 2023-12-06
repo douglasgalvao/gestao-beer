@@ -1,14 +1,20 @@
-<h2 mat-dialog-title>Editar Venda</h2>
-<div mat-dialog-content>
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <mat-label>ID</mat-label>
-            <input matInput disabled value="{{vendaObjeto?.id}}">
-        </mat-form-field>
-    </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button (click)="closeDialogVenda()"
-        color="{{buttons.btnFechar.color}}">{{buttons.btnFechar.name}}</button>
-    <button mat-raised-button>Salvar</button>
+<div class="container">
+    <div class="title">
+        <mat-card>
+            <mat-card-content>Editar Venda</mat-card-content>
+        </mat-card>
+    </div>
+    <div mat-dialog-content>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>ID</mat-label>
+                <input matInput disabled value="{{vendaObjeto?.id}}">
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button (click)="closeDialogVenda()"
+            color="{{buttons.btnFechar.color}}">{{buttons.btnFechar.name}}</button>
+        <button mat-raised-button>Salvar</button>
+    </div>
 </div>
