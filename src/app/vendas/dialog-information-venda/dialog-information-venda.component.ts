@@ -20,7 +20,7 @@ export class DialogInformationVendaComponent implements OnInit {
     closeDialogVenda() {
         this.dialog.close();
     }
-
+   
     ngOnInit(): void {
         this.dialogService.vendaData$.subscribe(venda => {
             this.vendaObjeto = venda;

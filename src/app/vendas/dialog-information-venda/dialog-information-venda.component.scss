@@ -5,20 +5,23 @@
 }
 
 
-.mat-dialog-actions {
-    display: flex;
+.container {
     width: 100%;
-    justify-content: center;
 }
 
-mat-list-item{
-    padding: 8rem 2rem;
-}
-.container {
-    align-items: center;
-    justify-content: center;
+div .buttons {
     display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+.cardVenda {
+    margin: 1rem;
+    background-color: #121212;
+}
+
+.cardProdutos {
+    background-color: #121212;
+    color: white;
 }

@@ -39,6 +39,7 @@ export class VendasComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogoService) { }
   vendaData: VendaElement | null = null;
   ngOnInit(): void {
+    this.abrirDialog(this.vendaData!);
     this.dialogService.vendaData$.subscribe((data) => {
       this.vendaData = data;
     });

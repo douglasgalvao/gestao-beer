@@ -1,35 +1,24 @@
-<div class="title">
-    <h1 mat-dialog-title>Editar Venda</h1>
-</div>
 <div class="container">
-    <div mat-card>
-        <mat-label>ID</mat-label>
-        <input matInput disabled value="{{vendaObjeto?.id}}">
-
-        <mat-label>Data e Hora Compra</mat-label>
-        <input matInput disabled value="{{vendaObjeto?.dataHora}}">
-
-        <mat-divider></mat-divider>
-
-        <mat-list>
-            <mat-list-item>
-
-                <mat-label>Produtos comprados</mat-label>
-                <mat-card *ngFor="let v of vendaObjeto?.produtos">
-                    <div>Nome do Produto:{{v.nome}}</div>
-                    <div>Quantidade:({{v.quantidade}})</div>
-                    <div>Preço Total:({{v.subtotal}})</div>
-                </mat-card>
-
-            </mat-list-item>
-        </mat-list>
-
+    <mat-toolbar>Produtos da venda</mat-toolbar>
+    <mat-divider></mat-divider>
+    <div class="cardVenda" *ngFor="let v of vendaObjeto?.produtos">
+        <mat-form-field>
+            <div style="display: flex;">
+                <mat-label>Nome do Produto:</mat-label>
+                <input matInput disabled value="{{v.nome}}">
+            </div>
+            <mat-label>Data e Hora Compra</mat-label>
+            <input matInput disabled value="{{vendaObjeto?.dataHora}}">
+            <div>Quantidade:({{v.quantidade}})</div>
+            <div>Preço Total:({{v.subtotal}})</div>
+            <mat-label>ID</mat-label>
+            <input matInput disabled value="{{vendaObjeto?.id}}">
+        </mat-form-field>
     </div>
-    <div mat-dialog-actions>
+
+    <div class="buttons" mat-dialog-actions>
         <button mat-raised-button (click)="closeDialogVenda()"
             color="{{buttons.btnFechar.color}}">{{buttons.btnFechar.name}}</button>
         <button mat-raised-button color="{{buttons.btnSalvar.color}}">Salvar</button>
     </div>
-
-
 </div>
