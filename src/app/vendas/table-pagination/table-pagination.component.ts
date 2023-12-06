@@ -1,10 +1,12 @@
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
 import { VENDAS_DATA } from '../../vendas/vendas-data';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface VendaElement {
   id: number;
@@ -19,6 +21,8 @@ export interface VendaElement {
 
 
 
+
+
 @Component({
   selector: 'app-table-pagination',
   templateUrl: './table-pagination.component.html',
@@ -29,13 +33,22 @@ export class TableSortPaginationComponent implements OnInit {
   vendas = VENDAS_DATA;
   dataSource = new MatTableDataSource(VENDAS_DATA);
   selection = new SelectionModel<VendaElement>(true, []);
+
+  @Output() openDialog = new EventEmitter<VendaElement>();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private _liveAnnouncer: LiveAnnouncer) { }
+  constructor() { }
+
+  
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
   }
 
+
+  openDialogClicked(venda: VendaElement) {
+    this.openDialog.emit(venda);
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
@@ -65,10 +78,10 @@ export class TableSortPaginationComponent implements OnInit {
     return this.selection.selected.length == this.vendas.length;
   }
 
-  toogleAllVendas(){
-    if(this.isAllSelected()){
+  toogleAllVendas() {
+    if (this.isAllSelected()) {
       this.selection.clear()
-    }else{
+    } else {
       this.selection.select(...this.vendas);
     }
   }

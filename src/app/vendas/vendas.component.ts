@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 export interface VendaElement {
   id: number;
   dataHora: string;
@@ -15,7 +16,11 @@ export interface VendaElement {
   styleUrls: ['./vendas.component.scss']
 })
 export class VendasComponent {
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
+
+  abrirDialog(venda: VendaElement) {
+    console.log('Abrir diálogo para a venda:', venda);
+  }
 }
 

@@ -1,3 +1,12 @@
-<!-- <div class="container"> -->
-<app-table-pagination></app-table-pagination>
-<!-- </div> -->
+<div class="container">
+    <app-table-pagination (openDialog)="abrirDialog($event)"></app-table-pagination>
+
+    <mat-dialog-content class="mat-typography">
+        
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+
+
+</div>

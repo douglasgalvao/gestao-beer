@@ -10,10 +10,12 @@
 
             <ng-container matColumnDef="select">
                 <th mat-header-cell mat-sort-header *matHeaderCellDef>
-                    <mat-checkbox color="primary" (click)="toogleAllVendas()" [checked]="isAllSelected()">#</mat-checkbox>
+                    <mat-checkbox color="primary" (click)="toogleAllVendas()"
+                        [checked]="isAllSelected()">#</mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let venda">
-                    <mat-checkbox color="primary" [checked]="selection.isSelected(venda)" (change)="onProductSelected(venda)">
+                    <mat-checkbox color="primary" [checked]="selection.isSelected(venda)"
+                        (change)="onProductSelected(venda)">
 
                     </mat-checkbox>
                 </td>
@@ -67,7 +69,8 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
                 <td mat-cell *matCellDef="let venda">
-                    <button mat-stroked-button class="editActionVendas" color="primary">Editar</button>
+                    <button mat-stroked-button class="editActionVendas" color="primary"
+                        (click)="openDialogClicked(venda)">Editar</button>
                     <button mat-stroked-button class="deleteActionVendas" color="warn">Deletar</button>
                     <button mat-stroked-button class="informacaoActionVendas">Mais informações</button>
                 </td>
@@ -80,4 +83,3 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Selecione a página">
         </mat-paginator>
     </mat-card-content>
-</mat-card>

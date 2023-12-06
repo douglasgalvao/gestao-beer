@@ -31,9 +31,10 @@ td button{
 
 mat-toolbar{
     width: 100%;
+    background-color: yellow;
 }
 mat-card{
-    // background-color: #121212;
+    background-color: transparent;
     opacity: 1;
 }
 mat-form-field{
