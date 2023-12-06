@@ -54,5 +54,7 @@ export class VendasComponent implements OnInit {
     this.dialogService.setVendaData(venda);
   }
 
+  
+
 }
 
