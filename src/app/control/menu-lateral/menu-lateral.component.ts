@@ -17,9 +17,11 @@ export class MenuLateralComponent implements OnInit {
   data: MenuLateralItens[] = Menu;
   isDrawerOpened: boolean = true;
   constructor(private drawer: DrawerService) {
-    drawer.drawerState$.subscribe((isOpen) => {
+
+    drawer.drawerState.subscribe((isOpen) => {
       this.isDrawerOpened = isOpen;
-    })
+    });
+
   }
 
   ngOnInit(): void {

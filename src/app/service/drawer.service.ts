@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class DrawerService {
   private drawerSubject = new Subject<boolean>();
-  drawerState$ = this.drawerSubject.asObservable();
+  drawerState = this.drawerSubject.asObservable();
 
   private isDrawerOpen: boolean = false;
 

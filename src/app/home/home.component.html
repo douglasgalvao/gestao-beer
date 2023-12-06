@@ -1,1 +1,23 @@
-<mat-toolbar class="mat-elevation-z3">Painel Inicial</mat-toolbar>
+<mat-card class="example-card">
+    <mat-card-content>
+        <mat-toolbar class="mat-elevation-z3">
+            Painel Inicial
+            <span class="example-spacer"></span>
+
+            <button [matMenuTriggerFor]="novaAcao" mat-button class="btnNovaAcao">
+                <mat-icon>add</mat-icon>
+                Novo
+            </button>
+            <mat-menu #novaAcao>
+                <mat-list-item *ngFor="let acao of newAcoes">
+                    <a [routerLink]="acao.linkRouter" mat-menu-item>
+                        <mat-icon>{{acao.iconName}}</mat-icon>
+                        {{acao.nameAction}}
+                    </a>
+                </mat-list-item>
+            </mat-menu>
+
+
+        </mat-toolbar>
+    </mat-card-content>
+</mat-card>

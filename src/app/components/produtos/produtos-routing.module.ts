@@ -7,12 +7,12 @@ import { ProdutosComponent } from './produtos.component';
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "/produtos", pathMatch: 'full' },
+  { path: "", redirectTo: "/produtos/produtos", pathMatch: 'full' },
   { path: "produtos", component: ProdutosComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class ProdutosRoutingModule { }
