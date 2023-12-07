@@ -1,24 +1,53 @@
 <div class="container">
-    <mat-toolbar>Produtos da venda</mat-toolbar>
+    <mat-toolbar>Detalhes da Venda</mat-toolbar>
     <mat-divider></mat-divider>
-    <div class="cardVenda" *ngFor="let v of vendaObjeto?.produtos">
+    <form class="">
         <mat-form-field>
-            <div style="display: flex;">
-                <mat-label>Nome do Produto:</mat-label>
-                <input matInput disabled value="{{v.nome}}">
-            </div>
-            <mat-label>Data e Hora Compra</mat-label>
-            <input matInput disabled value="{{vendaObjeto?.dataHora}}">
-            <div>Quantidade:({{v.quantidade}})</div>
-            <div>Preço Total:({{v.subtotal}})</div>
             <mat-label>ID</mat-label>
             <input matInput disabled value="{{vendaObjeto?.id}}">
         </mat-form-field>
-    </div>
 
+        <mat-form-field>
+            <mat-label>Data e Hora da Venda:</mat-label>
+            <input matInput disabled value="{{vendaObjeto?.dataHora}}">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nome do Cliente:</mat-label>
+            <input matInput disabled value="{{vendaObjeto?.cliente}}">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Método de Pagamento</mat-label>
+            <input matInput disabled value="R$:{{vendaObjeto?.metodoPagamento}}">
+        </mat-form-field>
+        <div class="Title">
+            <h2>Produtos</h2>
+        </div>
+
+        <mat-form-field *ngFor="let p of vendaObjeto?.produtos">
+            <mat-label>Produto:{{p.tipoProduto}}</mat-label>
+            <textarea matInput disabled
+                #textAreaProduto>{{p.nome}} ({{p.quantidade}}) * R$:{{p.precoUnitario}} Subtotal: R$:{{p.subtotal}}</textarea>
+        </mat-form-field>
+
+        <!-- <mat-form-field *ngFor="let p of vendaObjeto?.produtos">
+            <mat-label>{{p.tipoProduto}}</mat-label>
+            <input matInput disabled value="R$:{{p.nome}} ({{p.quantidade}}) * {{p.precoUnitario}} 
+             Subtotal: R$:{{p.subtotal}}">
+        </mat-form-field> -->
+
+        <div class="Title">
+            <h2>Total Da Venda</h2>
+        </div>
+        <mat-form-field class="totalVenda">
+            <mat-label>Total da Venda</mat-label>
+            <input matInput disabled value="R$:{{vendaObjeto?.totalVenda}}">
+        </mat-form-field>
+
+    </form>
     <div class="buttons" mat-dialog-actions>
         <button mat-raised-button (click)="closeDialogVenda()"
-            color="{{buttons.btnFechar.color}}">{{buttons.btnFechar.name}}</button>
-        <button mat-raised-button color="{{buttons.btnSalvar.color}}">Salvar</button>
+            class="btnFecharVenda">{{buttons.btnFechar.name}}</button>
     </div>
 </div>

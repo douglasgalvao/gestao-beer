@@ -7,17 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
-
-export interface VendaElement {
-  id: number;
-  dataHora: string;
-  produtos: { nome: string, quantidade: number, precoUnitario: number, subtotal: number }[];
-  totalVenda: number;
-  cliente: string;
-  metodoPagamento: string;
-  statusVenda: string;
-  observacoes: string;
-}
+import { VendaElement } from '../vendas.component';
 
 
 
@@ -29,8 +19,8 @@ export interface VendaElement {
   styleUrls: ['./table-pagination.component.scss']
 })
 export class TableSortPaginationComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'id', 'dataHora', 'produtos', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'observacoes', 'actions'];
-  vendas = VENDAS_DATA;
+  displayedColumns: string[] = ['select', 'id', 'dataHora', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
+  vendas: VendaElement[] = [];
   dataSource = new MatTableDataSource(VENDAS_DATA);
   selection = new SelectionModel<VendaElement>(true, []);
 
@@ -42,6 +32,7 @@ export class TableSortPaginationComponent implements OnInit {
 
   
   ngOnInit(): void {
+    this.vendas = VENDAS_DATA;
     this.dataSource.sort = this.sort;
   }
 
@@ -51,6 +42,7 @@ export class TableSortPaginationComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
+    console.log(this.dataSource)
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     const normalizedFilter = this.normalizeAccents(filterValue);
 

@@ -1,42 +1,93 @@
-.editActionVendas:hover, .deleteActionVendas:hover ,.informacaoActionVendas:hover{
+.editActionVendas:hover,
+.deleteActionVendas:hover,
+.informacaoActionVendas:hover {
     opacity: 1;
 }
 
+th {
+    background-color: #121212;
+}
 
-.editActionVendas, .deleteActionVendas ,.informacaoActionVendas{
+.editActionVendas,
+.deleteActionVendas,
+.informacaoActionVendas {
     opacity: 0.7;
+    margin: 2px;
+    // width: 100%;
+    border-radius: 4px;
 }
 
-td button{
-    margin: 0.1rem;
-    
+.editActionVendas {
+    background-color: yellow;
+    color: #121212;
+    width: 50%;
 }
 
+.deleteActionVendas {
+    width: 50%;
 
-.editActionVendas:hover{
-    background-color: blue;
-    color: white;
-    transition: background-color 0.5s;
-}
-.deleteActionVendas:hover{
     background-color: red;
+}
+
+.informacaoActionVendas {
+    background-color: gray;
+}
+
+.deleteActionVendas {
+    justify-content: center;
+}
+
+.deleteActionVendas span {
+    text-align: center;
+}
+
+.actionsButtons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // flex-wrap: wrap;
+}
+
+td button {
+    padding: 0.1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.editActionVendas:hover {
+
     color: white;
+    opacity: 1;
     transition: background-color 0.5s;
 }
-.informacaoActionVendas:hover{
-    background-color: gray;
+
+.deleteActionVendas:hover {
+    opacity: 1;
+
     color: white;
     transition: background-color 0.5s;
 }
 
-mat-toolbar{
+.informacaoActionVendas:hover {
+    opacity: 1;
+
+    color: white;
+    transition: background-color 0.5s;
+}
+
+mat-toolbar {
     width: 100%;
     background-color: yellow;
 }
-mat-card{
+
+mat-card {
     background-color: transparent;
     opacity: 1;
 }
-mat-form-field{
+
+mat-form-field {
     width: 100%;
 }

@@ -7,7 +7,8 @@ export interface ProdutoElement {
   nome: string,
   quantidade: number,
   precoUnitario: number,
-  subtotal: number
+  subtotal: number,
+  tipoProduto: string
 }
 
 export interface VendaElement {
@@ -35,11 +36,12 @@ export interface VendaElement {
     ]),
   ]
 })
+
+
 export class VendasComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogoService) { }
   vendaData: VendaElement | null = null;
   ngOnInit(): void {
-    this.abrirDialog(this.vendaData!);
     this.dialogService.vendaData$.subscribe((data) => {
       this.vendaData = data;
     });
@@ -47,15 +49,16 @@ export class VendasComponent implements OnInit {
 
   abrirDialog(venda: VendaElement) {
     this.dialog.open(DialogInformationVendaComponent, {
-      width: '60%',
-      height: '60%',
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: 'scrollable-dialog',
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '400ms'
     })
     this.dialogService.setVendaData(venda);
   }
 
-  
+
 
 }
 

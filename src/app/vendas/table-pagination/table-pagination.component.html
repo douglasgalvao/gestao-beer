@@ -31,7 +31,7 @@
                 <td mat-cell *matCellDef="let venda">{{ venda.dataHora }}</td>
             </ng-container>
 
-            <ng-container matColumnDef="produtos">
+            <!-- <ng-container matColumnDef="produtos">
                 <th mat-header-cell *matHeaderCellDef>Produtos</th>
                 <td mat-cell *matCellDef="let venda">
                     <ng-container *ngFor="let produto of venda.produtos">
@@ -39,7 +39,7 @@
                         <br>
                     </ng-container>
                 </td>
-            </ng-container>
+            </ng-container> -->
 
             <ng-container matColumnDef="totalVenda">
                 <th mat-header-cell mat-sort-header *matHeaderCellDef>Total da Venda</th>
@@ -61,18 +61,22 @@
                 <td mat-cell *matCellDef="let venda">{{ venda.statusVenda }}</td>
             </ng-container>
 
-            <ng-container matColumnDef="observacoes">
+            <!-- <ng-container matColumnDef="observacoes">
                 <th mat-header-cell *matHeaderCellDef>Observações</th>
                 <td mat-cell *matCellDef="let venda">{{ venda.observacoes }}</td>
-            </ng-container>
+            </ng-container> -->
 
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
-                <td mat-cell *matCellDef="let venda">
-                    <button mat-stroked-button class="editActionVendas" color="primary"
-                        (click)="openDialogClicked(venda)">Editar</button>
-                    <button mat-stroked-button class="deleteActionVendas" color="warn">Deletar</button>
-                    <button mat-stroked-button class="informacaoActionVendas">Mais informações</button>
+                <td mat-cell class="actionsButtons" *matCellDef="let venda">
+                    <div style="display: flex;">
+                        <button class="editActionVendas"><mat-icon>edit</mat-icon></button>
+                        <button class="deleteActionVendas">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    <button class="informacaoActionVendas"
+                        (click)="openDialogClicked(venda)"><mat-icon>list_alt</mat-icon></button>
                 </td>
             </ng-container>
 

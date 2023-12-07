@@ -4,24 +4,97 @@
     justify-content: center;
 }
 
+textarea {
+    resize: none;
+    scroll-padding-top: none;
+    height: max-content;
+    width: 100%;
+    span {
+        font-weight: 600;
+        color: black;
+    }
+}
+
+mat-form-field {
+    width: 30%;
+    height: 100%;
+    margin: 0.5rem 1rem;
+    display: flex;
+    text-wrap: wrap;
+    flex-wrap: wrap;
+    z-index: 1;
+
+    input {
+        text-align: center;
+        // justify-content: center;
+        text-wrap: wrap;
+        color: black;
+        font-weight: 600;
+    }
+
+}
+
 
 .container {
     width: 100%;
+    background-color: inherit;
+}
+
+.Title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    h2 {
+        color: #121212;
+    }
+
+    text-align: center;
+}
+
+form {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 div .buttons {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: space-evenly;
 }
 
 
-.cardVenda {
-    margin: 1rem;
-    background-color: #121212;
+mat-label {
+    background-color: transparent;
+    margin: 0.5rem;
+    color: #121212;
+    font-weight: 600;
+
 }
 
-.cardProdutos {
-    background-color: #121212;
+mat-toolbar {
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+}
+
+.buttons button {
+    padding: 1rem 2rem;
+}
+
+
+.totalVenda mat-label {
+    font-size: large;
+    font-weight: 600;
+}
+
+.totalVenda input {
+    color: green;
+    font-size: large;
+}
+
+.btnFecharVenda {
+    background-color: red;
     color: white;
 }

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Acoes } from './home-data';
 import { trigger, transition, style, animate } from '@angular/animations';
-export interface NovaAcao {
-  linkRouter: string,
-  iconName: string,
-  nameAction: string
-}
+import { VendaElement } from '../vendas/vendas.component';
+import { DialogoService } from '../service/dialogo.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,10 +20,23 @@ export interface NovaAcao {
 })
 export class HomeComponent {
 
-  newAcoes: NovaAcao[] = Acoes;
-
-  constructor() {
+  vendaData: VendaElement | null = null;
+  constructor(private dialog: MatDialog, private dialogService: DialogoService) {
 
   }
+
+
+
+  abrirDialog(venda: VendaElement) {
+    this.dialog.open(NovaVendaDialogComponent, {
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: 'scrollable-dialog',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '400ms'
+    })
+    this.dialogService.setVendaData(venda);
+  }
+
 
 }
