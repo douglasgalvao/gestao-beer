@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { VendaElement } from '../vendas/vendas.component';
 import { DialogoService } from '../service/dialogo.service';
@@ -18,25 +18,20 @@ import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.
     ]),
   ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   vendaData: VendaElement | null = null;
   constructor(private dialog: MatDialog, private dialogService: DialogoService) {
-
+    this.dialog = dialog;
   }
 
-
-
-  abrirDialog(venda: VendaElement) {
-    this.dialog.open(NovaVendaDialogComponent, {
-      width: 'max-content',
-      height: 'max-content',
-      panelClass: 'scrollable-dialog',
-      enterAnimationDuration: '500ms',
-      exitAnimationDuration: '400ms'
-    })
-    this.dialogService.setVendaData(venda);
+  ngOnInit(): void {
   }
+  
+  abrirDialogVenda() {
+    this.dialog.open(NovaVendaDialogComponent);
+  }
+
 
 
 }

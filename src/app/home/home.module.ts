@@ -9,7 +9,7 @@ import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.
 @NgModule({
   declarations: [
     HomeComponent,
-    NovaVendaDialogComponent,
+    NovaVendaDialogComponent
   ],
   imports: [
     CommonModule,
