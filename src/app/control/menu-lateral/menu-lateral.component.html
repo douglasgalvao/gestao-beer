@@ -1,5 +1,5 @@
 <mat-drawer-container autosize>
-    <mat-drawer [opened]="isDrawerOpened" mode="side">
+    <mat-drawer [opened]="isDrawerOpened" mode="over">
         <mat-nav-list>
             <mat-list-item *ngFor="let d of data">
                 <button mat-button [routerLink]="d.linkRouter">{{d.nome}}<mat-icon>{{d.iconName}}</mat-icon></button>
