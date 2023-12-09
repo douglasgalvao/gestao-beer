@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
     exports: [
         MatDialogModule,
@@ -30,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatPaginatorModule,
         MatSortModule,
         MatCardModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatBadgeModule
     ]
 })
 

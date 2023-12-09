@@ -25,17 +25,11 @@
             <h2>Produtos</h2>
         </div>
 
-        <mat-form-field *ngFor="let p of vendaObjeto?.produtos">
-            <mat-label>Produto:{{p.tipoProduto}}</mat-label>
-            <textarea matInput disabled
-                #textAreaProduto>{{p.nome}} ({{p.quantidade}}) * R$:{{p.precoUnitario}} Subtotal: R$:{{p.subtotal}}</textarea>
+        <mat-form-field matBadge={{p.quantidade}} matBadgeOverlap="false" *ngFor="let p of vendaObjeto?.produtos">
+            <mat-label>Categoria: {{p.tipoProduto}}</mat-label>
+            <textarea matInput disabled #textAreaProduto>{{p.nome}} R$:{{p.precoUnitario}} 
+Subtotal: R$:{{p.subtotal}}</textarea>
         </mat-form-field>
-
-        <!-- <mat-form-field *ngFor="let p of vendaObjeto?.produtos">
-            <mat-label>{{p.tipoProduto}}</mat-label>
-            <input matInput disabled value="R$:{{p.nome}} ({{p.quantidade}}) * {{p.precoUnitario}} 
-             Subtotal: R$:{{p.subtotal}}">
-        </mat-form-field> -->
 
         <div class="Title">
             <h2>Total Da Venda</h2>
