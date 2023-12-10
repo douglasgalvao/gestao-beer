@@ -52,8 +52,8 @@ export class VendasComponent implements OnInit {
       width: 'max-content',
       height: 'max-content',
       panelClass: 'scrollable-dialog',
-      enterAnimationDuration: '500ms',
-      exitAnimationDuration: '400ms'
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
     })
     this.dialogService.setVendaData(venda);
   }
