@@ -1,12 +1,9 @@
 import { Component, ViewChild, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
 import { VENDAS_DATA } from '../../vendas/vendas-data';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatCheckboxChange } from '@angular/material/checkbox';
-import { MatDialog } from '@angular/material/dialog';
 import { VendaElement } from '../vendas.component';
 
 
@@ -30,7 +27,7 @@ export class TableSortPaginationComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   constructor() { }
 
-  
+
   ngOnInit(): void {
     this.vendas = VENDAS_DATA;
     this.dataSource.sort = this.sort;

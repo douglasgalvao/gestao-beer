@@ -12,6 +12,17 @@ mat-card {
     background-color: transparent;
 }
 
+
+.example-card {
+    max-width: 400px;
+    margin: 15px;
+}
+
+.example-header-image {
+    background-image: url('../../assets/beerPNG.png');
+    background-size: cover;
+}
+
 .btnNovaAcao {
     color: yellow;
     opacity: 0.91;
@@ -27,6 +38,6 @@ mat-card {
     transition: background-color 0.5s;
 }
 
-.example-spacer {
+.spacer {
     flex: 1 1 auto;
 }

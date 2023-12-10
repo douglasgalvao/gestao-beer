@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogTitle } from '@angular/material/dialog';
+import { VendaElement } from 'src/app/vendas/vendas.component';
+
+
 
 @Component({
   selector: 'app-nova-venda-dialog',
@@ -7,8 +10,10 @@ import { MatDialogTitle } from '@angular/material/dialog';
   styleUrls: ['./nova-venda-dialog.component.scss']
 })
 export class NovaVendaDialogComponent implements OnInit {
-  constructor() { }
+  constructor() {
+  }
 
+  venda!: VendaElement
 
   ngOnInit(): void {
 

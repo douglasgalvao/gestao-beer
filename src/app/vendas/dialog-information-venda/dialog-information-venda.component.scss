@@ -9,9 +9,11 @@ textarea {
     scroll-padding-top: none;
     height: max-content;
     width: 100%;
+
+    // color: #121212;
     span {
         font-weight: 600;
-        color: black;
+        color: black !important;
     }
 }
 
@@ -28,8 +30,8 @@ mat-form-field {
         text-align: center;
         // justify-content: center;
         text-wrap: wrap;
-        color: black;
-        font-weight: 600;
+        color: black !important;
+        font-weight: 400;
     }
 
 }

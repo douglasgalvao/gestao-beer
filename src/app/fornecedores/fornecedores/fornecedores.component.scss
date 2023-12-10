@@ -1,0 +1,16 @@
+.example-card {
+    max-width: 400px;
+    margin: 15px;
+}
+
+.example-header-image {
+    background-image: url('../../../assets/ambev.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
