@@ -1,1 +1,33 @@
-<p>informacoes-dialog works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-tab-group color="warn">
+            <mat-tab label="Histórico de Compras">
+                <table mat-table [dataSource]="historico.historicoDeCompras" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>ID</th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fornecedor">
+                        <th mat-header-cell *matHeaderCellDef>Fornecedor Name</th>
+                        <td mat-cell *matCellDef="let element"> {{element.fornecedor}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dataCompra">
+                        <th mat-header-cell *matHeaderCellDef>Data da Compra</th>
+                        <td mat-cell *matCellDef="let element"> {{element.dataCompra}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <button mat-stroked-button class="btnSairHistoriocCompras">Fechar</button>
+            </mat-tab>
+            <mat-tab label="Produtos do Fornecedor">
+
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.btnActions{
+    display: flex;
+    justify-content: center;
+    button{
+        background-color: yellow;
+        color: #121212;
+    }
+}

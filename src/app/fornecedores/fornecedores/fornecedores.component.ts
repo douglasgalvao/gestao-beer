@@ -39,8 +39,8 @@ export class FornecedoresComponent {
 
   abrirDialogInformacoes() {
     this.dialog.open(InformacoesDialogComponent, {
-      width: 'max-content',
-      height: 'max-content',
+      width: '100%',
+      height: '100%',
       panelClass: 'scrollable-dialog',
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'

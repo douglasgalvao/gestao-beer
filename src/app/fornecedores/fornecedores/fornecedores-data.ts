@@ -61,7 +61,7 @@ export const CardFornecedoresElements: CardElement[] = [
         },
         imgSrc: "",
         subtitle: "Contato vendedor: Carlos Rodrigues",
-        title: "Bebidas Energéticas Supreme"
+        title: "Energéticos Supreme"
     },
     {
         fornecedor: {

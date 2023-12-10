@@ -1,9 +1,9 @@
 <div class="container">
     <mat-toolbar>Detalhes da Venda</mat-toolbar>
     <mat-divider></mat-divider>
-    <form class="">
+    <form>
         <mat-form-field>
-            <mat-label>ID</mat-label>
+            <mat-label>COD</mat-label>
             <input matInput disabled value="{{vendaObjeto?.id}}">
         </mat-form-field>
 
@@ -25,7 +25,8 @@
             <h2>Produtos</h2>
         </div>
 
-        <mat-form-field matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"  *ngFor="let p of vendaObjeto?.produtos">
+        <mat-form-field matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
+            *ngFor="let p of vendaObjeto?.produtos">
             <mat-label>Categoria: {{p.tipoProduto}}</mat-label>
             <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.precoUnitario}} 
 Subtotal: R$:{{p.subtotal}}</textarea>

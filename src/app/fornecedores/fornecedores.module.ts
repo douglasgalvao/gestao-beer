@@ -5,6 +5,7 @@ import { FornecedoresComponent } from './fornecedores/fornecedores.component';
 import { FornecedoresRoutingModule } from './fornecedores-routing.module';
 import { InformacoesDialogComponent } from './informacoes-dialog/informacoes-dialog.component';
 import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,12 +14,13 @@ import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-forn
   declarations: [
     FornecedoresComponent,
     InformacoesDialogComponent,
-    CadastroFornecedorComponent,
+    CadastroFornecedorComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    FornecedoresRoutingModule
+    FornecedoresRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class FornecedoresModule { }

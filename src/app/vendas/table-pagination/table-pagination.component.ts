@@ -16,7 +16,7 @@ import { VendaElement } from '../vendas.component';
   styleUrls: ['./table-pagination.component.scss']
 })
 export class TableSortPaginationComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'id', 'dataHora', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
+  displayedColumns: string[] = ['id', 'dataHora', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
   vendas: VendaElement[] = [];
   dataSource = new MatTableDataSource(VENDAS_DATA);
   selection = new SelectionModel<VendaElement>(true, []);

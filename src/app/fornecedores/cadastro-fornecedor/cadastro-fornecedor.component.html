@@ -1,1 +1,39 @@
-<p>cadastro-fornecedor works!</p>
+<div class="container">
+    <form [formGroup]="fornecedorForm" (ngSubmit)="salvarFornecedor()">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Cadastro de Fornecedor</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Nome do Fornecedor" formControlName="nome">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="E-mail" formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Endereço" formControlName="endereco">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Telefone" formControlName="telefone">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Imagem (URL)" formControlName="imgSrc">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Contato Vendedor" formControlName="contatoVendedor">
+                </mat-form-field>
+            </mat-card-content>
+
+            <mat-card-actions class="btnActions">
+                <button mat-raised-button color="warn" type="submit">Salvar</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
