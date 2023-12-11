@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HistoricoDeComprasData } from './informacoes-data';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-informacoes-dialog',
@@ -9,6 +10,14 @@ import { HistoricoDeComprasData } from './informacoes-data';
 
 
 export class InformacoesDialogComponent {
-  displayedColumns = ['id','fornecedor','dataCompra']
+  constructor(private dialog: MatDialogRef<InformacoesDialogComponent>) {
+    this.dialog = dialog;
+  }
+  displayedColumns = ['id', 'fornecedor', 'dataCompra']
   historico = HistoricoDeComprasData;
+
+
+  btnSairHistoriocCompras() {
+    this.dialog.close();
+  }
 }
