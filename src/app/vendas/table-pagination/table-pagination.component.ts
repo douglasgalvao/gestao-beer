@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
 import { VENDAS_DATA } from '../../vendas/vendas-data';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';

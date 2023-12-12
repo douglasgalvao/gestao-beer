@@ -3,31 +3,42 @@
     <mat-divider></mat-divider>
     <form>
         <mat-form-field>
-            <mat-label>COD</mat-label>
+            <div class="mat-labelDiv">
+                <mat-label>COD</mat-label>
+            </div>
             <input matInput disabled value="{{vendaObjeto?.id}}">
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Data e Hora da Venda:</mat-label>
+            <div class="mat-labelDiv">
+                <mat-label>Data e Hora da Venda:</mat-label>
+            </div>
             <input matInput disabled value="{{vendaObjeto?.dataHora}}">
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Nome do Cliente:</mat-label>
+            <div class="mat-labelDiv">
+                <mat-label>Nome do Cliente:</mat-label>
+            </div>
             <input matInput disabled value="{{vendaObjeto?.cliente}}">
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Método de Pagamento</mat-label>
+            <div class="mat-labelDiv">
+                <mat-label>Método de Pagamento</mat-label>
+            </div>
             <input matInput disabled value="R$:{{vendaObjeto?.metodoPagamento}}">
         </mat-form-field>
+
+        <mat-divider></mat-divider>
+        
         <div class="Title">
             <h2>Produtos</h2>
         </div>
 
         <mat-form-field matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
             *ngFor="let p of vendaObjeto?.produtos">
-            <mat-label>Categoria: {{p.tipoProduto}}</mat-label>
+            <div class="mat-labelDiv"><mat-label>Categoria: {{p.tipoProduto}}</mat-label></div>
             <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.precoUnitario}} 
 Subtotal: R$:{{p.subtotal}}</textarea>
         </mat-form-field>
@@ -36,7 +47,7 @@ Subtotal: R$:{{p.subtotal}}</textarea>
             <h2>Total Da Venda</h2>
         </div>
         <mat-form-field class="totalVenda">
-            <mat-label>Total da Venda</mat-label>
+            <div class="mat-labelDiv"><mat-label>Total da Venda</mat-label></div>
             <input matInput disabled value="R$:{{vendaObjeto?.totalVenda}}">
         </mat-form-field>
 

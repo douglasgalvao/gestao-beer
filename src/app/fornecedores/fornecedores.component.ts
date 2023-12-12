@@ -2,8 +2,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CardFornecedoresElements } from './fornecedores-data';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InformacoesDialogComponent } from '../informacoes-dialog/informacoes-dialog.component';
-import { CadastroFornecedorComponent } from '../cadastro-fornecedor/cadastro-fornecedor.component';
+import { CadastroFornecedorComponent } from './cadastro-fornecedor/cadastro-fornecedor.component';
+import { InformacoesDialogComponent } from './informacoes-dialog/informacoes-dialog.component';
 
 @Component({
   selector: 'app-fornecedores',
@@ -40,7 +40,7 @@ export class FornecedoresComponent {
   abrirDialogInformacoes() {
     this.dialog.open(InformacoesDialogComponent, {
       width: '100%',
-      height: '100%',
+      height: 'max-content',
       panelClass: 'scrollable-dialog',
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'

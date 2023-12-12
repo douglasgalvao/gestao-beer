@@ -13,7 +13,7 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
-    
+
 }
 
 .example-header-image {
@@ -23,10 +23,9 @@
     background-position: center center;
 }
 
-
-mat-card-actions {
+.scrollable-dialog mat-card-actions {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 
 .custom-card-image {

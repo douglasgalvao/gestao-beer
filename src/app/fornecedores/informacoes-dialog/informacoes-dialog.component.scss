@@ -1,4 +1,54 @@
-.btnSairHistoriocCompras{
-    background-color: red;
-    color: white;
+.btnSairHistoricoCompras {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem;
+
+    button {
+        background-color: red;
+        color: white;
+    }
+}
+
+.btnNovaCompraFornecedor,
+.btnNovoProdutoFornecedor {
+    background-color: yellow;
+    color: #121212;
+}
+
+
+.toolbarActionsFornecedor {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.2rem 1rem;
+}
+
+
+mat-card {
+    margin: 1rem;
+}
+
+
+mat-card-title {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+mat-tab {
+    color: yellow;
+}
+
+mat-toolbar {
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+}
+
+mat-tab-group {
+    color: yellow;
+}
+
+
+.container {
+    background-color: #121212;
 }

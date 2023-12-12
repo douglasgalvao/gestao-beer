@@ -1,9 +1,6 @@
-import { FornecedoresModule } from './fornecedores.module';
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FornecedoresComponent } from './fornecedores/fornecedores.component';
-
+import { FornecedoresComponent } from './fornecedores.component';
 
 
 
