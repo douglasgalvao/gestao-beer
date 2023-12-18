@@ -19,7 +19,9 @@
 .toolbarActionsFornecedor {
     display: flex;
     justify-content: flex-end;
-    margin: 0.2rem 1rem;
+    background-color: #121212;
+    border-radius: inherit;
+    // margin: 0.2rem 1rem;
 }
 
 
@@ -51,4 +53,10 @@ mat-tab-group {
 
 .container {
     background-color: #121212;
+}
+
+
+.containerTabs{
+    background-color: rgba(255, 255, 0, 0.71);
+    border-radius: inherit;
 }

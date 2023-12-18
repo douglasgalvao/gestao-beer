@@ -1,10 +1,10 @@
 import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
-import { VENDAS_DATA } from '../../vendas/vendas-data';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { VendaElement } from '../vendas.component';
+import { VendasService } from 'src/app/service/vendas.service';
 
 
 
@@ -16,20 +16,36 @@ import { VendaElement } from '../vendas.component';
   styleUrls: ['./table-pagination.component.scss']
 })
 export class TableSortPaginationComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'dataHora', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
+  displayedColumns: string[] = ['id', 'dataVenda', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
   vendas: VendaElement[] = [];
-  dataSource = new MatTableDataSource(VENDAS_DATA);
+  dataSource = new MatTableDataSource(this.vendas);
   selection = new SelectionModel<VendaElement>(true, []);
 
   @Output() openDialog = new EventEmitter<VendaElement>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor() { }
+  constructor(private vendasService: VendasService) { }
 
 
   ngOnInit(): void {
-    this.vendas = VENDAS_DATA;
+
+    this.vendasService.getVendas().subscribe(
+      data => {
+        data.forEach(venda => {
+          this.vendas.push({
+            id: venda.id,
+            dataVenda: venda.dataVenda,
+            statusVenda: venda.statusVenda,
+            metodoPagamento: venda.metodoPagamento,
+            totalVenda: venda.totalVenda,
+            cliente: venda.cliente,
+            produtos: venda.produtos
+          });
+        })
+      },
+      error => console.error('Erro ao obter vendas:', error)
+    );
     this.dataSource.sort = this.sort;
   }
 
@@ -39,7 +55,6 @@ export class TableSortPaginationComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    console.log(this.dataSource)
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     const normalizedFilter = this.normalizeAccents(filterValue);
 
@@ -84,7 +99,6 @@ export class TableSortPaginationComponent implements OnInit {
   onProductSelected(venda: VendaElement) {
     this.selection.toggle(venda);
 
-    console.log(this.selection.selected);
   }
 
 

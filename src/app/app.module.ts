@@ -7,6 +7,7 @@ import { MaterialModule } from './material-module';
 import { HomeModule } from './home/home.module';
 import { MenuBarComponent } from './control/menu-bar/menu-bar.component';
 import { MenuLateralComponent } from './control/menu-lateral/menu-lateral.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MenuLateralComponent } from './control/menu-lateral/menu-lateral.compon
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

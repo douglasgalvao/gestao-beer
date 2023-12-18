@@ -23,9 +23,10 @@
     background-position: center center;
 }
 
-.scrollable-dialog mat-card-actions {
+.scrollable-dialog {
     display: flex;
     justify-content: center !important;
+    color: #121212;
 }
 
 .custom-card-image {
