@@ -6,12 +6,14 @@ import { TableSortPaginationComponent } from './table-pagination/table-paginatio
 import { VendasRoutingModule } from './vendas-routing.module';
 import { DialogInformationVendaComponent } from './dialog-information-venda/dialog-information-venda.component';
 import { VendasService } from '../service/vendas.service';
+import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 
 @NgModule({
   declarations: [
     VendasComponent,
     TableSortPaginationComponent,
-    DialogInformationVendaComponent
+    DialogInformationVendaComponent,
+    DialogDeleteConfirmationVendaComponent
   ],
   imports: [
     CommonModule,

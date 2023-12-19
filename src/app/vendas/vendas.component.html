@@ -1,3 +1,5 @@
 <div class="container" [@fadeIn]>
-    <app-table-pagination (openDialog)="abrirDialog($event)"></app-table-pagination>
+    <app-table-pagination (openInformations)="abrirDialogInformation($event)"
+        (openDelete)="abrirDialogDelete($event)">
+    </app-table-pagination>
 </div>
