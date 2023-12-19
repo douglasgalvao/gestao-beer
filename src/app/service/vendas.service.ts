@@ -14,4 +14,8 @@ export class VendasService {
   getVendas(): Observable<VendaElement[]> {
     return this.http.get<VendaElement[]>(this.apiUrl);
   }
+
+  getVenda(id: number): Observable<VendaElement> {
+    return this.http.get<VendaElement>(this.apiUrl + '/' + id);
+  }
 }
