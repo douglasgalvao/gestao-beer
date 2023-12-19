@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { VendaElement } from '../vendas.component';
 import { VendasService } from 'src/app/service/vendas.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 
 
@@ -26,7 +27,7 @@ export class TableSortPaginationComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private vendasService: VendasService) { }
+  constructor(private vendasService: VendasService, private notificationService: NotificationService) { }
 
 
 
@@ -92,8 +93,10 @@ export class TableSortPaginationComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
 
+
+
+  updateTable() {
     this.vendasService.getVendas().subscribe(
       data => {
         data.forEach(venda => {
@@ -113,6 +116,12 @@ export class TableSortPaginationComponent implements OnInit {
       },
       error => console.error('Erro ao obter vendas:', error)
     );
+  }
 
+  ngOnInit(): void {
+    this.notificationService.vendaDeletada$.subscribe(() => {
+      this.updateTable();
+    });
+    this.updateTable();
   }
 }

@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     exports: [
@@ -35,7 +36,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatCardModule,
         MatCheckboxModule,
         MatBadgeModule,
-        MatTabsModule
+        MatTabsModule,
+        MatSnackBarModule
     ]
 })
 

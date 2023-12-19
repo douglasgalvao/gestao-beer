@@ -1,7 +1,9 @@
+import { VendaElement } from 'src/app/vendas/vendas.component';
+import { VendasService } from 'src/app/service/vendas.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogoService } from 'src/app/service/dialogo.service';
-import { VendaElement } from '../vendas.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog-delete-confirmation-venda',
@@ -10,12 +12,34 @@ import { VendaElement } from '../vendas.component';
 })
 export class DialogDeleteConfirmationVendaComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogDeleteConfirmationVendaComponent>,
-    private dialogService: DialogoService) { }
+    private dialogService: DialogoService, private vendaService: VendasService,
+    private _snackBar: MatSnackBar) { }
 
 
-  vendaObjeto?: VendaElement | null;
+  vendaObjeto!: VendaElement | null;
+
+  deleteVendaConfirm(): void {
+    if (this.vendaObjeto?.id !== undefined) {
+      this.vendaService.deleteVenda(this.vendaObjeto?.id).subscribe(
+        data => {
+          this.openSnackBar();
+        },
+        error => console.error('Erro ao excluir venda:', error)
+      );
+    }
+  }
+
   closeDialogConfirmation() {
     this.dialogRef.close();
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Venda excluída com sucesso!.', 'OK', {
+      panelClass: ['classerror'],
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+    });
+
   }
 
   ngOnInit(): void {

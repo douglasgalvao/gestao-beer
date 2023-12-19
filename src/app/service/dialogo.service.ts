@@ -14,4 +14,8 @@ export class DialogoService {
   setVendaData(data: VendaElement) {
     this.vendaDataSubject.next(data);
   }
+
+  deleteVenda(id: number | undefined) {
+    console.log('Venda excluída com sucesso! Id:', id);
+  }
 }

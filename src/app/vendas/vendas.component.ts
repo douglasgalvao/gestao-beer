@@ -49,7 +49,7 @@ export interface VendaElement {
 
 export class VendasComponent implements OnInit {
   constructor(private dialog: MatDialog, private dialogService: DialogoService) { }
-  vendaData: VendaElement | null = null;
+  vendaData!: VendaElement;
   ngOnInit(): void {
 
   }
