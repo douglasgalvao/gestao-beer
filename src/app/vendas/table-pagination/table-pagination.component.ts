@@ -21,44 +21,34 @@ export class TableSortPaginationComponent implements OnInit {
   dataSource!: MatTableDataSource<VendaElement>;
   selection = new SelectionModel<VendaElement>(true, []);
 
-  @Output() openDialog = new EventEmitter<VendaElement>();
+  @Output() openInformations = new EventEmitter<VendaElement>();
+  @Output() openDelete = new EventEmitter<VendaElement>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private vendasService: VendasService) { }
 
 
-  ngOnInit(): void {
 
-    this.vendasService.getVendas().subscribe(
-      data => {
-        data.forEach(venda => {
-          this.vendas.push({
-            id: venda.id,
-            dataVenda: venda.dataVenda,
-            totalVenda: venda.totalVenda,
-            cliente: venda.cliente,
-            metodoPagamento: venda.metodoPagamento,
-            statusVenda: venda.statusVenda,
-            produtos: venda.produtos
-          });
-        })
-      },
-      error => console.error('Erro ao obter vendas:', error)
-    );
-    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
-    console.log(this.vendas);
-    this.dataSource.sort = this.sort;
-  }
-
-
-  openDialogClicked(venda: VendaElement) {
+  openDialogInformation(venda: VendaElement) {
     this.vendasService.getVenda(venda.id).subscribe(
       data => {
-        this.openDialog.emit(data);
+        this.openInformations.emit(data);
       },
       error => console.error('Erro ao obter venda:', error)
     );
+  }
+
+
+  openDeleteVenda(venda: VendaElement) {
+    this.vendasService.getVenda(venda.id).subscribe(
+      data => {
+        this.openDelete.emit(data);
+      },
+      error => console.error('Erro ao obter venda:', error)
+    );
+
+
   }
 
   applyFilter(event: Event) {
@@ -97,16 +87,32 @@ export class TableSortPaginationComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
-  }
-
   onProductSelected(venda: VendaElement) {
     this.selection.toggle(venda);
 
   }
 
+  ngOnInit(): void {
 
+    this.vendasService.getVendas().subscribe(
+      data => {
+        data.forEach(venda => {
+          this.vendas.push({
+            id: venda.id,
+            dataVenda: venda.dataVenda,
+            totalVenda: venda.totalVenda,
+            cliente: venda.cliente,
+            metodoPagamento: venda.metodoPagamento,
+            statusVenda: venda.statusVenda,
+            produtos: venda.produtos
+          });
+        })
+        this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error => console.error('Erro ao obter vendas:', error)
+    );
+
+  }
 }
