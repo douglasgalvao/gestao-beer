@@ -18,7 +18,7 @@ import { VendasService } from 'src/app/service/vendas.service';
 export class TableSortPaginationComponent implements OnInit {
   displayedColumns: string[] = ['id', 'dataVenda', 'totalVenda', 'cliente', 'metodoPagamento', 'statusVenda', 'actions'];
   vendas: VendaElement[] = [];
-  dataSource = new MatTableDataSource(this.vendas);
+  dataSource!: MatTableDataSource<VendaElement>;
   selection = new SelectionModel<VendaElement>(true, []);
 
   @Output() openDialog = new EventEmitter<VendaElement>();
@@ -36,16 +36,18 @@ export class TableSortPaginationComponent implements OnInit {
           this.vendas.push({
             id: venda.id,
             dataVenda: venda.dataVenda,
-            statusVenda: venda.statusVenda,
-            metodoPagamento: venda.metodoPagamento,
             totalVenda: venda.totalVenda,
             cliente: venda.cliente,
+            metodoPagamento: venda.metodoPagamento,
+            statusVenda: venda.statusVenda,
             produtos: venda.produtos
           });
         })
       },
       error => console.error('Erro ao obter vendas:', error)
     );
+    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
+    console.log(this.vendas);
     this.dataSource.sort = this.sort;
   }
 

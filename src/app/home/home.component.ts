@@ -4,8 +4,6 @@ import { ProdutoElement, VendaElement } from '../vendas/vendas.component';
 import { DialogoService } from '../service/dialogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
-import { HistoricoVendasHome } from './home-data';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   displayedColumns: string[] = ['id'];
 
-  vendas: VendaElement[] = HistoricoVendasHome;
+  // vendas: VendaElement[] = HistoricoVendasHome;
 
-  dataSource = new MatTableDataSource(this.vendas);
+  // dataSource = new MatTableDataSource(this.vendas);
 
   constructor(private dialog: MatDialog, private dialogService: DialogoService) {
     this.dialog = dialog;

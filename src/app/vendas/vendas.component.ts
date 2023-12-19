@@ -12,6 +12,14 @@ export interface ProdutoElement {
   tipoProduto: string
 }
 
+export interface ClienteElement {
+  email: string,
+  id: number,
+  nome: string,
+  numero: string
+}
+
+
 export interface VendaElement {
   id: number;
   totalVenda: number;
@@ -19,7 +27,7 @@ export interface VendaElement {
   statusVenda: string;
   metodoPagamento: string;
   produtos: ProdutoElement[];
-  cliente: string;
+  cliente: ClienteElement;
 }
 
 
