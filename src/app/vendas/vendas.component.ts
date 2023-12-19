@@ -7,7 +7,7 @@ import { VendasService } from '../service/vendas.service';
 export interface ProdutoElement {
   nome: string,
   quantidade: number,
-  precoUnitario: number,
+  preco: number,
   subtotal: number,
   tipoProduto: string
 }
