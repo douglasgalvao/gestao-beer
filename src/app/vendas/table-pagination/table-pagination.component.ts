@@ -53,7 +53,12 @@ export class TableSortPaginationComponent implements OnInit {
 
 
   openDialogClicked(venda: VendaElement) {
-    this.openDialog.emit(venda);
+    this.vendasService.getVenda(venda.id).subscribe(
+      data => {
+        this.openDialog.emit(data);
+      },
+      error => console.error('Erro ao obter venda:', error)
+    );
   }
 
   applyFilter(event: Event) {

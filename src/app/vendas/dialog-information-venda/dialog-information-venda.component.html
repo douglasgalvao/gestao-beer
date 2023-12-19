@@ -1,6 +1,6 @@
-<div class="container">
-    <mat-toolbar>Detalhes da Venda</mat-toolbar>
-    <mat-divider></mat-divider>
+<mat-toolbar>Detalhes da Venda</mat-toolbar>
+<mat-divider></mat-divider>
+<div class="container" mat-dialog-content>
     <form>
         <mat-form-field>
             <div class="mat-labelDiv">
@@ -20,7 +20,7 @@
             <div class="mat-labelDiv">
                 <mat-label>Nome do Cliente:</mat-label>
             </div>
-            <input matInput disabled value="{{vendaObjeto?.cliente}}">
+            <input matInput disabled value="{{vendaObjeto?.cliente?.nome}}">
         </mat-form-field>
 
         <mat-form-field>
@@ -29,17 +29,16 @@
             </div>
             <input matInput disabled value="R$:{{vendaObjeto?.metodoPagamento}}">
         </mat-form-field>
-
         <mat-divider></mat-divider>
 
         <div class="Title">
             <h2>Produtos</h2>
         </div>
 
-        <mat-form-field matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
+        <mat-form-field appearance="fill" matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
             *ngFor="let p of vendaObjeto?.produtos">
             <div class="mat-labelDiv"><mat-label>Categoria: {{p.tipoProduto}}</mat-label></div>
-            <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.precoUnitario}} 
+            <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.preco}} 
 Subtotal: R$:{{p.subtotal}}</textarea>
         </mat-form-field>
 
@@ -52,6 +51,7 @@ Subtotal: R$:{{p.subtotal}}</textarea>
         </mat-form-field>
 
     </form>
+
     <div class="buttons" mat-dialog-actions>
         <button mat-raised-button (click)="closeDialogVenda()"
             class="btnFecharVenda">{{buttons.btnFechar.name}}</button>
