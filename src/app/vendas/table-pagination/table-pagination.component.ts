@@ -24,6 +24,7 @@ export class TableSortPaginationComponent implements OnInit {
 
   @Output() openInformations = new EventEmitter<VendaElement>();
   @Output() openDelete = new EventEmitter<VendaElement>();
+  @Output() openNewVenda = new EventEmitter<VendaElement>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -38,6 +39,10 @@ export class TableSortPaginationComponent implements OnInit {
       },
       error => console.error('Erro ao obter venda:', error)
     );
+  }
+
+  openDialogNewVenda() {
+    this.openNewVenda.emit();
   }
 
 
@@ -76,27 +81,9 @@ export class TableSortPaginationComponent implements OnInit {
     return input.replace(/[áéíóúàèìòùãõâêîôûäëïöü]/g, match => accentsMap[match] || match);
   }
 
-  isAllSelected() {
-    return this.selection.selected.length == this.vendas.length;
-  }
-
-  toogleAllVendas() {
-    if (this.isAllSelected()) {
-      this.selection.clear()
-    } else {
-      this.selection.select(...this.vendas);
-    }
-  }
-
-  onProductSelected(venda: VendaElement) {
-    this.selection.toggle(venda);
-
-  }
-
-
-
 
   updateTable() {
+    this.vendas = [];
     this.vendasService.getVendas().subscribe(
       data => {
         data.forEach(venda => {
@@ -118,10 +105,14 @@ export class TableSortPaginationComponent implements OnInit {
     );
   }
 
+
   ngOnInit(): void {
-    this.notificationService.vendaDeletada$.subscribe(() => {
+
+    this.notificationService.vendaDeletada$.subscribe((vendaID) => {
+      this.vendas = this.vendas.filter((venda) => venda.id !== vendaID);
       this.updateTable();
     });
+
     this.updateTable();
   }
 }
