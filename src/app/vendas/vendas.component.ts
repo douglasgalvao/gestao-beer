@@ -6,12 +6,18 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
+
+
+export interface CategoriaProdutoElement {
+  id: number,
+  nome: string
+}
 export interface ProdutoElement {
   nome: string,
   quantidade: number,
   preco: number,
   subtotal: number,
-  tipoProduto: string
+  categoriaProduto: CategoriaProdutoElement
 }
 
 export interface ClienteElement {
