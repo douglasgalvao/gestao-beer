@@ -1,0 +1,28 @@
+.formFieldCliente,
+.formFieldFormaPagamento,
+.formFieldStatusPagamento {
+    width: 100%;
+    padding: 10px;
+}
+
+.fieldButtonClose {
+    display: flex;
+    justify-content: flex-end;
+
+    .buttonCloseNovaVendaDialog {
+        padding: 10px;
+    }
+}
+
+.toolBarCadastroVenda {
+    display: flex;
+    background-color: yellow;
+    color: #121212;
+    justify-content: center;
+    padding: 10px;
+}
+
+.formContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

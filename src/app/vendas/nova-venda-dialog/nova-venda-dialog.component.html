@@ -1,0 +1,40 @@
+<mat-card-title>
+    <mat-toolbar class="toolBarCadastroVenda">Cadastrar uma Venda</mat-toolbar>
+</mat-card-title>
+<mat-card-content>
+    <div class="container">
+        <form class="formContainer">
+            <mat-form-field class="formFieldCliente" appearance="fill">
+                <mat-label>Selecione um Cliente</mat-label>
+                <mat-select mat-autocomplete class="clienteSelect" [formControl]="clienteControl" name="cliente">
+                    <mat-option>Nenhum</mat-option>
+                    <mat-option *ngFor="let cliente of clientes; trackBy: trackByClienteFn" [value]="cliente.id">
+                        {{cliente.nome}} - {{cliente.email}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="formFieldFormaPagamento" appearance="fill">
+                <mat-label>Selecione a Forma de Pagamento</mat-label>
+                <mat-select class="formaPagamentoSelect" [formControl]="formaPagamentoControl" name="formaPagamento">
+                    <mat-option value="CARTAO_DEBITO">Cartão de Débito</mat-option>
+                    <mat-option value="CARTAO_CREDITO">Cartão de Crédito</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="formFieldStatusPagamento" appearance="fill">
+                <mat-label>Status Pagamento</mat-label>
+                <mat-select class="statusPagamentoSelect" [formControl]="statusPagamentoControl" name="formaPagamento">
+                    <mat-option value="PAGO">Pago</mat-option>
+                    <mat-option value="PENDENTE">Pendente</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </form>
+        <div class="fieldButtonClose">
+            <button mat-raised-button class="buttonCloseNovaVendaDialog" color="warn"
+                (click)="closeDialogNovaVenda()">Fechar</button>
+        </div>
+    </div>
+</mat-card-content>
+<mat-card-actions></mat-card-actions>
