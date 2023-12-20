@@ -1,7 +1,33 @@
-::ng-deep .classerror {
-    background-color: yellow;
-    color: #121212;
+.actionsButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    .confirmButton {
+        background-color: green;
+        opacity: 1;
+        color: #fff;
+
+        :hover {
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.484);
+        }
+
+    }
+
+    .cancelButton {
+        :hover {
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.484);
+        }
+
+        background-color: red;
+        opacity: 1;
+        color: #fff;
+    }
 }
+
+
 
 
 .classerror {

@@ -4,6 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogoService } from 'src/app/service/dialogo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-dialog-delete-confirmation-venda',
@@ -13,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DialogDeleteConfirmationVendaComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogDeleteConfirmationVendaComponent>,
     private dialogService: DialogoService, private vendaService: VendasService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar, private notificationService: NotificationService) { }
 
 
   vendaObjeto!: VendaElement | null;
@@ -23,6 +24,7 @@ export class DialogDeleteConfirmationVendaComponent implements OnInit {
       this.vendaService.deleteVenda(this.vendaObjeto?.id).subscribe(
         data => {
           this.openSnackBar();
+          this.notificationService.notificarVendaDeletada(data.id);
         },
         error => console.error('Erro ao excluir venda:', error)
       );
