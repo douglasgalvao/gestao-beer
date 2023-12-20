@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
 import { NgModule } from "@angular/core";
 import { MatInputModule } from '@angular/material/input';
@@ -37,7 +38,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatCheckboxModule,
         MatBadgeModule,
         MatTabsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        ReactiveFormsModule
     ]
 })
 
