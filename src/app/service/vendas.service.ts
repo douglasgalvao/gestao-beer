@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VendaElement } from '../vendas/vendas.component';
 import { NotificationService } from './notification.service';
-
+import { environment } from 'src/environments/enviroment';
 @Injectable({
   providedIn: 'root'
 })
 export class VendasService {
-  private apiUrl = 'http://localhost:8080/venda';
+  private apiUrl = environment.apiUrl + '/venda';
 
   constructor(private http: HttpClient, private notificationService: NotificationService) { }
 
@@ -21,7 +21,7 @@ export class VendasService {
   }
 
   deleteVenda(id: number | null): Observable<any> {
-    this.notificationService.notificarVendaDeletada();
+    this.notificationService.notificarVendaDeletada(id!);
     return this.http.delete(this.apiUrl + '/' + id);
   }
 }
