@@ -7,13 +7,15 @@ import { VendasRoutingModule } from './vendas-routing.module';
 import { DialogInformationVendaComponent } from './dialog-information-venda/dialog-information-venda.component';
 import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
+import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
 
 @NgModule({
   declarations: [
     VendasComponent,
     TableSortPaginationComponent,
     DialogInformationVendaComponent,
-    DialogDeleteConfirmationVendaComponent
+    DialogDeleteConfirmationVendaComponent,
+    NovaVendaDialogComponent
   ],
   imports: [
     CommonModule,

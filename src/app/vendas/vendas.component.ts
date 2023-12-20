@@ -5,6 +5,7 @@ import { DialogoService } from '../service/dialogo.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
+import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
 export interface ProdutoElement {
   nome: string,
   quantidade: number,
@@ -75,6 +76,17 @@ export class VendasComponent implements OnInit {
       exitAnimationDuration: '350ms'
     })
     this.dialogService.setVendaData(venda);
+  }
+
+
+  abrirDialogNovaVenda() {
+    this.dialog.open(NovaVendaDialogComponent, {
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: 'scrollable-dialog',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    })
   }
 
 
