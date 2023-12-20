@@ -6,11 +6,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class NotificationService {
-  private vendaDeletadaSource = new Subject<void>();
+  private vendaDeletadaSource = new Subject<number>();
 
   vendaDeletada$ = this.vendaDeletadaSource.asObservable();
 
-  notificarVendaDeletada() {
-    this.vendaDeletadaSource.next();
+  notificarVendaDeletada(vendaId: number) {
+    this.vendaDeletadaSource.next(vendaId);
   }
 }
