@@ -38,7 +38,8 @@
 
             <mat-form-field class="formFieldProdutos" appearance="fill">
                 <mat-label>Selecione os Produtos</mat-label>
-                <mat-select [formControl]="produtoControl" name="produtos" formControlName="produto" multiple>
+                <mat-select [formControl]="produtoControl" name="produtos" formControlName="produto" multiple
+                    (selectionChange)="onProdutoSelectionChange($event)">
 
                     <mat-optgroup *ngFor="let group of produtosAgrupados" [label]="group.categoria">
                         <mat-option *ngFor="let produto of group.produtos" [value]="produto">
@@ -62,9 +63,8 @@
                     <mat-card-content>
                         <div class="selected-products">
                             <div *ngFor="let produto of produtoControl.value" class="selected-product">
-                                {{ produto.nome }} - {{ produto.preco | currency }} ({{ produto.quantidade?
-                                produto.quantidade : 1 }})
-                                sub-total - {{produto.subtotal | currency}}
+                                [{{ produto.nome }} - {{ produto.preco | currency }}]
+                                Sub-total - {{ produto.subtotal | currency }}
                                 <div class="quantity-controls">
                                     <button mat-icon-button type="button" (click)="decrementQuantity(produto)">
                                         <mat-icon>remove</mat-icon>

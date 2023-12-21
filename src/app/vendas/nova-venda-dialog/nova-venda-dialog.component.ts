@@ -6,6 +6,7 @@ import { ClienteElement } from '../vendas.component';
 import { environment } from 'src/environments/environment';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { ProdutoService } from 'src/app/service/produto.service';
+import { MatSelectChange } from '@angular/material/select';
 @Component({
   selector: 'app-nova-venda-dialog',
   templateUrl: './nova-venda-dialog.component.html',
@@ -67,7 +68,7 @@ export class NovaVendaDialogComponent implements OnInit {
 
   decrementQuantity(produto: ProdutoElement | null) {
     if (produto) {
-      produto.quantidade = (produto.quantidade || 0) - 1;
+      produto.quantidade = (produto.quantidade || 1) - 1;
 
       if (produto.quantidade <= 0) {
         const produtos: ProdutoElement[] = this.produtoControl.value!.filter((p: ProdutoElement) => p.id !== produto.id);
@@ -82,7 +83,19 @@ export class NovaVendaDialogComponent implements OnInit {
     }
   }
 
+  onProdutoSelectionChange(event: MatSelectChange): void {
+    // event.value contém os itens selecionados
+    // Aqui você pode fazer alterações antes de renderizar
+    const produtosSelecionados = event.value;
 
+    // Por exemplo, você pode definir o subtotal para todos os produtos selecionados
+    produtosSelecionados.forEach((produto: ProdutoElement | null) => {
+      produto!.subtotal = produto!.preco * (produto!.quantidade || 1);
+    });
+
+    // Atualize o array de produtos no formControl
+    this.produtoControl.setValue(produtosSelecionados);
+  }
 
   getAllProdutosSelected() {
     const produtosSelecionados = this.produtoControl.value;

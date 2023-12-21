@@ -27,6 +27,13 @@
             color: white;
         }
 
+        .buttonCadastrarNovaVenda:disabled {
+            padding: 1rem;
+            margin: 1rem;
+            background-color: gray;
+            color: white;
+        }
+
 
     }
 }
