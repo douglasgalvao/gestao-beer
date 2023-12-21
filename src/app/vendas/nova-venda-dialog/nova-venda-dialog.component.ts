@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ClienteElement } from '../vendas.component';
-import { environment } from 'src/environments/enviroment';
+import { environment } from 'src/environments/environment';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 @Component({
