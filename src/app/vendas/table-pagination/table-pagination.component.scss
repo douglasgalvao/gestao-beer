@@ -12,9 +12,27 @@ th {
     opacity: 1;
     margin: 2px;
     border-radius: 4px;
-    :hover{
+
+    :hover {
         opacity: 0.5;
         cursor: pointer;
+    }
+}
+
+.novaVendaButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    .novaVendaButton {
+        background-color: #121212;
+        color: #fff;
+
+        :hover {
+            opacity: 0.5;
+            border-color: yellow;
+            border: 1px solid;
+            cursor: pointer;
+        }
     }
 }
 
