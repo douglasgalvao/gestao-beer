@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInformationVendaComponent } from './dialog-information-venda/dialog-information-venda.component';
 import { DialogoService } from '../service/dialogo.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
 
@@ -13,8 +12,9 @@ export interface CategoriaProdutoElement {
   nome: string
 }
 export interface ProdutoElement {
+  id: number,
   nome: string,
-  quantidade: number,
+  quantidade?: number,
   preco: number,
   subtotal: number,
   categoriaProduto: CategoriaProdutoElement
