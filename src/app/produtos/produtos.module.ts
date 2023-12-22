@@ -6,12 +6,14 @@ import { ProdutosRoutingModule } from './produtos-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DialogNovoProdutoComponent } from './dialog-novo-produto/dialog-novo-produto.component';
 import { DialogNovaCategoriaComponent } from './dialog-nova-categoria/dialog-nova-categoria.component';
+import { TableProdutosCategoriasComponent } from './table-pagination/table-pagination.component';
 
 @NgModule({
   declarations: [
     ProdutosComponent,
     DialogNovoProdutoComponent,
-    DialogNovaCategoriaComponent
+    DialogNovaCategoriaComponent,
+    TableProdutosCategoriasComponent
   ],
   imports: [
     CommonModule,

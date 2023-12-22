@@ -12,8 +12,8 @@
         </form>
 
         <mat-dialog-actions class="containerActions">
-            <button mat-button class="cadastrarButton" [mat-dialog-close]="form.value" [disabled]="categoriaJaExiste"
-                (click)="cadastrarCategoria()">
+            <button mat-button class="cadastrarButton" [mat-dialog-close]="form.value"
+                [disabled]="categoriaJaExiste || categoriaModificada" (click)="cadastrarCategoria()">
                 <mat-icon>save</mat-icon> <!-- Ícone de salvar -->
                 Cadastrar
             </button>
@@ -21,12 +21,12 @@
 
             <button mat-button class="fecharButton" (click)="closeDialog()">Fechar</button>
 
-            <button mat-icon-button (click)="verificarCategoria()">
+            <button mat-icon-button [disabled]="this.form.value.nome === ''" (click)="verificarCategoria()">
                 <mat-icon>refresh</mat-icon>
             </button>
         </mat-dialog-actions>
         <div class="errorCategoriaContainer">
-            <mat-error *ngIf="categoriaJaExiste && categoriaJaVerificada" class="error">Categoria já existe!</mat-error>
+            <mat-error *ngIf="categoriaJaExiste && categoriaJaVerificada" class="error">Categoria já existente no sistema!</mat-error>
         </div>
 
     </mat-card-content>

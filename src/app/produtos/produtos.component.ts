@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogNovoProdutoComponent } from './dialog-novo-produto/dialog-novo-produto.component';
 import { ProdutoService } from '../service/produto.service';
 import { DialogNovaCategoriaComponent } from './dialog-nova-categoria/dialog-nova-categoria.component';
+import { ProdutoElement } from '../vendas/vendas.component';
 
 @Component({
   selector: 'app-produtos',
@@ -20,6 +21,7 @@ import { DialogNovaCategoriaComponent } from './dialog-nova-categoria/dialog-nov
 })
 export class ProdutosComponent {
   constructor(private dialog: MatDialog, private produtoService: ProdutoService) { }
+
 
   abrirDialogNovoProduto() {
     this.dialog.open(DialogNovoProdutoComponent, {
@@ -62,9 +64,25 @@ export class ProdutosComponent {
     }
   ];
 
-
-  cadastrarNovoProduto() {
+  deletarProduto(produtoId: number) {
+    this.produtoService.deleteProduto(produtoId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => console.error('Erro ao deletar Produto:', error)
+    );
   }
+
+  cadastrarNovoProduto(produto: ProdutoElement) {
+    this.produtoService.cadastrarNovoProduto(produto).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => console.error('Erro ao cadastrar Produto:', error)
+    );
+  }
+
+
   performAction(action: () => void) {
     action();
   }

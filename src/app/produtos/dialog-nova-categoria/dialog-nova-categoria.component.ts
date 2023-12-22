@@ -1,5 +1,5 @@
 // dialog-nova-categoria.component.ts
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/service/categoria.service';
@@ -9,11 +9,11 @@ import { CategoriaService } from 'src/app/service/categoria.service';
   templateUrl: './dialog-nova-categoria.component.html',
   styleUrls: ['./dialog-nova-categoria.component.scss']
 })
-export class DialogNovaCategoriaComponent {
+export class DialogNovaCategoriaComponent implements OnInit {
   form: FormGroup;
   categoriaJaExiste: boolean = true;
   categoriaJaVerificada: boolean = false;
-
+  categoriaModificada: boolean = false;
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogNovaCategoriaComponent>,
@@ -21,6 +21,14 @@ export class DialogNovaCategoriaComponent {
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required]
+    });
+  }
+
+
+
+  ngOnInit(): void {
+    this.form.get('nome')!.valueChanges.subscribe(() => {
+      this.categoriaModificada = true;
     });
   }
 
@@ -44,7 +52,7 @@ export class DialogNovaCategoriaComponent {
         } else {
           this.categoriaJaExiste = false;
         }
-
+        this.categoriaModificada = false;
       },
       (err) => {
         this.categoriaJaExiste = false;
@@ -55,4 +63,6 @@ export class DialogNovaCategoriaComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+
 }

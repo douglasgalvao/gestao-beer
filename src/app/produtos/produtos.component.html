@@ -1,1 +1,9 @@
-<app-toolbar [actions]="actions" [toolbarTitle]="toolbarTitle"></app-toolbar>
+<app-toolbar [actions]="actions" [@fadeIn] [toolbarTitle]="toolbarTitle"></app-toolbar>
+<mat-tab-group color="warn" [@fadeIn]>
+    <mat-tab label="Categorias">
+    </mat-tab>
+    <mat-tab label="Produtos">
+        <app-table-pagination (openDelete)="($event)"
+            (openNewProduto)="abrirDialogNovoProduto()"></app-table-pagination>
+    </mat-tab>
+</mat-tab-group>
