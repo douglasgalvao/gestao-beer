@@ -1,8 +1,8 @@
+import { ProdutoElement } from './../vendas/vendas.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ProdutoElement } from '../vendas/vendas.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +12,19 @@ export class ProdutoService {
 
   apiUrl = environment.apiUrl;
 
-  cadastrarNovoProduto(produto: any): void {
-    console.log('tendeu');
-    // return this.http.post(this.apiUrl + '/produto', {});
+  cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
+    return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {});
   }
 
-  getProdutos(): Observable<any> {
-    return this.http.get(this.apiUrl + '/produto');
+  getProdutoById(id: number): Observable<ProdutoElement> {
+    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/' + id);
+  }
+
+  deleteProduto(id: number): Observable<ProdutoElement> {
+    return this.http.delete<ProdutoElement>(this.apiUrl + '/produto/' + id);
+  }
+
+  getProdutos(): Observable<ProdutoElement[]> {
+    return this.http.get<ProdutoElement[]>(this.apiUrl + '/produto');
   }
 }
