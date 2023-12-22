@@ -11,6 +11,10 @@ export interface CategoriaProdutoElement {
   id: number,
   nome: string
 }
+
+export interface CategoriaProdutoElementRequest {
+  id: number
+}
 export interface ProdutoElement {
   produtoObject: ProdutoElement;
   id: number,
@@ -26,7 +30,7 @@ export interface ProdutoElementRequest {
   id: number,
   nome: string,
   quantidade?: number,
-  preco: number,
+  preco: string,
   categoriaProduto: string
 }
 
