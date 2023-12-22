@@ -43,6 +43,17 @@ export class ProdutosComponent {
     });
   }
 
+  abrirDialogDeleteProduto(produto: ProdutoElement) {
+    this.dialog.open(DialogNovoProdutoComponent, {
+      data: produto,
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: '',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    });
+  }
+
   toolbarTitle = 'Produtos';
   actions = [
     {

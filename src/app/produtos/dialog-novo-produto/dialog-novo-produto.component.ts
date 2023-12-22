@@ -1,9 +1,13 @@
 
 // dialog-novo-produto.component.ts
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { CategoriaProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
+import { CategoriaService } from 'src/app/service/categoria.service';
+import { ProdutoService } from 'src/app/service/produto.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-dialog-novo-produto',
@@ -18,19 +22,67 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ]),
   ]
 })
-export class DialogNovoProdutoComponent {
-  form: FormGroup;
-
+export class DialogNovoProdutoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogNovoProdutoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private categoriaService: CategoriaService,
+    private produtoService: ProdutoService,
+    private notificationService: NotificationService
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoriaProduto: ['', Validators.required],
       preco: ['', Validators.required]
     });
+  }
+
+  form: FormGroup;
+  categorias!: CategoriaProdutoElement[];
+  produtoJaExiste: boolean = true;
+  produtoJaVerificada: boolean = false;
+  produtoModificada: boolean = false;
+
+
+  ngOnInit(): void {
+    this.categoriaService.obterCategorias().subscribe(
+      categorias => {
+        this.categorias = categorias;
+      },
+      error => {
+        console.error('Erro ao obter categorias', error);
+      }
+    );
+  }
+
+  cadastrarNovoProduto(produto: ProdutoElement) {
+    this.produtoService.cadastrarNovoProduto(produto).subscribe(
+      produto => {
+        this.notificationService.notificarProdutoCriado(produto);
+        this.dialogRef.close(produto);
+      },
+      error => {
+        console.error('Erro ao cadastrar produto', error);
+      }
+    );
+  }
+
+  verificarProduto() {
+    this.produtoService.verificarProdutoJaExiste(this.form.value.nome).subscribe(
+      (res) => {
+        if (res) {
+          this.produtoJaExiste = true
+        } else {
+          this.produtoJaExiste = false;
+        }
+        this.produtoJaVerificada = true;
+        this.produtoModificada = false;
+      },
+      (err) => {
+        this.produtoJaExiste = false;
+      }
+    );
   }
 
   closeDialog(): void {

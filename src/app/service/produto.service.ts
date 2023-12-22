@@ -13,7 +13,15 @@ export class ProdutoService {
   apiUrl = environment.apiUrl;
 
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
-    return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {});
+    return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
+      nome: produto.nome,
+      categoriaProduto: produto.categoriaProduto,
+      preco: produto.preco
+    });
+  }
+
+  verificarProdutoJaExiste(nome: string): Observable<boolean> {
+    return this.http.get<boolean>(this.apiUrl + '/produto/nome/' + nome);
   }
 
   getProdutoById(id: number): Observable<ProdutoElement> {
