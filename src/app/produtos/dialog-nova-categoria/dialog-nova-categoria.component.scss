@@ -21,6 +21,17 @@ mat-toolbar {
 
     }
 
+    .errorCategoriaContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        mat-error {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
     .cadastrarButton:disabled {
         background-color: #ccc;
         opacity: 1;

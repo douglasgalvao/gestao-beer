@@ -11,8 +11,8 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 })
 export class DialogNovaCategoriaComponent {
   form: FormGroup;
-  categoriaJaExiste: boolean = false;
-
+  categoriaJaExiste: boolean = true;
+  categoriaJaVerificada: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +38,13 @@ export class DialogNovaCategoriaComponent {
   verificarCategoria() {
     this.categoriaService.verificarCategoriaExistente(this.form.value.nome).subscribe(
       (res) => {
-        res ? this.categoriaJaExiste = true : this.categoriaJaExiste = false;
+        if (res) {
+          this.categoriaJaExiste = true
+          this.categoriaJaVerificada = true;
+        } else {
+          this.categoriaJaExiste = false;
+        }
+
       },
       (err) => {
         this.categoriaJaExiste = false;

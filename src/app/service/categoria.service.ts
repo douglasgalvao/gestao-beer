@@ -9,7 +9,7 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
   verificarCategoriaExistente(nome: string) {
-    return this.http.get('http://localhost:8080/categoria/' + nome);
+    return this.http.get('http://localhost:8080/categoria/nome/' + nome);
   }
 
   cadastrarCategoria(categoria: any) {
