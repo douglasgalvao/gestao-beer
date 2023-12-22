@@ -12,12 +12,22 @@ export interface CategoriaProdutoElement {
   nome: string
 }
 export interface ProdutoElement {
+  produtoObject: ProdutoElement;
   id: number,
   nome: string,
   quantidade?: number,
   preco: number,
   subtotal: number,
   categoriaProduto: CategoriaProdutoElement
+}
+
+
+export interface ProdutoElementRequest {
+  id: number,
+  nome: string,
+  quantidade?: number,
+  preco: number,
+  categoriaProduto: string
 }
 
 
@@ -84,6 +94,7 @@ export class VendasComponent implements OnInit {
 
   abrirDialogDelete(venda: VendaElement) {
     this.dialog.open(DialogDeleteConfirmationVendaComponent, {
+      data: venda,
       width: 'max-content',
       height: 'max-content',
       panelClass: 'scrollable-dialog',

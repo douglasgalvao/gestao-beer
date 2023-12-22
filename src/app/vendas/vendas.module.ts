@@ -8,6 +8,8 @@ import { DialogInformationVendaComponent } from './dialog-information-venda/dial
 import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
+import { DialogoService } from '../service/dialogo.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,6 @@ import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.
     VendasRoutingModule
   ],
   exports: [NovaVendaDialogComponent],
-  providers: [VendasService]
+  providers: [VendasService, DialogoService]
 })
 export class VendasModule { }

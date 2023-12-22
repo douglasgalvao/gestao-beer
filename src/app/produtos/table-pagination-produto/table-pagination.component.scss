@@ -26,3 +26,18 @@ mat-card {
 mat-form-field {
     width: 100%;
 }
+
+
+
+.deleteActionsProdutos {
+    background-color: red;
+    color: #121212;
+    opacity: 1;
+    margin: 2px;
+    border-radius: 4px;
+    justify-content: center;
+    :hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+}

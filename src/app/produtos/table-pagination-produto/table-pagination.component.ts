@@ -1,4 +1,4 @@
-import { ProdutoElement } from './../../vendas/vendas.component';
+import { ProdutoElement, ProdutoElementRequest } from '../../vendas/vendas.component';
 import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { NotificationService } from 'src/app/service/notification.service';
 import { ProdutoService } from 'src/app/service/produto.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteProdutoComponent } from '../dialog-delete-produto/dialog-delete-produto.component';
+import { DialogoService } from 'src/app/service/dialogo.service';
 
 
 
@@ -17,12 +20,11 @@ import { ProdutoService } from 'src/app/service/produto.service';
   styleUrls: ['./table-pagination.component.scss']
 })
 export class TableProdutosCategoriasComponent implements OnInit {
-  displayedColumns: string[] = ['id','nome do produto', 'preço', 'categoria'];
+  displayedColumns: string[] = ['id', 'nome', 'preco', 'categoriaProduto'];
   columAction: string = 'Actions';
   produtos: ProdutoElement[] = [];
-  dataSource!: MatTableDataSource<ProdutoElement>;
-  selection = new SelectionModel<ProdutoElement>(true, []);
-
+  produtosRequest: ProdutoElementRequest[] = [];
+  dataSource!: MatTableDataSource<ProdutoElementRequest>;
 
   @Output() openInformations = new EventEmitter<ProdutoElement>();
   @Output() openDelete = new EventEmitter<ProdutoElement>();
@@ -31,23 +33,23 @@ export class TableProdutosCategoriasComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private produtosService: ProdutoService, private notificationService: NotificationService) { }
+  constructor(private produtosService: ProdutoService, private notificationService: NotificationService,
+    private dialog: MatDialog) { }
 
 
 
-  openDialogInformation(produto: ProdutoElement) {
-    this.produtosService.getProdutoById(produto.id).subscribe(
-      data => {
-        this.openInformations.emit(data);
-      },
-      error => console.error('Erro ao obter Produto:', error)
-    );
+
+
+  openDialogDeleteProduto(produto: ProdutoElement) {
+    this.dialog.open(DialogDeleteProdutoComponent, {
+      data: produto,
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: '',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    });
   }
-
-  openDialogNewVenda() {
-    this.openNewProduto.emit();
-  }
-
 
   openDeleteProduto(produto: ProdutoElement) {
     this.produtosService.deleteProduto(produto.id).subscribe(
@@ -64,7 +66,7 @@ export class TableProdutosCategoriasComponent implements OnInit {
 
     this.dataSource.filter = normalizedFilter;
 
-    this.dataSource.filterPredicate = (data: ProdutoElement, filter: string) => {
+    this.dataSource.filterPredicate = (data: ProdutoElementRequest, filter: string) => {
       const dataStr = this.normalizeAccents(Object.values(data).join(' ').toLowerCase());
       return dataStr.includes(filter);
     };
@@ -87,11 +89,17 @@ export class TableProdutosCategoriasComponent implements OnInit {
     this.produtos = [];
     this.produtosService.getProdutos().subscribe(
       data => {
-        data.forEach(produto => {
-          this.produtos.push(produto);
-        })
-
-        this.dataSource = new MatTableDataSource<ProdutoElement>(this.produtos);
+        this.produtos = data;
+        this.produtosRequest = data.map(produto => {
+          return {
+            id: produto.id,
+            nome: produto.nome,
+            preco: produto.preco,
+            subtotal: produto.subtotal,
+            categoriaProduto: produto.categoriaProduto.nome
+          };
+        });
+        this.dataSource = new MatTableDataSource<ProdutoElementRequest>(this.produtosRequest);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -102,19 +110,26 @@ export class TableProdutosCategoriasComponent implements OnInit {
 
   updateTableByDelete(produtos: ProdutoElement[]) {
     this.produtos = produtos;
-    this.dataSource = new MatTableDataSource<ProdutoElement>(this.produtos);
+    this.dataSource = new MatTableDataSource<ProdutoElementRequest>(this.produtos.map(produto => {
+      return {
+        id: produto.id,
+        nome: produto.nome,
+        preco: produto.preco,
+        subtotal: produto.subtotal,
+        categoriaProduto: produto.categoriaProduto.nome
+      };
+    }));
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
 
   ngOnInit(): void {
-    // this.displayedColumns.push(this.columAction);
 
     this.notificationService.produtoCriado$.subscribe(
       produto => {
         this.produtos.push(produto);
-        this.updateTableByDelete(this.produtos);
+        this.updateTable();
       }
     );
 

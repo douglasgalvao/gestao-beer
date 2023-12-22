@@ -21,7 +21,7 @@
                 <th mat-header-cell *matHeaderCellDef>{{columAction.toUpperCase()}}</th>
                 <td mat-cell class="actionsButtons" *matCellDef="let produto">
                     <div style="display:flex;">
-                        <button class="deleteActionsProdutos" (click)="openDeleteProduto(produto)">
+                        <button class="deleteActionsProdutos" (click)="openDialogDeleteProduto(produto)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </div>
