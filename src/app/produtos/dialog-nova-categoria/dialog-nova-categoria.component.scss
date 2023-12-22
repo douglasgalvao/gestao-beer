@@ -1,0 +1,63 @@
+mat-toolbar {
+    background-color: #fff;
+    color: #000;
+
+    display: flex;
+    background-color: yellow;
+    justify-content: center;
+
+}
+
+.containerActions {
+    .cadastrarButton {
+        background-color: green;
+        opacity: 1;
+        color: #fff;
+
+        :hover {
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.484);
+        }
+
+    }
+
+    .cadastrarButton:disabled {
+        background-color: #ccc;
+        opacity: 1;
+        color: #fff;
+    }
+
+    .fecharButton {
+        background-color: red;
+        opacity: 1;
+        color: #fff;
+
+
+
+        :hover {
+            cursor: pointer;
+            background-color: rgba(255, 0, 0, 0.484);
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+mat-form-field {
+    width: 100%;
+
+    input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
