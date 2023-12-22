@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ProdutoElement, VendaElement } from '../vendas/vendas.component';
 import { DialogoService } from '../service/dialogo.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
+import { NovaVendaDialogComponent } from '../vendas/nova-venda-dialog/nova-venda-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +33,10 @@ export class HomeComponent implements OnInit {
   }
 
   abrirDialogVenda() {
-    this.dialog.open(NovaVendaDialogComponent);
+    this.dialog.open(NovaVendaDialogComponent,{
+      
+
+    });
   }
 
 
