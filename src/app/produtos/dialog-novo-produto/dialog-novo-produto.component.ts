@@ -8,6 +8,7 @@ import { CategoriaProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.c
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog-novo-produto',
@@ -29,7 +30,8 @@ export class DialogNovoProdutoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private categoriaService: CategoriaService,
     private produtoService: ProdutoService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
@@ -60,6 +62,11 @@ export class DialogNovoProdutoComponent implements OnInit {
     this.produtoService.cadastrarNovoProduto(produto).subscribe(
       produto => {
         this.notificationService.notificarProdutoCriado(produto);
+        this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
         this.dialogRef.close(produto);
       },
       error => {

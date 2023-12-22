@@ -14,7 +14,7 @@
                     <mat-label>Categoria do Produto</mat-label>
                     <mat-select placeholder="Selecione a categoria" formControlName="categoriaProduto" required>
                         <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-                            {{categoria.nome}}
+                            {{categoria.nome.toUpperCase()}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

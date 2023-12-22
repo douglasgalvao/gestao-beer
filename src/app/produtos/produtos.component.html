@@ -1,8 +1,9 @@
 <app-toolbar [actions]="actions" [@fadeIn] [toolbarTitle]="toolbarTitle"></app-toolbar>
 <mat-tab-group class="custom-tab-group" [@fadeIn]>
     <mat-tab label="Categorias">
+        <app-table-pagination-categoria></app-table-pagination-categoria>
     </mat-tab>
     <mat-tab label="Produtos">
-        <app-table-pagination></app-table-pagination>
+        <app-table-pagination-produto></app-table-pagination-produto>
     </mat-tab>
 </mat-tab-group>

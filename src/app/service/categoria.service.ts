@@ -23,4 +23,8 @@ export class CategoriaService {
   cadastrarCategoria(categoria: any) {
     return this.http.post('http://localhost:8080/categoria', categoria);
   }
+
+  deleteCategoria(id: number) {
+    return this.http.delete('http://localhost:8080/categoria/' + id);
+  }
 }
