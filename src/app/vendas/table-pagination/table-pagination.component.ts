@@ -106,10 +106,22 @@ export class TableSortPaginationComponent implements OnInit {
   }
 
 
+  updateTableByDelete(vendas: VendaElement[]) {
+    this.vendas = vendas;
+    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+
   ngOnInit(): void {
 
     this.notificationService.vendaDeletada$.subscribe((vendaID) => {
       this.vendas = this.vendas.filter((venda) => venda.id !== vendaID);
+      this.updateTableByDelete(this.vendas);
+    });
+
+    this.notificationService.vendaCriada$.subscribe(() => {
       this.updateTable();
     });
 

@@ -1,7 +1,7 @@
 .actionsButtons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+    margin: 1rem;
 
     .confirmButton {
         background-color: green;
@@ -27,8 +27,18 @@
     }
 }
 
+mat-toolbar {
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+    color: #121212;
+}
 
-
+p {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
 
 .classerror {
     background-color: yellow;

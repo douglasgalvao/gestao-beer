@@ -39,7 +39,7 @@
             *ngFor="let p of vendaObjeto?.produtos">
             <div class="mat-labelDiv"><mat-label>Categoria: {{p.categoriaProduto.nome}}</mat-label></div>
             <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.preco}} 
-Subtotal: R$:{{p.subtotal}}</textarea>
+Subtotal: R$:{{p.subtotal.toFixed(2)}}</textarea>
         </mat-form-field>
 
         <div class="Title">
