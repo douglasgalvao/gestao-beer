@@ -22,6 +22,7 @@ import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.
     MaterialModule,
     VendasRoutingModule
   ],
+  exports: [NovaVendaDialogComponent],
   providers: [VendasService]
 })
 export class VendasModule { }

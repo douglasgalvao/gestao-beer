@@ -20,6 +20,8 @@ export interface ProdutoElement {
   categoriaProduto: CategoriaProdutoElement
 }
 
+
+
 export interface ClienteElement {
   email: string,
   id: number,
@@ -38,6 +40,13 @@ export interface VendaElement {
   cliente: ClienteElement;
 }
 
+
+export interface VendaElementRequest {
+  statusVenda: string;
+  metodoPagamento: string;
+  produtos: ProdutoElement[];
+  cliente: ClienteElement;
+}
 
 @Component({
   selector: 'app-vendas',
