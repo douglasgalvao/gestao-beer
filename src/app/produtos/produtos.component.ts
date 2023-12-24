@@ -54,7 +54,7 @@ export class ProdutosComponent {
     });
   }
 
-  toolbarTitle = 'Produtos';
+  toolbarTitle = 'Produtos e Categorias';
   actions = [
     {
       icon: 'flip_to_front',
