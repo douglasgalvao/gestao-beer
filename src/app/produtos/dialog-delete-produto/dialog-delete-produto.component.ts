@@ -24,7 +24,7 @@ export class DialogDeleteProdutoComponent implements OnInit {
     this.notificationService.notificarProdutoDeletado(this.produtoObject.id);
     this._snackBar.open('Produto deletado com sucesso!', 'Fechar', {
       duration: 3000,
-      horizontalPosition: 'right',
+      horizontalPosition: 'center',
       verticalPosition: 'top',
     });
     this.dialogRef.close();
