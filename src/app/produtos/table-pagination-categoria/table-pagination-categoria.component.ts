@@ -89,6 +89,14 @@ export class TableCategoriasProdutosComponent implements OnInit {
     this.categoriaService.obterCategorias().subscribe(
       data => {
         this.categorias = data as CategoriaProdutoElement[];
+        this.categorias = this.categorias.map(categoria => {
+          return {
+            id: categoria.id,
+            nome: categoria.nome.toUpperCase()
+          };
+        });
+
+
         this.dataSource = new MatTableDataSource<CategoriaProdutoElement>(this.categorias);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -103,7 +111,7 @@ export class TableCategoriasProdutosComponent implements OnInit {
     this.dataSource = new MatTableDataSource<CategoriaProdutoElement>(this.categorias.map(produto => {
       return {
         id: produto.id,
-        nome: produto.nome
+        nome: produto.nome.toUpperCase()
       };
     }));
     this.dataSource.paginator = this.paginator;

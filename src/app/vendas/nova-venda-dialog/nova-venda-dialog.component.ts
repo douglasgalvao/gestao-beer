@@ -135,7 +135,7 @@ export class NovaVendaDialogComponent implements OnInit {
         this._snackBar.open('Venda cadastrada com sucesso!', 'Fechar', {
           duration: 2000,
           verticalPosition: 'top',
-          horizontalPosition: 'end',
+          horizontalPosition: 'center',
         });
         this.notificationService.notificarVendaCriada(data);
         this.dialog.close();

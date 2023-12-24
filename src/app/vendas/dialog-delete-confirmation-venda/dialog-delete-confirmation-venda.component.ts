@@ -39,7 +39,7 @@ export class DialogDeleteConfirmationVendaComponent implements OnInit {
     this._snackBar.open('Venda excluída com sucesso!.', 'OK', {
       panelClass: ['classerror'],
       verticalPosition: 'top',
-      horizontalPosition: 'end',
+      horizontalPosition: 'center',
     });
 
   }

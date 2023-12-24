@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CategoriaProdutoElement } from "../vendas/vendas.component";
+import { CategoriaProdutoElement, ProdutoElement } from "../vendas/vendas.component";
 import { Observable, map } from "rxjs";
 
 @Injectable({
@@ -20,7 +20,7 @@ export class CategoriaService {
     return this.http.get('http://localhost:8080/categoria/nome/' + nome);
   }
 
-  cadastrarCategoria(categoria: any) {
+  cadastrarCategoria(categoria: ProdutoElement) {
     return this.http.post('http://localhost:8080/categoria', categoria);
   }
 
