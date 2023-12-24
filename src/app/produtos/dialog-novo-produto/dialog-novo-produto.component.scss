@@ -5,6 +5,11 @@
     justify-content: center;
 }
 
+
+.hide-spinner-buttons .mat-form-field-outer-container .mat-form-field-subscript-wrapper {
+    display: none !important;
+}
+
 .formContainer {
     mat-form-field {
         width: 100%;

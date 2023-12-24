@@ -64,7 +64,7 @@ export class DialogNovoProdutoComponent implements OnInit {
         this.notificationService.notificarProdutoCriado(produto);
         this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
           duration: 3000,
-          horizontalPosition: 'right',
+          horizontalPosition: 'center',
           verticalPosition: 'top',
         });
         this.dialogRef.close(produto);
