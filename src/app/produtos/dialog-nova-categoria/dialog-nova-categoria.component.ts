@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-dialog-nova-categoria',
@@ -18,7 +19,9 @@ export class DialogNovaCategoriaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogNovaCategoriaComponent>,
-    public categoriaService: CategoriaService
+    public categoriaService: CategoriaService,
+    private notificationService: NotificationService,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required]
@@ -31,11 +34,19 @@ export class DialogNovaCategoriaComponent implements OnInit {
     this.form.get('nome')!.valueChanges.subscribe(() => {
       this.categoriaModificada = true;
     });
+
+
   }
 
   cadastrarCategoria(): void {
     this.categoriaService.cadastrarCategoria(this.form.value).subscribe(
       (res) => {
+        this.notificationService.notificarCategoriaCriada(this.form.value);
+        this._snackBar.open('Categoria criada com sucesso!', 'Fechar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
         this.dialogRef.close(res);
       },
       (err) => {
