@@ -34,8 +34,10 @@ export class HomeComponent implements OnInit {
 
   abrirDialogVenda() {
     this.dialog.open(NovaVendaDialogComponent,{
-      
-
+      width: 'max-content',
+      height: 'max-content',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
     });
   }
 
