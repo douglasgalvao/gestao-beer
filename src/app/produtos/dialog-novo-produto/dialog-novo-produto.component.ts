@@ -23,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     ]),
   ]
 })
+
 export class DialogNovoProdutoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,8 @@ export class DialogNovoProdutoComponent implements OnInit {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       categoriaProduto: ['', Validators.required],
-      preco: ['', Validators.required]
+      preco: ['', Validators.required],
+      codBarras: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(13)]],
     });
   }
 
@@ -45,6 +47,8 @@ export class DialogNovoProdutoComponent implements OnInit {
   produtoJaExiste: boolean = true;
   produtoJaVerificada: boolean = false;
   produtoModificada: boolean = false;
+
+
 
 
   ngOnInit(): void {
@@ -59,6 +63,7 @@ export class DialogNovoProdutoComponent implements OnInit {
   }
 
   cadastrarNovoProduto(produto: ProdutoElement) {
+    produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
     this.produtoService.cadastrarNovoProduto(produto).subscribe(
       produto => {
         this.notificationService.notificarProdutoCriado(produto);
