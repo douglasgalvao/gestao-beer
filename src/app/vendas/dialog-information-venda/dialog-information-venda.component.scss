@@ -9,6 +9,7 @@ textarea {
     scroll-padding-top: none;
     height: max-content;
     width: 100%;
+    text-align: center;
 
     // color: #121212;
     span {
@@ -29,6 +30,7 @@ mat-form-field {
     padding: 0px;
     display: flex;
     text-wrap: wrap;
+
     flex-wrap: wrap;
     z-index: 1;
 
@@ -43,13 +45,23 @@ mat-form-field {
 }
 
 
+.containerProduto {
+    text-align: center;
+
+    span {
+        font-weight: 600;
+        color: black !important;
+    }
+}
 
 .container {
     width: 100%;
     background-color: inherit;
+    background-color: rgba(87, 87, 87, 0.281);
 
     form {
         display: flex;
+
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;

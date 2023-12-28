@@ -1,95 +1,116 @@
-<mat-card [@fadeIn]>
-    <mat-card-title>
-        <mat-toolbar class="toolBarCadastroVenda">Cadastrar uma Venda</mat-toolbar>
-    </mat-card-title>
-    <mat-card-content>
-        <div class="container">
-            <form id="formNovaVenda" class="formContainer" [formGroup]="form">
-                <mat-form-field class="formFieldCliente" appearance="fill">
-                    <mat-label>Selecione um Cliente</mat-label>
-                    <mat-select mat-autocomplete class="clienteSelect" [formControl]="clienteControl" name="cliente">
-                        <mat-option>Nenhum</mat-option>
-                        <mat-option *ngFor="let cliente of clientes; trackBy: trackByClienteFn" [value]="cliente">
-                            {{cliente.nome}} - {{cliente.email}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+<mat-toolbar class="toolBarCadastroVenda">
+    Cadastrar uma Venda
+</mat-toolbar>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+    <mat-card [@fadeIn]>
+        <form id="formNovaVenda" class="formContainer" [formGroup]="form">
+            <mat-form-field class="formFieldCliente" appearance="fill">
+                <mat-label>Selecione um Cliente</mat-label>
+                <mat-select mat-autocomplete class="clienteSelect" formControlName="cliente"
+                    [value]="form.controls.cliente.value" name="cliente">
+                    <mat-option>Nenhum</mat-option>
+                    <mat-option *ngFor="let cliente of clientes; trackBy: trackByClienteFn" [value]="cliente.id">
+                        {{cliente.nome}} - {{cliente.email}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                <mat-form-field class="formFieldFormaPagamento" appearance="fill">
-                    <mat-label>Selecione a Forma de Pagamento</mat-label>
-                    <mat-select class="formaPagamentoSelect" [formControl]="formaPagamentoControl"
-                        name="formaPagamento">
-                        <mat-option value="A_VISTA">Á vista</mat-option>
-                        <mat-option value="CARTAO_DEBITO">Cartão de Débito</mat-option>
-                        <mat-option value="CARTAO_CREDITO">Cartão de Crédito</mat-option>
-                    </mat-select>
-                    <div
-                        *ngIf="form.get('formaPagamento')?.hasError('required') && form.get('formaPagamento')?.touched">
-                        <mat-error>Forma de Pagamento é obrigatório</mat-error>
-                    </div>
-                </mat-form-field>
+            <mat-form-field class="formFieldmetodoPagamento" appearance="fill">
+                <mat-label>Selecione a Forma de Pagamento</mat-label>
+                <mat-select class="metodoPagamentoSelect" [formControl]="metodoPagamentoControl" #metodoPagamento
+                    name="metodoPagamento">
+                    <mat-option value="DINHEIRO">Dinheiro</mat-option>
+                    <mat-option value="PIX">PIX</mat-option>
+                    <mat-option value="CARTAO_DEBITO">Cartão de Débito</mat-option>
+                    <mat-option value="CARTAO_CREDITO">Cartão de Crédito</mat-option>
+                </mat-select>
+                <div *ngIf="form.get('metodoPagamento')?.hasError('required') && form.get('metodoPagamento')?.touched">
+                    <mat-error>Forma de Pagamento é obrigatório</mat-error>
+                </div>
+            </mat-form-field>
 
-                <mat-form-field class="formFieldStatusPagamento" appearance="fill">
-                    <mat-label>Status Pagamento</mat-label>
-                    <mat-select class="statusPagamentoSelect" [formControl]="statusPagamentoControl"
-                        name="statusPagamento">
-                        <mat-option value="PAGO">Pago</mat-option>
-                        <mat-option value="PENDENTE">Pendente</mat-option>
-                    </mat-select>
+            <mat-form-field class="formFieldStatusPagamento" appearance="fill">
+                <mat-label>Status Pagamento</mat-label>
+                <mat-select class="statusPagamentoSelect" [formControl]="statusPagamentoControl" #statusPagamento
+                    name="statusPagamento">
+                    <mat-option value="PAGO">Pago</mat-option>
+                    <mat-option value="PENDENTE">Pendente</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="containerProdutos">
+                <mat-form-field class="formFieldProdutos" appearance="fill">
+                    <mat-label>Quantidade</mat-label>
+                    <input type="number" placeholder="digite a quantidade do produto" (change)="onInput($event)"
+                        autocomplete="false" aria-label="Number" matInput formControlName="quantidade" #quantidadeInput
+                        min="0" max="1000" (keypress)="onKeyPress($event)"
+                        oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null">
                 </mat-form-field>
 
                 <mat-form-field class="formFieldProdutos" appearance="fill">
-                    <mat-label>Selecione os Produtos</mat-label>
-                    <mat-select [formControl]="produtoControl" name="produtos" multiple
-                        (selectionChange)="onProdutoSelectionChange($event)">
-
-                        <mat-optgroup *ngFor="let group of produtosAgrupados" [label]="group.categoria">
-                            <mat-option *ngFor="let produto of group.produtos" [value]="produto">
-                                {{ produto.nome }} - {{ produto.preco | currency }}
-                            </mat-option>
-                        </mat-optgroup>
-                        <mat-error *ngIf="form.get('produto')?.hasError('required') && form.get('produto')?.touched">
-                            Produto é obrigatório
-                        </mat-error>
-                    </mat-select>
+                    <mat-label>Adicionar Produtos</mat-label>
+                    <input type="text" placeholder="digite o cod_barras" (change)="onInput($event)" aria-label="Number"
+                        matInput formControlName="produto" #produtoInput>
                 </mat-form-field>
+            </div>
+            <div class=" cardsSelecionadosContent" *ngIf="produtosSelecionados.length">
+                <mat-card class="cardProdutosSelecionados">
+                    <div class="titleContent">
+                        <mat-toolbar class="toolBarProdutosSelecionados">
+                            Produtos Selecionados
+                        </mat-toolbar>
+                    </div>
+                    <mat-card-content>
+                        <div class="selected-products">
+                            <div *ngFor="let produto of produtosSelecionados" class="selected-product"
+                                matBadge="{{ produto.quantidade ? produto.quantidade : 1 }}"
+                                [matBadgeColor]="produto.quantidade! > produto.quantidadeEstoque ? 'warn' : 'primary'">
+                                <div class="informationsProduct">
+                                    <span>{{ produto.nome }}:</span>
+                                    <span>{{ produto.preco | currency:'BRL' }}</span>
+                                </div>
+                                <div class="informationsProduct">
+                                    <span>Sub-total:</span>
+                                    <span>{{ produto.subTotal | currency:'BRL' }}</span>
+                                </div>
+                                <div class="informationsProduct">
+                                    <span>Estoque:</span>
+                                    <span>{{ produto.quantidadeEstoque }}</span>
+                                </div>
+                                <div class="informationsProduct2">
+                                    <button class="remove_circle">
+                                        <mat-icon class="iconButton" color="warn"
+                                            (click)="removerProduto(produto)">delete</mat-icon>
+                                    </button>
+                                    <button class="remove_circle">
+                                        <mat-icon class="iconButton"
+                                            (click)="decrementarQuantidade(produto)">remove_circle</mat-icon>
+                                    </button>
+                                    <button class="add_circle">
+                                        <mat-icon class="iconButton"
+                                            (click)="incrementarQuantidade(produto)">add_circle</mat-icon>
+                                    </button>
+                                </div>
 
-                <div class="cardsSelecionadosContent" *ngIf="produtoControl.value?.length">
-                    <mat-card class="cardProdutosSelecionados">
-                        <div class="titleContent">
-                            <mat-toolbar class="toolBarProdutosSelecionados">
-                                Produtos Selecionados
-                            </mat-toolbar>
-                        </div>
-                        <mat-card-content>
-                            <div class="selected-products">
-                                <div *ngFor="let produto of produtoControl.value" class="selected-product">
-                                    [{{ produto.nome }} - {{ produto.preco | currency }}]
-                                    Sub-total - {{produto.subtotal.toFixed(2) | currency }}
-                                    <div class="quantity-controls">
-                                        <button mat-icon-button type="button" (click)="decrementQuantity(produto)">
-                                            <mat-icon>remove</mat-icon>
-                                        </button>
-                                        <span> {{ produto.quantidade ? produto.quantidade : 1 }}</span>
-                                        <button mat-icon-button type="button" (click)="incrementQuantity(produto)">
-                                            <mat-icon>add</mat-icon>
-                                        </button>
-                                    </div>
+                                <div class="produtoSemEstoque" *ngIf="produto.quantidade! > produto.quantidadeEstoque">
+                                    <mat-error>Estoque insuficiente para essa quantidade</mat-error>
                                 </div>
                             </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </form>
-        </div>
-    </mat-card-content>
-    <mat-card-actions class="actionsContent">
-        <div class="fieldACtionsButtons">
-            <button type="submit" form="formNovaVenda" [disabled]="!form.valid" mat-raised-button
-                class="buttonCadastrarNovaVenda" (click)="cadastrarVenda()">Cadastrar
-                Venda</button>
-            <button mat-raised-button class="buttonCloseNovaVendaDialog" color="warn"
-                (click)="closeDialogNovaVenda()">Fechar</button>
-        </div>
-    </mat-card-actions>
-</mat-card>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </form>
+        <mat-card-actions class="actionsContent">
+            <div class="fieldACtionsButtons">
+                <button type="submit" form="formNovaVenda"
+                    [disabled]="!form.valid || !produtosSelecionados.length || estoqueInsucifienteEmProdutosSelecionados"
+                    mat-raised-button class="buttonCadastrarNovaVenda" (click)="cadastrarVenda()">Cadastrar
+                    Venda</button>
+                <button mat-raised-button class="buttonCloseNovaVendaDialog" color="warn"
+                    (click)="closeDialogNovaVenda()">Fechar</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

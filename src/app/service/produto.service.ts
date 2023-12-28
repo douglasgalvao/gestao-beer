@@ -16,7 +16,8 @@ export class ProdutoService {
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
       nome: produto.nome,
       categoriaProduto: produto.categoriaProduto,
-      preco: produto.preco
+      preco: produto.preco,
+      codBarras: produto.codBarras
     });
   }
 
@@ -26,6 +27,10 @@ export class ProdutoService {
 
   getProdutoById(id: number): Observable<ProdutoElement> {
     return this.http.get<ProdutoElement>(this.apiUrl + '/produto/' + id);
+  }
+
+  getProdutoByCodBarras(codBarras: string): Observable<ProdutoElement> {
+    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/cod/' + codBarras);
   }
 
   deleteProduto(id: number): Observable<ProdutoElement> {

@@ -26,8 +26,6 @@ export class VendasService {
   }
 
   createVenda(venda: VendaElementRequest): Observable<VendaElement> {
-    console.log(venda);
-    // this.notificationService.notificarVendaCriada(venda);
     return this.http.post<VendaElement>(this.apiUrl, venda);
   }
 }

@@ -38,8 +38,11 @@
         <mat-form-field appearance="fill" matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
             *ngFor="let p of vendaObjeto?.produtos">
             <div class="mat-labelDiv"><mat-label>Categoria: {{p.categoriaProduto.nome}}</mat-label></div>
-            <textarea matInput disabled style="color: #121212;">{{p.nome}} R$:{{p.preco}} 
-Subtotal: R$:{{p.subtotal.toFixed(2)}}</textarea>
+            <div class="containerProduto">
+                <textarea matInput class="textAreaProduto" disabled
+                    style="color: #121212;">{{p.nome}} R$ {{p.preco}}</textarea>
+                <span>Subtotal: R$ {{p.subTotal}}</span>
+            </div>
         </mat-form-field>
 
         <div class="Title">

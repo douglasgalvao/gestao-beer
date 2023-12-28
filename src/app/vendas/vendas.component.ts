@@ -18,10 +18,12 @@ export interface CategoriaProdutoElementRequest {
 export interface ProdutoElement {
   produtoObject: ProdutoElement;
   id: number,
+  codBarras: string,
   nome: string,
   quantidade?: number,
+  quantidadeEstoque: number,
   preco: number,
-  subtotal: number,
+  subTotal: number,
   categoriaProduto: CategoriaProdutoElement
 }
 
@@ -35,6 +37,14 @@ export interface ProdutoElementRequest {
 }
 
 
+export interface ProdutoElementVendaResquest {
+  codBarras: string,
+  quantidade: number
+}
+
+export interface ClienteElementRequest {
+  id: number
+}
 
 export interface ClienteElement {
   email: string,
@@ -56,10 +66,10 @@ export interface VendaElement {
 
 
 export interface VendaElementRequest {
+  cliente: ClienteElementRequest;
   statusVenda: string;
   metodoPagamento: string;
-  produtos: ProdutoElement[];
-  cliente: ClienteElement;
+  produtos: ProdutoElementVendaResquest[];
 }
 
 @Component({
@@ -113,7 +123,6 @@ export class VendasComponent implements OnInit {
     this.dialog.open(NovaVendaDialogComponent, {
       width: 'max-content',
       height: 'max-content',
-      panelClass: 'scrollable-dialog',
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'
     })
