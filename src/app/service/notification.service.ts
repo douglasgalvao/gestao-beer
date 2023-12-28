@@ -8,7 +8,7 @@ import { ProdutoElement, VendaElement, VendaElementRequest } from '../vendas/ven
 })
 export class NotificationService {
   private vendaDeletadaSource = new Subject<number>();
-  private vendaCriadaSource = new Subject<VendaElementRequest>();
+  private vendaCriadaSource = new Subject<VendaElement>();
 
   private produtoDeletadoSource = new Subject<number>();
   private produtoCriadoSource = new Subject<ProdutoElement>();
@@ -28,7 +28,7 @@ export class NotificationService {
   notificarVendaDeletada(vendaId: number) {
     this.vendaDeletadaSource.next(vendaId);
   }
-  notificarVendaCriada(venda: VendaElementRequest) {
+  notificarVendaCriada(venda: VendaElement) {
     this.vendaCriadaSource.next(venda);
   }
 
