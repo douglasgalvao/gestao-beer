@@ -10,8 +10,15 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
   apiUrl = environment.apiUrl;
+
+
   getClientes(): Observable<any> {
     return this.http.get(this.apiUrl + '/cliente');
+  }
+
+
+  getCliente(id: number): Observable<any> {
+    return this.http.get<ClienteElement>(this.apiUrl + '/cliente/' + id);
   }
 
 }
