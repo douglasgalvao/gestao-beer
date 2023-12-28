@@ -93,7 +93,7 @@ export class TableProdutosCategoriasComponent implements OnInit {
             id: produto.id,
             nome: produto.nome,
             preco: 'R$:' + produto.preco,
-            subtotal: produto.subtotal,
+            subTotal: produto.subTotal,
             categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
           };
         });
@@ -113,7 +113,7 @@ export class TableProdutosCategoriasComponent implements OnInit {
         id: produto.id,
         nome: produto.nome,
         preco: 'R$:' + produto.preco,
-        subtotal: produto.subtotal,
+        subTotal: produto.subTotal,
         categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
       };
     }));

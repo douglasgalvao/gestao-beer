@@ -13,9 +13,10 @@ td button {
 
 mat-toolbar {
     width: 100%;
+    color: #121212;
     display: flex;
     justify-content: center;
-    background-color: yellow;
+    // background-color: rgba(255, 255, 255, 0.253);
 }
 
 mat-card {
@@ -36,6 +37,7 @@ mat-form-field {
     margin: 2px;
     border-radius: 4px;
     justify-content: center;
+
     :hover {
         opacity: 0.5;
         cursor: pointer;
