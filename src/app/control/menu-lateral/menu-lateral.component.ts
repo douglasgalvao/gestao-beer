@@ -15,7 +15,7 @@ export interface MenuLateralItens {
 })
 export class MenuLateralComponent implements OnInit {
   data: MenuLateralItens[] = Menu;
-  isDrawerOpened: boolean = false;
+  isDrawerOpened: boolean = true;
   constructor(private drawer: DrawerService) {
 
     drawer.drawerState.subscribe((isOpen) => {
