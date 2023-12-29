@@ -1,7 +1,8 @@
 import { ProdutoService } from 'src/app/service/produto.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ProdutoElement } from '../vendas/vendas.component';
+import { NotificationService } from '../service/notification.service';
 
 @Component({
   selector: 'app-estoque',
@@ -18,13 +19,21 @@ import { ProdutoElement } from '../vendas/vendas.component';
 })
 export class EstoqueComponent implements OnInit {
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private notificationService: NotificationService) { }
   ngOnInit(): void {
     this.produtoService.getProdutos().subscribe(
       produtos => {
         this.produtos = produtos;
       }
     );
+
+    this.notificationService.estoqueAdicionado$.subscribe(estoque => {
+      const index = this.produtos.findIndex(produto => produto.id === estoque.id);
+      console.log(this.produtos[index]);
+
+      // this.produtos[index] = estoque;
+    });
+
 
   }
 

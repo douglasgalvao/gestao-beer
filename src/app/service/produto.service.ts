@@ -25,6 +25,24 @@ export class ProdutoService {
     });
   }
 
+  atualizarProduto(produto: ProdutoElement): Observable<ProdutoElement> {
+    return this.http.put<ProdutoElement>(this.apiUrl + '/produto', {
+      id: produto.id,
+      nome: produto.nome,
+      categoriaProduto: produto.categoriaProduto,
+      preco: produto.preco,
+      img: produto.img,
+      codBarras: produto.codBarras
+    });
+  }
+
+  adicionarEstoque(codBarras: string, quantidade: number): Observable<ProdutoElement> {
+    return this.http.post<ProdutoElement>(this.apiUrl + '/produto/adicionarEstoque', {
+      codBarras: codBarras,
+      quantidade: quantidade
+    });
+  }
+
 
   verificarProdutoJaExiste(nome: string): Observable<boolean> {
     return this.http.get<boolean>(this.apiUrl + '/produto/nome/' + nome);

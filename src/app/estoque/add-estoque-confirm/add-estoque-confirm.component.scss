@@ -1,0 +1,52 @@
+mat-card {
+    padding: 1rem;
+}
+
+
+
+mat-toolbar {
+    background-color: yellow;
+    color: #121212;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.containerProdutoInformations {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-direction: column;
+}
+mat-error{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin: 1rem;
+}
+mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+
+    .buttonCancelarAdc {
+        background-color: red;
+        color: white;
+    }
+
+    .buttonAdcEstoque {
+        background-color: green;
+        color: white;
+    }
+
+    .buttonAdcEstoque:disabled {
+        background-color: #ccc;
+        color: white;
+    }
+
+}

@@ -13,6 +13,9 @@ export class NotificationService {
   private produtoDeletadoSource = new Subject<number>();
   private produtoCriadoSource = new Subject<ProdutoElement>();
 
+  private estoqueRemovidoSource = new Subject<number>();
+  private estoqueAdicionadoSource = new Subject<ProdutoElement>();
+
   private categoriaDeletadaSource = new Subject<number>();
   private categoriaCriadaSource = new Subject<ProdutoElement>();
 
@@ -24,6 +27,17 @@ export class NotificationService {
 
   categoriaCriada$ = this.categoriaCriadaSource.asObservable();
   categoriaDeletada$ = this.categoriaDeletadaSource.asObservable();
+
+  estoqueAdicionado$ = this.estoqueAdicionadoSource.asObservable();
+  estoqueRemovido$ = this.estoqueRemovidoSource.asObservable();
+
+  notificarEstoqueAdicionado(produtoId: ProdutoElement) {
+    this.estoqueAdicionadoSource.next(produtoId);
+  }
+
+  notificarEstoqueRemovido(produtoId: number) {
+    this.estoqueRemovidoSource.next(produtoId);
+  }
 
   notificarVendaDeletada(vendaId: number) {
     this.vendaDeletadaSource.next(vendaId);

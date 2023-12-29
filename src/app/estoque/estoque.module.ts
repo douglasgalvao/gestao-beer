@@ -5,13 +5,15 @@ import { EstoqueRoutingModule } from './estoque-routing.module';
 import { MaterialModule } from '../material-module';
 import { SharedModule } from '../shared/shared.module';
 import { ProdutoEstoqueComponent } from './produto-estoque/produto-estoque.component';
+import { AddEstoqueConfirmComponent } from './add-estoque-confirm/add-estoque-confirm.component';
 
 
 
 @NgModule({
   declarations: [
     EstoqueComponent,
-    ProdutoEstoqueComponent
+    ProdutoEstoqueComponent,
+    AddEstoqueConfirmComponent
   ],
   imports: [
     CommonModule,
