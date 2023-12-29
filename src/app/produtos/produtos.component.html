@@ -1,9 +1,13 @@
 <app-toolbar [actions]="actions" [@fadeIn] [toolbarTitle]="toolbarTitle"></app-toolbar>
-<mat-tab-group class="custom-tab-group" [@fadeIn] color="accent">
-    <mat-tab label="Produtos">
-        <app-table-pagination-produto></app-table-pagination-produto>
-    </mat-tab>
-    <mat-tab label="Categorias">
-        <app-table-pagination-categoria></app-table-pagination-categoria>
-    </mat-tab>
-</mat-tab-group>
+<mat-card>
+    <mat-card-content>
+        <mat-tab-group class="custom-tab-group" [@fadeIn] color="accent">
+            <mat-tab label="Produtos">
+                <app-table-pagination-produto></app-table-pagination-produto>
+            </mat-tab>
+            <mat-tab label="Categorias">
+                <app-table-pagination-categoria></app-table-pagination-categoria>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

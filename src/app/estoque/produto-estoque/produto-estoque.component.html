@@ -2,9 +2,15 @@
     <mat-card-content class="cardContent">
         <img src="{{produto.img}}" width="80px" height="80px">
         <h3>{{produto.nome}}</h3>
-        <p>Preço : {{produto.preco}}</p>
+        <p>Preço : {{produto.preco | currency:'BRL'}} </p>
         <p>Estoque : {{produto.quantidadeEstoque}}</p>
-        <button mat-raised-button class="AdcEstoqueButton" (click)="adicionarEstoque(produto)">Adicionar
-            Estoque</button>
+        <div class="containerButtonsProduto">
+            <button mat-raised-button class="AdcEstoqueButton" (click)="adicionarEstoque(produto)">
+                <mat-icon>archive</mat-icon>
+                AdicionarEstoque</button>
+            <button mat-raised-button class="DefBaixoEstoqueButton" (click)="definirEstoqueMinimo(produto)">
+                <mat-icon>notification_important</mat-icon>
+                Definir Baixo Estoque</button>
+        </div>
     </mat-card-content>
 </mat-card>

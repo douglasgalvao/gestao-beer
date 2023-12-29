@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProdutoElement } from 'src/app/vendas/vendas.component';
 import { AddEstoqueConfirmComponent } from '../add-estoque-confirm/add-estoque-confirm.component';
 import { NotificationService } from 'src/app/service/notification.service';
+import { DefinirEstoqueDialogComponent } from '../definir-estoque-dialog/definir-estoque-dialog.component';
 
 
 @Component({
@@ -33,6 +34,17 @@ export class ProdutoEstoqueComponent implements OnInit {
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'
     })
+  }
+
+  definirEstoqueMinimo(produto: ProdutoElement) {
+    this.dialog.open(DefinirEstoqueDialogComponent, {
+      data: produto,
+      width: 'max-content',
+      height: 'max-content',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    }
+    );
   }
 
   ngOnInit(): void {

@@ -1,6 +1,8 @@
 .deleteActionVendas:hover,
 .informacaoActionVendas:hover {
     opacity: 1;
+    cursor: pointer;
+
 }
 
 th {
@@ -10,8 +12,9 @@ th {
 .deleteActionVendas,
 .informacaoActionVendas {
     opacity: 1;
-    margin: 2px;
-    border-radius: 4px;
+    // margin: 1rem;
+    // border-radius: 4px;
+    border: none;
 
     :hover {
         opacity: 0.5;
@@ -23,6 +26,7 @@ th {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
     .novaVendaButton {
         background-color: #121212;
         color: yellow;
@@ -37,14 +41,32 @@ th {
 }
 
 .deleteActionVendas {
-    background-color: red;
+    background-color: transparent;
     color: #121212;
+
+    mat-icon {
+        color: rgba(255, 0, 0, 0.52);
+    }
+
+    mat-icon:hover {
+        color: red;
+        opacity: 1;
+    }
 }
 
 
 .informacaoActionVendas {
-    background-color: gray;
+    background-color: transparent;
     color: #121212;
+
+    mat-icon {
+        color: #888787;
+    }
+
+    mat-icon:hover {
+        color: #3b3b3b;
+        opacity: 1;
+    }
 }
 
 .deleteActionVendas {

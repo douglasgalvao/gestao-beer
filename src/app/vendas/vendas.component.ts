@@ -21,6 +21,7 @@ export interface ProdutoElement {
   nome: string,
   quantidade?: number,
   quantidadeEstoque: number,
+  quantidadeBaixoEstoque: number | null,
   img: string,
   preco: number,
   subTotal: number,

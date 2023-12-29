@@ -1,8 +1,7 @@
 <mat-toolbar>
-    <span>Adicionar Estoque</span>
+    <span>Definir Baixo Estoque</span>
 </mat-toolbar>
 <mat-card>
-
     <mat-card-content>
         <img src="{{produto.img}}" width="72px" height="72px">
         <div class="containerProdutoInformations">
@@ -14,18 +13,18 @@
 
     <mat-card-content [formGroup]="form">
         <mat-form-field>
-            <input matInput placeholder="Quantidade" type="text" min="0" pattern="[0-9]*" formControlName="quantidade"
+            <input matInput placeholder="Quantidade" type="text" min="0" pattern="[0-9]*"
+                formControlName="estoqueMinimo"
                 oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null">
         </mat-form-field>
     </mat-card-content>
     <mat-error>
-        <span *ngIf="form.controls['quantidade'].hasError('required')">Quantidade é obrigatório</span>
-        <span *ngIf="form.controls['quantidade'].hasError('max')">Quantidade deve ser menor que 200</span>
+        <span *ngIf="form.controls['estoqueMinimo'].hasError('required')">Quantidade é obrigatório</span>
     </mat-error>
 
     <mat-card-content>
         <button class="buttonAdcEstoque" [disabled]="!this.form.valid" mat-raised-button
-            (click)="adicionarEstoque(this.form.value)">Adicionar Estoque</button>
+            (click)="definirBaixoEstoque(this.form.value!)">Definir Baixo Estoque</button>
         <button class="buttonCancelarAdc" mat-raised-button (click)="cancelar()">Cancelar</button>
     </mat-card-content>
 

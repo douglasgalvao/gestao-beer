@@ -3,9 +3,22 @@
     width: max-content;
     margin: 1rem;
     flex-wrap: wrap;
+    border: 1px solid rgba(109, 109, 109, 0.1);
+    filter: box-shadow(0px 0px 5px rgba(109, 109, 109, 0.1));
 }
 
 .AdcEstoqueButton {
     background-color: green;
     color: white;
+}
+
+.DefBaixoEstoqueButton {
+    background-color: rgba(255, 0, 0, 0.774);
+    color: white;
+}
+
+.containerButtonsProduto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }

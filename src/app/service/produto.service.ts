@@ -16,6 +16,7 @@ export class ProdutoService {
   apiSecretKey = 'e06a4f905e4a74854f99';
 
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
+
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
       nome: produto.nome,
       categoriaProduto: produto.categoriaProduto,
@@ -23,6 +24,7 @@ export class ProdutoService {
       img: produto.img,
       codBarras: produto.codBarras
     });
+
   }
 
   atualizarProduto(produto: ProdutoElement): Observable<ProdutoElement> {
@@ -49,15 +51,13 @@ export class ProdutoService {
   }
 
   salvarImagemProduto(fotoProduto: File): Observable<ProdutoFileIdResponse> {
-    let endpoint = "https://upload.uploadcare.com/base/?jsonerrors=1";
+    let endpoint = "http://localhost:8080/produto/upload";
 
     // Crie um objeto FormData e adicione os campos necessários
     const formData = new FormData();
-    formData.append('file', fotoProduto);
-    formData.append('UPLOADCARE_PUB_KEY', 'fb4b6a885814a953c3d7');
-    formData.append('UPLOADCARE_STORE', 'auto');
-    formData.append('source', 'local');
+    formData.append('img', fotoProduto);
 
+    console.log(formData);
     // Faça a requisição usando o HttpClient
     return this.http.post<ProdutoFileIdResponse>(endpoint, formData);
   }

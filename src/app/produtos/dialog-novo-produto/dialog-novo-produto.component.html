@@ -30,6 +30,13 @@
                     <input matInput type="text" formControlName="codBarras" required>
                 </mat-form-field>
 
+                <mat-form-field appearance="fill" class="hide-spinner-buttons">
+                    <mat-label>Estoque Inicial</mat-label>
+                    <input matInput type="text" formControlName="estoqueInicial"
+                        oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null"
+                        required>
+                </mat-form-field>
+
             </form>
 
             <div class="file-upload" [class.foto-selecionada]="fotoSelecionada">

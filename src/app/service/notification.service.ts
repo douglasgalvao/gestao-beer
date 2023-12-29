@@ -19,6 +19,9 @@ export class NotificationService {
   private categoriaDeletadaSource = new Subject<number>();
   private categoriaCriadaSource = new Subject<ProdutoElement>();
 
+  private baixoEstoqueDefinidoSource = new Subject<number>();
+
+
   produtoCriado$ = this.produtoCriadoSource.asObservable();
   produtoDeletado$ = this.produtoDeletadoSource.asObservable();
 
@@ -30,6 +33,10 @@ export class NotificationService {
 
   estoqueAdicionado$ = this.estoqueAdicionadoSource.asObservable();
   estoqueRemovido$ = this.estoqueRemovidoSource.asObservable();
+
+  baixoEstoqueDefinido$ = this.baixoEstoqueDefinidoSource.asObservable();
+
+  constructor() { }
 
   notificarEstoqueAdicionado(produtoId: ProdutoElement) {
     this.estoqueAdicionadoSource.next(produtoId);
@@ -60,6 +67,10 @@ export class NotificationService {
 
   notificarCategoriaCriada(categoria: ProdutoElement) {
     this.categoriaCriadaSource.next(categoria);
+  }
+
+  notificarBaixoEstoqueDefinido(produtoId: number) {
+    this.baixoEstoqueDefinidoSource.next(produtoId);
   }
 
 }

@@ -6,6 +6,7 @@ import { MaterialModule } from '../material-module';
 import { SharedModule } from '../shared/shared.module';
 import { ProdutoEstoqueComponent } from './produto-estoque/produto-estoque.component';
 import { AddEstoqueConfirmComponent } from './add-estoque-confirm/add-estoque-confirm.component';
+import { DefinirEstoqueDialogComponent } from './definir-estoque-dialog/definir-estoque-dialog.component';
 
 
 
@@ -13,7 +14,8 @@ import { AddEstoqueConfirmComponent } from './add-estoque-confirm/add-estoque-co
   declarations: [
     EstoqueComponent,
     ProdutoEstoqueComponent,
-    AddEstoqueConfirmComponent
+    AddEstoqueConfirmComponent,
+    DefinirEstoqueDialogComponent
   ],
   imports: [
     CommonModule,

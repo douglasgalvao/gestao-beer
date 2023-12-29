@@ -39,6 +39,7 @@ export class DialogNovoProdutoComponent implements OnInit {
       categoriaProduto: ['', Validators.required],
       preco: ['', Validators.required],
       codBarras: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(13)]],
+      estoqueInicial: ['', Validators.required]
     });
 
   }
