@@ -16,12 +16,12 @@ export interface CategoriaProdutoElementRequest {
   id: number
 }
 export interface ProdutoElement {
-  produtoObject: ProdutoElement;
   id: number,
   codBarras: string,
   nome: string,
   quantidade?: number,
   quantidadeEstoque: number,
+  img: string,
   preco: number,
   subTotal: number,
   categoriaProduto: CategoriaProdutoElement

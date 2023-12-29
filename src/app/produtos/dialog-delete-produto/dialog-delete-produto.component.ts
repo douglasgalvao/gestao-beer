@@ -20,14 +20,18 @@ export class DialogDeleteProdutoComponent implements OnInit {
   produtoObject!: ProdutoElement;
 
   deleteProdutoConfirm() {
-    this.produtoService.deleteProduto(this.produtoObject.id).subscribe();
-    this.notificationService.notificarProdutoDeletado(this.produtoObject.id);
-    this._snackBar.open('Produto deletado com sucesso!', 'Fechar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
+    this.produtoService.getProdutoById(this.produtoObject.id).subscribe(produto => {
+      this.produtoObject = produto;
+      this.produtoService.deleteProduto(this.produtoObject.id).subscribe();
+      // this.produtoService.deletarImagemProduto(this.produtoObject.img).subscribe();
+      this.notificationService.notificarProdutoDeletado(this.produtoObject.id);
+      this._snackBar.open('Produto deletado com sucesso!', 'Fechar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+      this.dialogRef.close();
     });
-    this.dialogRef.close();
   }
 
   closeDialogConfirmation() {

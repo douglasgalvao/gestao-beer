@@ -2,18 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EstoqueComponent } from './estoque.component';
 import { EstoqueRoutingModule } from './estoque-routing.module';
-import { CadastroEstoqueComponent } from './cadastro-estoque/cadastro-estoque.component';
+import { MaterialModule } from '../material-module';
+import { SharedModule } from '../shared/shared.module';
+import { ProdutoEstoqueComponent } from './produto-estoque/produto-estoque.component';
 
 
 
 @NgModule({
   declarations: [
     EstoqueComponent,
-    CadastroEstoqueComponent
+    ProdutoEstoqueComponent
   ],
   imports: [
     CommonModule,
-    EstoqueRoutingModule
+    EstoqueRoutingModule,
+    MaterialModule,
+    SharedModule
   ]
 })
 export class EstoqueModule { }

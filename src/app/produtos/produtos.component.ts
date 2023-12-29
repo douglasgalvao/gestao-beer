@@ -6,6 +6,10 @@ import { ProdutoService } from '../service/produto.service';
 import { DialogNovaCategoriaComponent } from './dialog-nova-categoria/dialog-nova-categoria.component';
 import { ProdutoElement } from '../vendas/vendas.component';
 
+export interface ProdutoFileIdResponse {
+  file: string;
+}
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',

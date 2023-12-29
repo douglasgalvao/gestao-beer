@@ -1,3 +1,10 @@
-*{
-    color: white;
+mat-card-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+mat-card{
+    margin: 1rem;
 }

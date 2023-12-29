@@ -9,7 +9,7 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+declare var page: any
 @Component({
   selector: 'app-dialog-novo-produto',
   templateUrl: './dialog-novo-produto.component.html',
@@ -40,10 +40,12 @@ export class DialogNovoProdutoComponent implements OnInit {
       preco: ['', Validators.required],
       codBarras: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(13)]],
     });
+
   }
 
   form: FormGroup;
   categorias!: CategoriaProdutoElement[];
+  fotoProduto: File | undefined;
   produtoJaExiste: boolean = true;
   produtoJaVerificada: boolean = false;
   produtoModificada: boolean = false;
@@ -62,22 +64,36 @@ export class DialogNovoProdutoComponent implements OnInit {
     );
   }
 
+  salvarFotoAtual(event: any) {
+    this.fotoProduto = event.target.files[0] as File;
+
+  }
+
   cadastrarNovoProduto(produto: ProdutoElement) {
-    produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
-    this.produtoService.cadastrarNovoProduto(produto).subscribe(
-      produto => {
-        this.notificationService.notificarProdutoCriado(produto);
-        this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-        this.dialogRef.close(produto);
+    this.produtoService.salvarImagemProduto(this.fotoProduto!).subscribe(
+      res => {
+        produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
+        produto.img = 'https://ucarecdn.com/' + res.file + '/';
+        this.produtoService.cadastrarNovoProduto(produto).subscribe(
+          produto => {
+            this.notificationService.notificarProdutoCriado(produto);
+            this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+            this.dialogRef.close(produto);
+          },
+          error => {
+            console.error('Erro ao cadastrar produto', error);
+          }
+        );
       },
       error => {
-        console.error('Erro ao cadastrar produto', error);
+        console.error('Erro ao salvar imagem do produto', error);
       }
     );
+
   }
 
   verificarProduto() {

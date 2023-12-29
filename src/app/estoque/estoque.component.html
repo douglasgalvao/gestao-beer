@@ -1,1 +1,7 @@
-<p>estoque works!</p>
+<app-toolbar [actions]="actions" [@fadeIn] [toolbarTitle]="toolbarTitle"></app-toolbar>
+<mat-card [@fadeIn]>
+    <mat-card-content>
+        <app-produto-estoque *ngFor="let produto of produtos" [produto]="produto"></app-produto-estoque>
+    </mat-card-content>
+
+</mat-card>

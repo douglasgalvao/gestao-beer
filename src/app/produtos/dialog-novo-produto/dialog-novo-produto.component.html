@@ -29,8 +29,17 @@
                     <mat-label>Código de Barras</mat-label>
                     <input matInput type="text" formControlName="codBarras" required>
                 </mat-form-field>
-                
+
             </form>
+
+            <div class="file-upload">
+                <label for="file-input">
+                    <mat-icon> cloud_upload </mat-icon>
+                    Clique para fazer o upload<br>ou arraste e solte aqui
+                </label>
+                <input type="file" id="file-input" (change)="salvarFotoAtual($event)">
+            </div>
+
         </mat-dialog-content>
         <div class="errorProdutoContainer">
             <mat-error *ngIf="produtoJaExiste && produtoJaVerificada" class="error">Produto já existente no

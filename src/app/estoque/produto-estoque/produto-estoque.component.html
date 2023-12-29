@@ -1,0 +1,9 @@
+<mat-card matBadge="{{produto.quantidade}}" class="cardProduto" [@fadeIn]>
+    <mat-card-content class="cardContent">
+        <img src="{{produto.img}}" width="72px" height="72px">
+        <h3>{{produto.nome}}</h3>
+        <p>Preço : {{produto.preco}}</p>
+        <p>Estoque : {{produto.quantidadeEstoque}}</p>
+        <button mat-raised-button color="primary" (click)="adicionarEstoque(produto)">Adicionar Estoque</button>
+    </mat-card-content>
+</mat-card>
