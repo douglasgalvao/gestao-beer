@@ -1,6 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ProdutoElement } from 'src/app/vendas/vendas.component';
+import { AddEstoqueConfirmComponent } from '../add-estoque-confirm/add-estoque-confirm.component';
+import { NotificationService } from 'src/app/service/notification.service';
 
 
 @Component({
@@ -19,12 +22,19 @@ import { ProdutoElement } from 'src/app/vendas/vendas.component';
 export class ProdutoEstoqueComponent implements OnInit {
   @Input() produto!: ProdutoElement;
 
+  constructor(private dialog: MatDialog, private notificationService: NotificationService) { }
+
+
   adicionarEstoque(produto: ProdutoElement) {
-    this.produto.quantidade! += 1;
+    this.dialog.open(AddEstoqueConfirmComponent, {
+      data: produto,
+      width: 'max-content',
+      height: 'max-content',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    })
   }
 
-  constructor() { }
   ngOnInit(): void {
-
   }
 }

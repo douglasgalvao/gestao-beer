@@ -206,7 +206,7 @@ export class NovaVendaDialogComponent implements OnInit, AfterViewInit {
       this.produtosAgrupados = this.agruparProdutosPorCategoria(this.produtos);
     });
 
-    this.clienteControl = new FormControl('', Validators.required);
+    this.clienteControl = new FormControl('');
     this.metodoPagamentoControl = new FormControl('', Validators.required);
     this.statusPagamentoControl = new FormControl('PAGO');
     this.produtoControl = new FormControl([] as ProdutoElement[], [Validators.required]);

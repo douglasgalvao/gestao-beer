@@ -32,9 +32,6 @@ export class DialogInformationVendaComponent implements OnInit {
         this.dialogService.vendaData$.subscribe(venda => {
             this.vendaObjeto = venda;
         })
-
-
-
     }
 
 }

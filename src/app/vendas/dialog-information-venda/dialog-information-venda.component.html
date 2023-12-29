@@ -35,12 +35,16 @@
             <h2>Produtos</h2>
         </div>
 
-        <mat-form-field appearance="fill" matBadge={{p.quantidade}} matBadgeOverlap="false" matBadgeColor="accent"
-            *ngFor="let p of vendaObjeto?.produtos">
-            <div class="mat-labelDiv"><mat-label>Categoria: {{p.categoriaProduto.nome}}</mat-label></div>
+        <mat-form-field appearance="fill" matBadge={{p.quantidade}} matBadgeSize="medium" matBadgeOverlap="false"
+            matBadgeColor="primary" *ngFor="let p of vendaObjeto?.produtos">
+            <div class="containerImgProduto">
+                <img [src]="p.img" alt="Imagem do Produto" width="80px" height="80px">
+            </div>
+            <div class="mat-labelDiv"><mat-label>{{p.nome}} R$ {{p.preco}}</mat-label></div>
             <div class="containerProduto">
+                <span>Quantidade: {{p.quantidade}}</span>
                 <textarea matInput class="textAreaProduto" disabled
-                    style="color: #121212;">{{p.nome}} R$ {{p.preco}}</textarea>
+                    style="color: #121212;">Categoria: {{p.categoriaProduto.nome}}</textarea>
                 <span>Subtotal: R$ {{p.subTotal}}</span>
             </div>
         </mat-form-field>
