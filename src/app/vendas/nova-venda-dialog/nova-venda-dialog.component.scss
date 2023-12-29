@@ -111,6 +111,14 @@
     justify-content: space-between;
 }
 
+.imageProduct{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .informationsProduct2 {
     display: flex;
     justify-content: space-around;

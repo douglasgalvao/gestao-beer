@@ -66,6 +66,9 @@
                             <div *ngFor="let produto of produtosSelecionados" class="selected-product"
                                 matBadge="{{ produto.quantidade ? produto.quantidade : 1 }}"
                                 [matBadgeColor]="produto.quantidade! > produto.quantidadeEstoque ? 'warn' : 'primary'">
+                                <div class="imageProduct">
+                                    <img [src]="produto.img" alt="Foto do Produto" width="64px" height="64px">
+                                </div>
                                 <div class="informationsProduct">
                                     <span>{{ produto.nome }}:</span>
                                     <span>{{ produto.preco | currency:'BRL' }}</span>

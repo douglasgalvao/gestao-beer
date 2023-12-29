@@ -32,10 +32,12 @@
 
             </form>
 
-            <div class="file-upload">
-                <label for="file-input">
-                    <mat-icon> cloud_upload </mat-icon>
-                    Clique para fazer o upload<br>ou arraste e solte aqui
+            <div class="file-upload" [class.foto-selecionada]="fotoSelecionada">
+                <label for="file-input" class="upload-label">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <span *ngIf="!fotoSelecionada">Clique para fazer o upload<br>ou arraste e solte aqui</span>
+                    <span *ngIf="fotoSelecionada">Foto Selecionada! Clique para fazer o upload<br>ou arraste e solte
+                        aqui</span>
                 </label>
                 <input type="file" id="file-input" (change)="salvarFotoAtual($event)">
             </div>

@@ -46,6 +46,7 @@ export class DialogNovoProdutoComponent implements OnInit {
   form: FormGroup;
   categorias!: CategoriaProdutoElement[];
   fotoProduto: File | undefined;
+  fotoSelecionada: boolean = false;
   produtoJaExiste: boolean = true;
   produtoJaVerificada: boolean = false;
   produtoModificada: boolean = false;
@@ -66,7 +67,7 @@ export class DialogNovoProdutoComponent implements OnInit {
 
   salvarFotoAtual(event: any) {
     this.fotoProduto = event.target.files[0] as File;
-
+    this.fotoSelecionada = true;
   }
 
   cadastrarNovoProduto(produto: ProdutoElement) {

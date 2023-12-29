@@ -53,9 +53,22 @@
 
 .file-upload label:hover {
     color: #34495e;
-    /* Cor do texto ao passar o mouse */
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
 }
 
+
+.foto-selecionada {
+
+    border: 2px solid #4CAF50;
+    background-color: #f2f2f2;
+}
+
+
+.upload-label {
+    font-size: 16px;
+}
 
 
 
