@@ -10,6 +10,7 @@ import { DialogDeleteProdutoComponent } from './dialog-delete-produto/dialog-del
 import { TableCategoriasProdutosComponent } from './table-pagination-categoria/table-pagination-categoria.component';
 import { TableProdutosCategoriasComponent } from './table-pagination-produto/table-pagination-produto.component';
 import { DialogDeleteCategoriaComponent } from './dialog-delete-categoria/dialog-delete-categoria.component';
+import { DialogEditProdutoComponent } from './dialog-edit-produto/dialog-edit-produto.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DialogDeleteCategoriaComponent } from './dialog-delete-categoria/dialog
     DialogDeleteProdutoComponent,
     TableCategoriasProdutosComponent,
     TableProdutosCategoriasComponent,
-    DialogDeleteCategoriaComponent
+    DialogDeleteCategoriaComponent,
+    DialogEditProdutoComponent
   ],
   imports: [
     CommonModule,

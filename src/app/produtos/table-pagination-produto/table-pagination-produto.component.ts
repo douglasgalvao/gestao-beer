@@ -7,6 +7,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteProdutoComponent } from '../dialog-delete-produto/dialog-delete-produto.component';
+import { DialogEditProdutoComponent } from '../dialog-edit-produto/dialog-edit-produto.component';
 
 
 
@@ -36,7 +37,16 @@ export class TableProdutosCategoriasComponent implements OnInit {
 
 
 
-
+  openDialogEditProduto(produto: ProdutoElement) {
+    this.dialog.open(DialogEditProdutoComponent, {
+      data: produto,
+      width: 'max-content',
+      height: 'max-content',
+      panelClass: '',
+      enterAnimationDuration: '350ms',
+      exitAnimationDuration: '350ms'
+    });
+  }
 
   openDialogDeleteProduto(produto: ProdutoElement) {
     this.dialog.open(DialogDeleteProdutoComponent, {

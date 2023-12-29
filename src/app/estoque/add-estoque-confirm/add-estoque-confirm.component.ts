@@ -31,8 +31,8 @@ export class AddEstoqueConfirmComponent implements OnInit {
   produtoCodBarras = this.data.codBarras;
 
   adicionarEstoque(quantidade: any) {
-    this.produto.quantidadeEstoque += quantidade.quantidade;
-    this.produtoService.adicionarEstoque(this.produtoCodBarras, quantidade.quantidade).subscribe(data => {
+    this.produto.quantidadeEstoque += Number(quantidade.quantidade);
+    this.produtoService.adicionarEstoque(this.produtoCodBarras, Number(quantidade.quantidade)).subscribe(data => {
       this.matSnackBar.open('Estoque adicionado com sucesso', 'Fechar', {
         duration: 3000,
         horizontalPosition: 'center',
@@ -43,7 +43,7 @@ export class AddEstoqueConfirmComponent implements OnInit {
     }, error => {
       console.log(error);
     })
-    
+
   }
 
   cancelar() {
