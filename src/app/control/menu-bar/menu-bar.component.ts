@@ -42,6 +42,16 @@ export class MenuBarComponent implements OnInit {
       }
     );
 
+    this.notificationService.produtoCriado$.subscribe(
+      () => {
+        this.produtoService.getProdutos().subscribe(
+          produtos => {
+            this.produtoEstoqueBaixo = produtos.filter(produto => produto.quantidadeEstoque <= 10);
+          }
+        );
+      }
+    );
+
   }
 
   toggleDrawer() {

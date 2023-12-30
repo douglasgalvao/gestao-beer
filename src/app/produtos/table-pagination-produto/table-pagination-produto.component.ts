@@ -19,7 +19,7 @@ import { DialogEditProdutoComponent } from '../dialog-edit-produto/dialog-edit-p
   styleUrls: ['./table-pagination-produto.component.scss']
 })
 export class TableProdutosCategoriasComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nome', 'preco', 'categoriaProduto'];
+  displayedColumns: string[] = ['id','img', 'nome', 'preco', 'categoriaProduto'];
   columAction: string = 'Actions';
   produtos: ProdutoElement[] = [];
   produtosRequest: ProdutoElementRequest[] = [];
