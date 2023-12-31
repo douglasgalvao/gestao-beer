@@ -1,7 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { VendaElement } from '../vendas.component';
-import { DialogoService } from 'src/app/service/dialogo.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 declare var page: any;
 @Component({
@@ -10,7 +9,9 @@ declare var page: any;
     styleUrls: ['./dialog-information-venda.component.scss']
 })
 export class DialogInformationVendaComponent implements OnInit {
-    constructor(private fb: FormBuilder, private dialog: MatDialogRef<DialogInformationVendaComponent>, private dialogService: DialogoService) {
+    constructor(private fb: FormBuilder,
+        private dialog: MatDialogRef<DialogInformationVendaComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: VendaElement) {
         page = this;
     }
 
@@ -29,9 +30,8 @@ export class DialogInformationVendaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.dialogService.vendaData$.subscribe(venda => {
-            this.vendaObjeto = venda;
-        })
+        this.vendaObjeto = this.data;
+        console.log(this.data);
     }
 
 }

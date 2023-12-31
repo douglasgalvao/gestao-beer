@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +6,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { VendaElement } from '../vendas.component';
 import { VendasService } from 'src/app/service/vendas.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteConfirmationVendaComponent } from '../dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
+import { DialogInformationVendaComponent } from '../dialog-information-venda/dialog-information-venda.component';
 
 
 
@@ -24,26 +27,38 @@ export class TableSortPaginationComponent implements OnInit {
 
   @Output() openInformations = new EventEmitter<VendaElement>();
   @Output() openDelete = new EventEmitter<VendaElement>();
+  @Input() vendasInput!: VendaElement[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private vendasService: VendasService, private notificationService: NotificationService) { }
+  constructor(private vendasService: VendasService, private notificationService: NotificationService,
+    private dialog: MatDialog) { }
 
 
 
   openDialogInformation(venda: VendaElement) {
     this.vendasService.getVenda(venda.id).subscribe(
       data => {
-        this.openInformations.emit(data);
+        this.dialog.open(DialogInformationVendaComponent, {
+          data: data,
+          width: 'max-content',
+          height: 'max-content',
+          panelClass: '',
+          enterAnimationDuration: '350ms',
+          exitAnimationDuration: '350ms'
+        });
+
       },
       error => console.error('Erro ao obter venda:', error)
     );
   }
 
-  openDeleteVenda(venda: VendaElement) {
+  openDialogDeleteVenda(venda: VendaElement) {
     this.vendasService.getVenda(venda.id).subscribe(
       data => {
-        this.openDelete.emit(data);
+        this.dialog.open(DialogDeleteConfirmationVendaComponent, {
+          data: data
+        });
       },
       error => console.error('Erro ao obter venda:', error)
     );
@@ -75,28 +90,30 @@ export class TableSortPaginationComponent implements OnInit {
     return input.replace(/[áéíóúàèìòùãõâêîôûäëïöü]/g, match => accentsMap[match] || match);
   }
 
+  updateTableVendas(vendas: VendaElement[]) {
+    this.dataSource = new MatTableDataSource<VendaElement>(vendas);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
 
   updateTable() {
     this.vendas = [];
-    this.vendasService.getVendas().subscribe(
-      data => {
-        data.forEach(venda => {
-          this.vendas.push({
-            id: venda.id,
-            dataVenda: venda.dataVenda,
-            totalVenda: venda.totalVenda,
-            cliente: venda.cliente,
-            metodoPagamento: venda.metodoPagamento,
-            statusVenda: venda.statusVenda,
-            produtos: venda.produtos
-          });
-        })
-        this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error => console.error('Erro ao obter vendas:', error)
-    );
+    this.vendasInput.forEach(venda => {
+      this.vendas.push({
+        id: venda.id,
+        dataVenda: venda.dataVenda,
+        totalVenda: venda.totalVenda,
+        cliente: venda.cliente,
+        metodoPagamento: venda.metodoPagamento,
+        statusVenda: venda.statusVenda,
+        produtos: venda.produtos
+      });
+
+    })
+    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 
@@ -107,6 +124,10 @@ export class TableSortPaginationComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   ngOnInit(): void {
 
@@ -117,6 +138,10 @@ export class TableSortPaginationComponent implements OnInit {
 
     this.notificationService.vendaCriada$.subscribe(() => {
       this.updateTable();
+    });
+
+    this.notificationService.vendasFiltradas$.subscribe((vendas) => {
+      this.updateTableVendas(vendas);
     });
 
     this.updateTable();

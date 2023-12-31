@@ -17,7 +17,7 @@
     </a>
     <div class="notifications">
         <mat-icon [matBadge]="produtoEstoqueBaixo.length ? produtoEstoqueBaixo.length : null " matBadgeColor="warn"
-            [matMenuTriggerFor]="menu">notification_important</mat-icon>
+            [matMenuTriggerFor]="menu" aria-hidden="false">notification_important</mat-icon>
         <mat-menu #menu="matMenu">
             <div *ngIf="produtoEstoqueBaixo.length === 0" class="empty-menu">
                 Nenhum produto com estoque baixo.

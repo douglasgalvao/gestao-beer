@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { DialogoService } from '../service/dialogo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NovaVendaDialogComponent } from '../vendas/nova-venda-dialog/nova-venda-dialog.component';
 
@@ -25,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   // dataSource = new MatTableDataSource(this.vendas);
 
-  constructor(private dialog: MatDialog, private dialogService: DialogoService) {
+  constructor(private dialog: MatDialog) {
     this.dialog = dialog;
   }
 
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   abrirDialogVenda() {
-    this.dialog.open(NovaVendaDialogComponent,{
+    this.dialog.open(NovaVendaDialogComponent, {
       width: 'max-content',
       height: 'max-content',
       enterAnimationDuration: '350ms',

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInformationVendaComponent } from './dialog-information-venda/dialog-information-venda.component';
-import { DialogoService } from '../service/dialogo.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
 import { VendasService } from '../service/vendas.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { NotificationService } from '../service/notification.service';
 
 
 export interface CategoriaProdutoElement {
@@ -90,11 +91,39 @@ export interface VendaElementRequest {
 
 
 export class VendasComponent implements OnInit {
-  constructor(private dialog: MatDialog, private dialogService: DialogoService,
-    private vendasService: VendasService) { }
-  vendaData!: VendaElement;
-  ngOnInit(): void {
+  constructor(private dialog: MatDialog,
+    private vendasService: VendasService,
+    private notificationService: NotificationService) { }
 
+  vendaData!: VendaElement;
+  vendas: VendaElement[] = [];
+
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+  filtrarVendas() {
+    this.vendasService.filtrarVendas(this.range.controls.start.value?.toISOString()!, this.range.controls.end.value?.toISOString()!).subscribe(
+      data => {
+        this.vendas = data;
+        this.notificationService.notificarVendasFiltradas(this.vendas);
+      },
+      error => console.error('Erro ao filtrar vendas:', error)
+    );
+  }
+
+  ngBeforeViewInit() {
+
+  }
+
+  ngOnInit(): void {
+    this.vendasService.getVendas().subscribe(
+      data => {
+        this.vendas = data;
+      },
+      error => console.error('Erro ao obter vendas:', error)
+    );
   }
 
 

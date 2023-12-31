@@ -19,6 +19,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
     exports: [
@@ -41,7 +43,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatTabsModule,
         MatSnackBarModule,
         ReactiveFormsModule,
-        MatStepperModule
+        MatStepperModule,
+        MatDatepickerModule
     ]
 })
 

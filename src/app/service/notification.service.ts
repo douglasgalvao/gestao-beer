@@ -21,6 +21,8 @@ export class NotificationService {
 
   private baixoEstoqueDefinidoSource = new Subject<number>();
 
+  private vendasFiltradasSource = new Subject<VendaElement[]>();
+
 
   produtoCriado$ = this.produtoCriadoSource.asObservable();
   produtoDeletado$ = this.produtoDeletadoSource.asObservable();
@@ -35,6 +37,8 @@ export class NotificationService {
   estoqueRemovido$ = this.estoqueRemovidoSource.asObservable();
 
   baixoEstoqueDefinido$ = this.baixoEstoqueDefinidoSource.asObservable();
+
+  vendasFiltradas$ = this.vendasFiltradasSource.asObservable();
 
   constructor() { }
 
@@ -71,6 +75,10 @@ export class NotificationService {
 
   notificarBaixoEstoqueDefinido(produtoId: number) {
     this.baixoEstoqueDefinidoSource.next(produtoId);
+  }
+
+  notificarVendasFiltradas(vendas: VendaElement[]) {
+    this.vendasFiltradasSource.next(vendas);
   }
 
 }

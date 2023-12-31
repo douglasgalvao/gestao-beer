@@ -4,7 +4,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MaterialModule } from '../material-module';
 
 
-
 @NgModule({
   declarations: [
     ToolbarComponent

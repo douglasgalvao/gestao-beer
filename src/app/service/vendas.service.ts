@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VendaElement, VendaElementRequest } from '../vendas/vendas.component';
 import { NotificationService } from './notification.service';
@@ -28,4 +28,14 @@ export class VendasService {
   createVenda(venda: VendaElementRequest): Observable<VendaElement> {
     return this.http.post<VendaElement>(this.apiUrl, venda);
   }
+
+  filtrarVendas(dataInicial: string, dataFinal: string): Observable<VendaElement[]> {
+
+    const params = new HttpParams()
+      .set('startDate', dataInicial.toString())
+      .set('endDate', dataFinal.toString());
+
+    return this.http.get<VendaElement[]>(this.apiUrl + '/filtrarVendas', { params });
+  }
+
 }

@@ -4,6 +4,11 @@
     border: none;
 }
 
+
+mat-form-field {
+    padding: 1rem;
+}
+
 .container {
     margin: 1rem;
     border: none;
@@ -19,9 +24,45 @@ mat-toolbar {
     width: 100%;
     background-color: yellow;
 }
+
+.containerFilterDataButtons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.2rem 1rem 0.2rem 0rem;
+    width: 100%;
+    gap: 0.5rem;
+
+}
+
+.clearFilterData {
+    background-color: red;
+    color: white;
+}
+
+.clearFilterData:hover {
+    opacity: 0.7;
+    border-color: red;
+    cursor: pointer;
+}
+
+
+.filterDataButton {
+    background-color: green;
+    color: white;
+}
+
+.filterDataButton:hover {
+    opacity: 0.5;
+    border-color: green;
+    border: 1px solid;
+    cursor: pointer;
+}
+
 .ButtonsContainer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 100%;
     gap: 1rem;
 
@@ -61,6 +102,3 @@ mat-toolbar {
         }
     }
 }
-
-
-

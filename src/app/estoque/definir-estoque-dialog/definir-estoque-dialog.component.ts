@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Form, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { DialogoService } from 'src/app/service/dialogo.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { ProdutoElement } from 'src/app/vendas/vendas.component';

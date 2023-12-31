@@ -2,7 +2,6 @@ import { VendaElement } from 'src/app/vendas/vendas.component';
 import { VendasService } from 'src/app/service/vendas.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogoService } from 'src/app/service/dialogo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -13,8 +12,10 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class DialogDeleteConfirmationVendaComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogDeleteConfirmationVendaComponent>,
-    private dialogService: DialogoService, private vendaService: VendasService,
-    private _snackBar: MatSnackBar, private notificationService: NotificationService) { }
+    private vendaService: VendasService,
+    private _snackBar: MatSnackBar,
+    private notificationService: NotificationService,
+    @Inject(MAT_DIALOG_DATA) public data: VendaElement) { }
 
 
   vendaObjeto!: VendaElement | null;
@@ -45,8 +46,6 @@ export class DialogDeleteConfirmationVendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogService.vendaData$.subscribe(venda => {
-      this.vendaObjeto = venda;
-    })
+    this.vendaObjeto = this.data;
   }
 }
