@@ -22,23 +22,6 @@ th {
     }
 }
 
-.novaVendaButtonContainer {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-
-    .novaVendaButton {
-        background-color: #121212;
-        color: yellow;
-
-        :hover {
-            opacity: 0.5;
-            border-color: yellow;
-            border: 1px solid;
-            cursor: pointer;
-        }
-    }
-}
 
 .deleteActionVendas {
     background-color: transparent;
@@ -86,10 +69,7 @@ td button {
 }
 
 
-mat-toolbar {
-    width: 100%;
-    background-color: yellow;
-}
+
 
 mat-card {
     // background-color: transparent;

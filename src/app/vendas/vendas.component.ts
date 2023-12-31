@@ -5,6 +5,7 @@ import { DialogoService } from '../service/dialogo.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
+import { VendasService } from '../service/vendas.service';
 
 
 export interface CategoriaProdutoElement {
@@ -89,35 +90,13 @@ export interface VendaElementRequest {
 
 
 export class VendasComponent implements OnInit {
-  constructor(private dialog: MatDialog, private dialogService: DialogoService) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogoService,
+    private vendasService: VendasService) { }
   vendaData!: VendaElement;
   ngOnInit(): void {
 
   }
 
-  abrirDialogInformation(venda: VendaElement) {
-    this.dialog.open(DialogInformationVendaComponent, {
-      width: 'max-content',
-      height: 'max-content',
-      panelClass: 'scrollable-dialog',
-      enterAnimationDuration: '350ms',
-      exitAnimationDuration: '350ms'
-    })
-    this.dialogService.setVendaData(venda);
-  }
-
-
-  abrirDialogDelete(venda: VendaElement) {
-    this.dialog.open(DialogDeleteConfirmationVendaComponent, {
-      data: venda,
-      width: 'max-content',
-      height: 'max-content',
-      panelClass: 'scrollable-dialog',
-      enterAnimationDuration: '350ms',
-      exitAnimationDuration: '350ms'
-    })
-    this.dialogService.setVendaData(venda);
-  }
 
 
   abrirDialogNovaVenda() {
@@ -128,6 +107,34 @@ export class VendasComponent implements OnInit {
       exitAnimationDuration: '350ms'
     })
   }
+
+
+  openDialogFiltrarVendas() {
+    console.log('vai ser implementado');
+  }
+
+  openDialogGerarRelatorio() {
+    console.log('vai ser implementado');
+  }
+
+  abrirDialogInformation(venda: VendaElement) {
+    this.vendasService.getVenda(venda.id).subscribe(
+      data => {
+      },
+      error => console.error('Erro ao obter venda:', error)
+    );
+  }
+
+  openDeleteVenda(venda: VendaElement) {
+    this.vendasService.getVenda(venda.id).subscribe(
+      data => {
+      },
+      error => console.error('Erro ao obter venda:', error)
+    );
+
+
+  }
+
 
 
 }

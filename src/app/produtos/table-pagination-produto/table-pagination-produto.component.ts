@@ -19,16 +19,11 @@ import { DialogEditProdutoComponent } from '../dialog-edit-produto/dialog-edit-p
   styleUrls: ['./table-pagination-produto.component.scss']
 })
 export class TableProdutosCategoriasComponent implements OnInit {
-  displayedColumns: string[] = ['id','img', 'nome', 'preco', 'categoriaProduto'];
+  displayedColumns: string[] = ['id', 'img', 'nome', 'preco', 'categoriaProduto'];
   columAction: string = 'Actions';
   produtos: ProdutoElement[] = [];
   produtosRequest: ProdutoElementRequest[] = [];
   dataSource!: MatTableDataSource<ProdutoElementRequest>;
-
-  @Output() openInformations = new EventEmitter<ProdutoElement>();
-  @Output() openDelete = new EventEmitter<ProdutoElement>();
-  @Output() openNewProduto = new EventEmitter<ProdutoElement>();
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -57,15 +52,6 @@ export class TableProdutosCategoriasComponent implements OnInit {
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'
     });
-  }
-
-  openDeleteProduto(produto: ProdutoElement) {
-    this.produtosService.deleteProduto(produto.id).subscribe(
-      data => {
-        this.openDelete.emit(data);
-      },
-      error => console.error('Erro ao obter Produto:', error)
-    );
   }
 
   applyFilter(event: Event) {

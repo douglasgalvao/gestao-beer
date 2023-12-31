@@ -79,26 +79,5 @@ export class ProdutosComponent {
     }
   ];
 
-  deletarProduto(produtoId: number) {
-    this.produtoService.deleteProduto(produtoId).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => console.error('Erro ao deletar Produto:', error)
-    );
-  }
 
-  cadastrarNovoProduto(produto: ProdutoElement) {
-    this.produtoService.cadastrarNovoProduto(produto).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => console.error('Erro ao cadastrar Produto:', error)
-    );
-  }
-
-
-  performAction(action: () => void) {
-    action();
-  }
 }

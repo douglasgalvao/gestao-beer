@@ -14,3 +14,53 @@
     // border-color: currentColor;
 }
 
+
+mat-toolbar {
+    width: 100%;
+    background-color: yellow;
+}
+.ButtonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+
+    .novaVendaButton {
+        background-color: #121212;
+        color: yellow;
+
+        :hover {
+            opacity: 0.5;
+            border-color: yellow;
+            border: 1px solid;
+            cursor: pointer;
+        }
+    }
+
+    .filtrarVendasButton {
+        background-color: #121212;
+        color: yellow;
+
+        :hover {
+            opacity: 0.5;
+            border-color: yellow;
+            border: 1px solid;
+            cursor: pointer;
+        }
+    }
+
+    .gerarRelatorioButton {
+        background-color: #121212;
+        color: yellow;
+
+        :hover {
+            opacity: 0.5;
+            border-color: yellow;
+            border: 1px solid;
+            cursor: pointer;
+        }
+    }
+}
+
+
+

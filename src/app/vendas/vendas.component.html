@@ -1,5 +1,17 @@
 <div class="container" [@fadeIn]>
-    <app-table-pagination (openInformations)="abrirDialogInformation($event)" (openDelete)="abrirDialogDelete($event)"
-        (openNewVenda)="abrirDialogNovaVenda()">
+    <mat-toolbar>
+        Tabela de Vendas
+        <div class="ButtonsContainer">
+            <button mat-raised-button class="filtrarVendasButton">
+
+                Filtrar Vendas</button>
+            <button mat-raised-button class="gerarRelatorioButton">
+                <mat-icon>list_alt</mat-icon>Gerar Relatorio</button>
+            <button mat-raised-button class="novaVendaButton" (click)="abrirDialogNovaVenda()">Nova Venda</button>
+        </div>
+    </mat-toolbar>
+
+
+    <app-table-pagination (openInformations)="abrirDialogInformation($event)" (openDelete)="openDeleteVenda($event)">
     </app-table-pagination>
 </div>

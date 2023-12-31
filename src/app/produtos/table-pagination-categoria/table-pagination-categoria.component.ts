@@ -26,9 +26,6 @@ export class TableCategoriasProdutosComponent implements OnInit {
   categoriasRequest: CategoriaProdutoElementRequest[] = [];
   dataSource!: MatTableDataSource<CategoriaProdutoElement>;
 
-  @Output() openDelete = new EventEmitter<CategoriaProdutoElement>();
-  @Output() openNewCategoria = new EventEmitter<CategoriaProdutoElement>();
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -50,14 +47,6 @@ export class TableCategoriasProdutosComponent implements OnInit {
     });
   }
 
-  openDeleteCategoria(categoria: CategoriaProdutoElement) {
-    this.categoriaService.deleteCategoria(categoria.id).subscribe(
-      data => {
-        this.openDelete.emit(data as CategoriaProdutoElement);
-      },
-      error => console.error('Erro ao obter Categoria:', error)
-    );
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();

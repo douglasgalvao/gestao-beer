@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DrawerService } from '../../service/drawer.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { ProdutoElement } from 'src/app/vendas/vendas.component';
@@ -9,11 +9,19 @@ import { NotificationService } from 'src/app/service/notification.service';
   styleUrls: ['./menu-bar.component.scss']
 })
 export class MenuBarComponent implements OnInit {
+
+
+  isScrolled = false;
+  marginTop = 64;
+  produtoEstoqueBaixo: ProdutoElement[] = [];
+
+
+
   constructor(private drawerService: DrawerService,
     private produtoService: ProdutoService,
     private notificationService: NotificationService) { }
 
-  produtoEstoqueBaixo: ProdutoElement[] = [];
+
 
   ngOnInit(): void {
     this.produtoService.getProdutos().subscribe(
@@ -42,15 +50,24 @@ export class MenuBarComponent implements OnInit {
       }
     );
 
-    this.notificationService.produtoCriado$.subscribe(
-      () => {
-        this.produtoService.getProdutos().subscribe(
-          produtos => {
-            this.produtoEstoqueBaixo = produtos.filter(produto => produto.quantidadeEstoque <= 10);
-          }
-        );
-      }
+    this.notificationService.produtoCriado$.subscribe(() => {
+      this.produtoService.getProdutos().subscribe(
+        produtos => {
+          this.produtoEstoqueBaixo = produtos.filter(produto => produto.quantidadeEstoque <= 10);
+        }
+      );
+    }
     );
+
+    this.notificationService.produtoDeletado$.subscribe(() => {
+      this.produtoService.getProdutos().subscribe(
+        produtos => {
+          this.produtoEstoqueBaixo = produtos.filter(produto => produto.quantidadeEstoque <= 10);
+        }
+      );
+    }
+    );
+
 
   }
 
@@ -58,5 +75,10 @@ export class MenuBarComponent implements OnInit {
     this.drawerService.toggleDrawer();
   }
 
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 50;
+  }
 
 }

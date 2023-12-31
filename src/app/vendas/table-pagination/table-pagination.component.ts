@@ -24,7 +24,6 @@ export class TableSortPaginationComponent implements OnInit {
 
   @Output() openInformations = new EventEmitter<VendaElement>();
   @Output() openDelete = new EventEmitter<VendaElement>();
-  @Output() openNewVenda = new EventEmitter<VendaElement>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -40,11 +39,6 @@ export class TableSortPaginationComponent implements OnInit {
       error => console.error('Erro ao obter venda:', error)
     );
   }
-
-  openDialogNewVenda() {
-    this.openNewVenda.emit();
-  }
-
 
   openDeleteVenda(venda: VendaElement) {
     this.vendasService.getVenda(venda.id).subscribe(
