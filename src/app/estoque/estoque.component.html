@@ -1,6 +1,10 @@
 <app-toolbar [actions]="actions" [@fadeIn] [toolbarTitle]="toolbarTitle"></app-toolbar>
 <mat-card [@fadeIn]>
+    <mat-form-field class="filterProdutos">
+        <mat-label>Buscar Produto</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Pesquisar" #input>
+    </mat-form-field>
     <mat-card-content>
-        <app-produto-estoque *ngFor="let produto of produtos" [produto]="produto"></app-produto-estoque>
+        <app-produto-estoque *ngFor="let produto of produtosFiltrados" [produto]="produto"></app-produto-estoque>
     </mat-card-content>
 </mat-card>

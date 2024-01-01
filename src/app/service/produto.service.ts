@@ -16,13 +16,13 @@ export class ProdutoService {
   apiSecretKey = 'e06a4f905e4a74854f99';
 
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
-
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
       nome: produto.nome,
       categoriaProduto: produto.categoriaProduto,
       preco: produto.preco,
       img: produto.img,
-      codBarras: produto.codBarras
+      codBarras: produto.codBarras,
+      quantidadeEstoque: produto.quantidadeEstoque
     });
 
   }

@@ -7,6 +7,7 @@ import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.
 import { VendasService } from '../service/vendas.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NotificationService } from '../service/notification.service';
+import { ConversionService } from '../service/conversion.service';
 
 
 export interface CategoriaProdutoElement {
@@ -36,6 +37,7 @@ export interface ProdutoElementRequest {
   nome: string,
   quantidade?: number,
   preco: string,
+  img:string,
   categoriaProduto: string
 }
 
@@ -93,7 +95,8 @@ export interface VendaElementRequest {
 export class VendasComponent implements OnInit {
   constructor(private dialog: MatDialog,
     private vendasService: VendasService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private convertionService: ConversionService) { }
 
   vendaData!: VendaElement;
   vendas: VendaElement[] = [];
@@ -111,6 +114,16 @@ export class VendasComponent implements OnInit {
       },
       error => console.error('Erro ao filtrar vendas:', error)
     );
+  }
+
+
+  gerarRelatorio() {
+    // o uso do any é desnecessário, porém a vida não é um morango, e como um abacaxi, tem dias que estou azedo também
+    let vendasToExport: any = this.vendas.map(venda => ({
+      ...venda,
+      cliente: venda.cliente.nome,
+    }))
+    this.convertionService.exportToExcel(vendasToExport, 'relatorio.xlsx');
   }
 
   ngBeforeViewInit() {

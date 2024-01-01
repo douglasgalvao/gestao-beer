@@ -19,11 +19,26 @@ import { NotificationService } from '../service/notification.service';
 })
 export class EstoqueComponent implements OnInit {
 
+  produtos: ProdutoElement[] = [];
+  produtosFiltrados: ProdutoElement[] = [];
+  toolbarTitle = 'Estoque de Produtos';
+  actions = [
+    {
+      icon: 'flip_to_front',
+      label: 'Adicionar Estoque',
+      menu: 'Adicionar Estoque',
+      menuItems: [],
+    }
+  ];
+
+
   constructor(private produtoService: ProdutoService, private notificationService: NotificationService) { }
   ngOnInit(): void {
+
     this.produtoService.getProdutos().subscribe(
       produtos => {
         this.produtos = produtos;
+        this.produtosFiltrados = produtos;
       }
     );
 
@@ -38,14 +53,24 @@ export class EstoqueComponent implements OnInit {
   }
 
 
-  produtos: ProdutoElement[] = [];
-  toolbarTitle = 'Estoque de Produtos';
-  actions = [
-    {
-      icon: 'flip_to_front',
-      label: 'Adicionar Estoque',
-      menu: 'Adicionar Estoque',
-      menuItems: [],
-    }
-  ];
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const normalizedFilter = this.normalizeAccents(filterValue);
+    this.produtosFiltrados = this.produtos.filter(produto => (this.normalizeAccents(produto.nome).toLowerCase().includes(normalizedFilter)));
+    console.log(normalizedFilter);
+  }
+
+  normalizeAccents(input: string): string {
+    const accentsMap: { [key: string]: string } = {
+      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+      'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+      'ã': 'a', 'õ': 'o',
+      'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+      'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u'
+    };
+
+    return input.replace(/[áéíóúàèìòùãõâêîôûäëïöü]/g, match => accentsMap[match] || match);
+  }
+
+
 }

@@ -33,14 +33,18 @@
                     <button mat-button class="clearFilterData">Limpar</button>
                 </div>
             </ng-template>
-            <button mat-raised-button class="gerarRelatorioButton">
-                <mat-icon>list_alt</mat-icon>Gerar Relatorio</button>
+
+
+            <button mat-raised-button class="gerarRelatorioButton" (click)="gerarRelatorio()">
+                <mat-icon>list_alt</mat-icon>Gerar Relatorio
+            </button>
+
             <button mat-raised-button class="novaVendaButton" (click)="abrirDialogNovaVenda()">Nova Venda</button>
         </div>
     </mat-toolbar>
 
 
-    <app-table-pagination *ngIf="vendas.length" [vendasInput]="vendas" (openInformations)="abrirDialogInformation($event)"
-        (openDelete)="openDeleteVenda($event)">
+    <app-table-pagination *ngIf="vendas.length" [vendasInput]="vendas"
+        (openInformations)="abrirDialogInformation($event)" (openDelete)="openDeleteVenda($event)">
     </app-table-pagination>
 </div>

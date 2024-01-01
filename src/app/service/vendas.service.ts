@@ -32,8 +32,8 @@ export class VendasService {
   filtrarVendas(dataInicial: string, dataFinal: string): Observable<VendaElement[]> {
 
     const params = new HttpParams()
-      .set('startDate', dataInicial.toString())
-      .set('endDate', dataFinal.toString());
+      .set('startDate', dataInicial)
+      .set('endDate', dataFinal);
 
     return this.http.get<VendaElement[]>(this.apiUrl + '/filtrarVendas', { params });
   }
