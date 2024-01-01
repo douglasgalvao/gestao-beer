@@ -19,7 +19,7 @@ import { DialogEditProdutoComponent } from '../dialog-edit-produto/dialog-edit-p
   styleUrls: ['./table-pagination-produto.component.scss']
 })
 export class TableProdutosCategoriasComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'img', 'nome', 'preco', 'categoriaProduto'];
+  displayedColumns: string[] = ['id', 'nome', 'preco', 'categoriaProduto'];
   columAction: string = 'Actions';
   produtos: ProdutoElement[] = [];
   produtosRequest: ProdutoElementRequest[] = [];
@@ -30,7 +30,11 @@ export class TableProdutosCategoriasComponent implements OnInit {
   constructor(private produtosService: ProdutoService, private notificationService: NotificationService,
     private dialog: MatDialog) { }
 
-
+  get displayedColumnsWithImg() {
+    let columns = [...this.displayedColumns];
+    columns.splice(1, 0, 'img');
+    return [...columns, 'actions'];
+  }
 
   openDialogEditProduto(produto: ProdutoElement) {
     this.dialog.open(DialogEditProdutoComponent, {
@@ -90,6 +94,7 @@ export class TableProdutosCategoriasComponent implements OnInit {
             nome: produto.nome,
             preco: 'R$:' + produto.preco,
             subTotal: produto.subTotal,
+            img: produto.img,
             categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
           };
         });
@@ -109,6 +114,7 @@ export class TableProdutosCategoriasComponent implements OnInit {
         id: produto.id,
         nome: produto.nome,
         preco: 'R$:' + produto.preco,
+        img: produto.img,
         subTotal: produto.subTotal,
         categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
       };
