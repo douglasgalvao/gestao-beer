@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         MatSnackBarModule,
         ReactiveFormsModule,
         MatStepperModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatSlideToggleModule
     ]
 })
 
