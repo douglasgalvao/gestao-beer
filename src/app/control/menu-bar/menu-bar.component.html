@@ -3,8 +3,7 @@
 </mat-toolbar> -->
 
 
-
-<mat-toolbar class="mat-elevation-z3" [ngClass]="{'scrolled-toolbar': isScrolled}">
+<mat-toolbar #toolbar class="mat-elevation-z3" [ngClass]="{'scrolled-toolbar': isScrolled}">
     <button (click)="toggleDrawer()" mat-icon-button>
         <mat-icon>menu</mat-icon>
     </button>

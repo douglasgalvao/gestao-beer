@@ -1,25 +1,35 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DrawerService } from '../../service/drawer.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { ProdutoElement } from 'src/app/vendas/vendas.component';
 import { NotificationService } from 'src/app/service/notification.service';
+import { MatToolbar } from '@angular/material/toolbar';
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss']
 })
-export class MenuBarComponent implements OnInit {
+export class MenuBarComponent implements OnInit, AfterViewInit {
 
 
   isScrolled = false;
   marginTop = 64;
   produtoEstoqueBaixo: ProdutoElement[] = [];
-
+  @ViewChild('toolbar', { static: true }) toolbar!: MatToolbar;
 
 
   constructor(private drawerService: DrawerService,
     private produtoService: ProdutoService,
     private notificationService: NotificationService) { }
+
+  ngAfterViewInit(): void {
+    const toolbarHeight = this.toolbar._elementRef.nativeElement.offsetHeight;
+
+    const contentDiv = document.querySelector('.content') as HTMLElement;
+    if (contentDiv) {
+      contentDiv.style.height = `calc(100vh - ${toolbarHeight}px)`;
+    }
+  }
 
 
 

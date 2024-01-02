@@ -41,6 +41,7 @@ span {
 mat-toolbar {
     color: white;
     background-color: #121212;
+    // position: inherit;
 }
 
 
@@ -52,9 +53,15 @@ mat-toolbar {
     flex: 1 1 auto;
 }
 
+.content {
+    overflow-y: auto;
+    /* Torna a div scrollable na vertical quando o conteúdo ultrapassa a altura */
+    height: calc(100vh - 64px);
+    
+}
 
-mat-toolbar {
-    button:hover {
-        color: yellow;
-    }
+/* Estilo adicional para evitar que o conteúdo seja cortado por trás do mat-toolbar */
+.mat-elevation-z3 {
+    position: relative;
+    z-index: 2;
 }
