@@ -4,10 +4,11 @@ import { HomeComponent } from './home.component';
 import { MaterialModule } from '../material-module';
 import { HomeRoutingModule } from './home-routing.module';
 import { MatButtonModule } from '@angular/material/button';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -17,3 +18,4 @@ import { MatButtonModule } from '@angular/material/button';
   ]
 })
 export class HomeModule { }
+          

@@ -44,6 +44,7 @@ export class DialogNovoProdutoComponent implements OnInit {
 
   }
 
+  gerarCodBarras: boolean = false;
   form: FormGroup;
   categorias!: CategoriaProdutoElement[];
   fotoProduto: File | undefined;
@@ -76,6 +77,7 @@ export class DialogNovoProdutoComponent implements OnInit {
       res => {
         produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
         produto.img = 'https://ucarecdn.com/' + res.file + '/';
+        produto.quantidadeEstoque = this.form.value.estoqueInicial;
         this.produtoService.cadastrarNovoProduto(produto).subscribe(
           produto => {
             this.notificationService.notificarProdutoCriado(produto);
@@ -98,6 +100,12 @@ export class DialogNovoProdutoComponent implements OnInit {
 
   }
 
+  gerarCodBarrasProduto() {
+    this.gerarCodBarras = true;
+    console.log('gerarCodBarrasProduto');
+    this.form.get('codBarras')?.disable();
+  }
+
   verificarProduto() {
     this.produtoService.verificarProdutoJaExiste(this.form.value.nome).subscribe(
       (res) => {
@@ -114,6 +122,8 @@ export class DialogNovoProdutoComponent implements OnInit {
       }
     );
   }
+
+
 
   closeDialog(): void {
     this.dialogRef.close();
