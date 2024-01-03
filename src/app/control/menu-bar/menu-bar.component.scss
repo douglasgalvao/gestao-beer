@@ -11,15 +11,16 @@ span {
 }
 
 
-
-
 .notifications {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0px 10px;
-    cursor: pointer;
+
+    mat-icon {
+        cursor: pointer;
+    }
 }
 
 .empty-menu {
@@ -57,7 +58,7 @@ mat-toolbar {
     overflow-y: auto;
     /* Torna a div scrollable na vertical quando o conteúdo ultrapassa a altura */
     height: calc(100vh - 64px);
-    
+
 }
 
 /* Estilo adicional para evitar que o conteúdo seja cortado por trás do mat-toolbar */
