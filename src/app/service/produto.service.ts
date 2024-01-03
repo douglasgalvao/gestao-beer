@@ -13,7 +13,6 @@ export class ProdutoService {
   constructor(private http: HttpClient) { }
 
   apiUrl = environment.apiUrl;
-  apiSecretKey = 'e06a4f905e4a74854f99';
 
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
