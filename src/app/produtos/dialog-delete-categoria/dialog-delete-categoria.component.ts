@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { CategoriaProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
+import { categoria_ProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
 
 @Component({
   selector: 'app-dialog-delete-categoria',
@@ -17,7 +17,7 @@ export class DialogDeleteCategoriaComponent implements OnInit {
     private notificationService: NotificationService,
     private _snackBar: MatSnackBar) { }
 
-  categoriaObject!: CategoriaProdutoElement;
+  categoriaObject!: categoria_ProdutoElement;
 
   deleteCategoriaConfirm() {
     console.log(this.categoriaObject.id);
