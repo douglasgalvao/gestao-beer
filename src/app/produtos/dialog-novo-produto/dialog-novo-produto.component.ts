@@ -4,7 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { CategoriaProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
+import { categoria_ProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -36,7 +36,7 @@ export class DialogNovoProdutoComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      categoriaProduto: ['', Validators.required],
+      categoria_Produto: ['', Validators.required],
       preco: ['', Validators.required],
       codBarras: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(13)]],
       estoqueInicial: ['', Validators.required]
@@ -46,7 +46,7 @@ export class DialogNovoProdutoComponent implements OnInit {
 
   gerarCodBarras: boolean = false;
   form: FormGroup;
-  categorias!: CategoriaProdutoElement[];
+  categorias!: categoria_ProdutoElement[];
   fotoProduto: File | undefined;
   fotoSelecionada: boolean = false;
   produtoJaExiste: boolean = true;

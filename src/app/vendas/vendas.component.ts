@@ -10,12 +10,12 @@ import { NotificationService } from '../service/notification.service';
 import { ConversionService } from '../service/conversion.service';
 
 
-export interface CategoriaProdutoElement {
+export interface categoria_ProdutoElement {
   id: number,
   nome: string
 }
 
-export interface CategoriaProdutoElementRequest {
+export interface categoria_ProdutoElementRequest {
   id: number
 }
 export interface ProdutoElement {
@@ -28,7 +28,7 @@ export interface ProdutoElement {
   img: string,
   preco: number,
   subTotal: number,
-  categoriaProduto: CategoriaProdutoElement
+  categoria_Produto: categoria_ProdutoElement
 }
 
 
@@ -36,9 +36,9 @@ export interface ProdutoElementRequest {
   id: number,
   nome: string,
   quantidade?: number,
-  preco: string,
+  preco: number,
   img:string,
-  categoriaProduto: string
+  categoria_Produto: string
 }
 
 

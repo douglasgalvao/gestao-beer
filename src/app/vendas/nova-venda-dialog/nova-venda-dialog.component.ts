@@ -68,7 +68,7 @@ export class NovaVendaDialogComponent implements OnInit, AfterViewInit {
 
   agruparProdutosPorCategoria(produtos: ProdutoElement[]): { categoria: string, produtos: ProdutoElement[] }[] {
     return produtos.reduce((agrupamento: { categoria: string, produtos: ProdutoElement[] }[], produto) => {
-      const categoriaNome = produto.categoriaProduto.nome;
+      const categoriaNome = produto.categoria_Produto.nome;
 
       // Verifica se a categoria já existe no objeto de agrupamento
       const categoriaExistente = agrupamento.find(cat => cat.categoria === categoriaNome);

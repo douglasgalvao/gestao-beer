@@ -16,7 +16,7 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Categoria do Produto</mat-label>
-                    <mat-select placeholder="Selecione a categoria" formControlName="categoriaProduto" required>
+                    <mat-select placeholder="Selecione a categoria" formControlName="categoria_Produto" required>
                         <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                             {{categoria.nome.toUpperCase()}}
                         </mat-option>

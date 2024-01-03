@@ -19,8 +19,15 @@
 
             <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
                 <th mat-header-cell mat-sort-header *matHeaderCellDef>{{column.toUpperCase()}}</th>
-                <td mat-cell *matCellDef="let produto">{{produto[column]}}</td>
+                <td mat-cell *matCellDef="let produto">
+                    <ng-container *ngIf="column === 'preco'; else defaultColumn">
+                        {{produto[column] | currency:'BRL'}}
+                    </ng-container>
+                    <ng-template #defaultColumn>{{produto[column]}}</ng-template>
+                </td>
             </ng-container>
+
+
 
             <!-- Coluna de ação -->
             <ng-container matColumnDef="actions">

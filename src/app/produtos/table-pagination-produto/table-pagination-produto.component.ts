@@ -19,7 +19,7 @@ import { DialogEditProdutoComponent } from '../dialog-edit-produto/dialog-edit-p
   styleUrls: ['./table-pagination-produto.component.scss']
 })
 export class TableProdutosCategoriasComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'nome', 'preco', 'categoriaProduto'];
+  displayedColumns: string[] = ['id', 'nome', 'preco', 'categoria_Produto'];
   columAction: string = 'Actions';
   produtos: ProdutoElement[] = [];
   produtosRequest: ProdutoElementRequest[] = [];
@@ -92,10 +92,10 @@ export class TableProdutosCategoriasComponent implements OnInit {
           return {
             id: produto.id,
             nome: produto.nome,
-            preco: 'R$:' + produto.preco,
+            preco: produto.preco,
             subTotal: produto.subTotal,
             img: produto.img,
-            categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
+            categoria_Produto: produto.categoria_Produto.nome.toUpperCase()
           };
         });
         this.dataSource = new MatTableDataSource<ProdutoElementRequest>(this.produtosRequest);
@@ -113,10 +113,10 @@ export class TableProdutosCategoriasComponent implements OnInit {
       return {
         id: produto.id,
         nome: produto.nome,
-        preco: 'R$:' + produto.preco,
+        preco: produto.preco,
         img: produto.img,
         subTotal: produto.subTotal,
-        categoriaProduto: produto.categoriaProduto.nome.toUpperCase()
+        categoria_Produto: produto.categoria_Produto.nome.toUpperCase()
       };
     }));
     this.dataSource.paginator = this.paginator;

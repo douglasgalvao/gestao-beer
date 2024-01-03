@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CategoriaProdutoElement, ProdutoElement } from "../vendas/vendas.component";
+import { categoria_ProdutoElement, ProdutoElement } from "../vendas/vendas.component";
 import { Observable, map } from "rxjs";
 
 @Injectable({

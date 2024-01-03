@@ -1,4 +1,4 @@
-import { CategoriaProdutoElement, CategoriaProdutoElementRequest, ProdutoElement, ProdutoElementRequest } from '../../vendas/vendas.component';
+import { categoria_ProdutoElement, categoria_ProdutoElementRequest, ProdutoElement, ProdutoElementRequest } from '../../vendas/vendas.component';
 import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,9 +22,9 @@ import { DialogDeleteCategoriaComponent } from '../dialog-delete-categoria/dialo
 export class TableCategoriasProdutosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nome'];
   columAction: string = 'Actions';
-  categorias: CategoriaProdutoElement[] = [];
-  categoriasRequest: CategoriaProdutoElementRequest[] = [];
-  dataSource!: MatTableDataSource<CategoriaProdutoElement>;
+  categorias: categoria_ProdutoElement[] = [];
+  categoriasRequest: categoria_ProdutoElementRequest[] = [];
+  dataSource!: MatTableDataSource<categoria_ProdutoElement>;
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,7 +36,7 @@ export class TableCategoriasProdutosComponent implements OnInit {
 
 
 
-  openDialogDeleteCategoria(categoria: CategoriaProdutoElement) {
+  openDialogDeleteCategoria(categoria: categoria_ProdutoElement) {
     this.dialog.open(DialogDeleteCategoriaComponent, {
       data: categoria,
       width: 'max-content',
@@ -54,7 +54,7 @@ export class TableCategoriasProdutosComponent implements OnInit {
 
     this.dataSource.filter = normalizedFilter;
 
-    this.dataSource.filterPredicate = (data: CategoriaProdutoElement, filter: string) => {
+    this.dataSource.filterPredicate = (data: categoria_ProdutoElement, filter: string) => {
       const dataStr = this.normalizeAccents(Object.values(data).join(' ').toLowerCase());
       return dataStr.includes(filter);
     };
@@ -77,7 +77,7 @@ export class TableCategoriasProdutosComponent implements OnInit {
     this.categorias = [];
     this.categoriaService.obterCategorias().subscribe(
       data => {
-        this.categorias = data as CategoriaProdutoElement[];
+        this.categorias = data as categoria_ProdutoElement[];
         this.categorias = this.categorias.map(categoria => {
           return {
             id: categoria.id,
@@ -86,7 +86,7 @@ export class TableCategoriasProdutosComponent implements OnInit {
         });
 
 
-        this.dataSource = new MatTableDataSource<CategoriaProdutoElement>(this.categorias);
+        this.dataSource = new MatTableDataSource<categoria_ProdutoElement>(this.categorias);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -95,9 +95,9 @@ export class TableCategoriasProdutosComponent implements OnInit {
   }
 
 
-  updateTableByDelete(categorias: CategoriaProdutoElement[]) {
+  updateTableByDelete(categorias: categoria_ProdutoElement[]) {
     this.categorias = categorias;
-    this.dataSource = new MatTableDataSource<CategoriaProdutoElement>(this.categorias.map(produto => {
+    this.dataSource = new MatTableDataSource<categoria_ProdutoElement>(this.categorias.map(produto => {
       return {
         id: produto.id,
         nome: produto.nome.toUpperCase()

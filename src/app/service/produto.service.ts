@@ -18,7 +18,7 @@ export class ProdutoService {
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
       nome: produto.nome,
-      categoriaProduto: produto.categoriaProduto,
+      categoria_Produto: produto.categoria_Produto,
       preco: produto.preco,
       img: produto.img,
       codBarras: produto.codBarras,
@@ -31,7 +31,7 @@ export class ProdutoService {
     return this.http.put<ProdutoElement>(this.apiUrl + '/produto', {
       id: produto.id,
       nome: produto.nome,
-      categoriaProduto: produto.categoriaProduto,
+      categoria_Produto: produto.categoria_Produto,
       preco: produto.preco,
       img: produto.img,
       codBarras: produto.codBarras
