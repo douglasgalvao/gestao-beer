@@ -12,10 +12,13 @@ import { NotificationService } from 'src/app/service/notification.service';
   styleUrls: ['./dialog-nova-categoria.component.scss']
 })
 export class DialogNovaCategoriaComponent implements OnInit {
+
+  
   form: FormGroup;
   categoriaJaExiste: boolean = true;
   categoriaJaVerificada: boolean = false;
   categoriaModificada: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogNovaCategoriaComponent>,
@@ -48,9 +51,6 @@ export class DialogNovaCategoriaComponent implements OnInit {
           verticalPosition: 'top',
         });
         this.dialogRef.close(res);
-      },
-      (err) => {
-        console.log(err);
       }
     );
   }
@@ -65,9 +65,6 @@ export class DialogNovaCategoriaComponent implements OnInit {
           this.categoriaJaExiste = false;
         }
         this.categoriaModificada = false;
-      },
-      (err) => {
-        this.categoriaJaExiste = false;
       }
     );
   }

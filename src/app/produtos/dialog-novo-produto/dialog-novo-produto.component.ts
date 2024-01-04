@@ -116,9 +116,6 @@ export class DialogNovoProdutoComponent implements OnInit {
         }
         this.produtoJaVerificada = true;
         this.produtoModificada = false;
-      },
-      (err) => {
-        this.produtoJaExiste = false;
       }
     );
   }
