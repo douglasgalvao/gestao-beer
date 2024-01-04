@@ -7,6 +7,9 @@ import { ProdutoElement, VendaElement, VendaElementRequest } from '../vendas/ven
   providedIn: 'root',
 })
 export class NotificationService {
+
+  private isAuthenticatedSource = new Subject<boolean>();
+
   private vendaDeletadaSource = new Subject<number>();
   private vendaCriadaSource = new Subject<VendaElement>();
 
@@ -39,6 +42,8 @@ export class NotificationService {
   baixoEstoqueDefinido$ = this.baixoEstoqueDefinidoSource.asObservable();
 
   vendasFiltradas$ = this.vendasFiltradasSource.asObservable();
+
+  isAuthenticated$ = this.isAuthenticatedSource.asObservable();
 
   constructor() { }
 
@@ -79,6 +84,10 @@ export class NotificationService {
 
   notificarVendasFiltradas(vendas: VendaElement[]) {
     this.vendasFiltradasSource.next(vendas);
+  }
+
+  redirectUserAuthenticated(boolean: boolean) {
+    this.isAuthenticatedSource.next(boolean);
   }
 
 }
