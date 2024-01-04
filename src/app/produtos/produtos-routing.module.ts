@@ -6,9 +6,8 @@ import { NovaVendaDialogComponent } from '../vendas/nova-venda-dialog/nova-venda
 
 
 
-
 const routes: Routes = [
-  { path: "", redirectTo: "/produtos/produtos", pathMatch: 'full' },
+  { path: "", redirectTo: "/produtos", pathMatch: 'full' },
   { path: "produtos", component: ProdutosComponent },
   { path: "novaVenda", component: NovaVendaDialogComponent }
 ];

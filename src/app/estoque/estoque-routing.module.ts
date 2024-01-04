@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EstoqueComponent } from './estoque.component';
 
-
+const context = "/auth/content/estoque/"
 
 const routes: Routes = [
-  { path: "", redirectTo: "/estoque/estoque", pathMatch: 'full' },
+  { path: "", redirectTo: { context } + "/estoque", pathMatch: 'full' },
   { path: "estoque", component: EstoqueComponent }
 ];
 
