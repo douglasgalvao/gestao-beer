@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterLink, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, Observable, shareReplay } from 'rxjs';
+import { of, Observable, shareReplay, catchError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,12 +23,17 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     let token = localStorage.getItem('token');
+    let boolean = false;
     if (token != null) {
       return this.httpCliente.get<boolean>('http://localhost:8080/auth/validate', {
         headers: {
           'Authorization': token!
         }
       }).pipe(
+        catchError(error => {
+          this.route.navigate(['/login']);
+          return of(false);
+        }),
         shareReplay(1)
       );
     } else {
