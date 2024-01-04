@@ -22,8 +22,12 @@ export class ProdutoService {
       img: produto.img,
       codBarras: produto.codBarras,
       quantidadeEstoque: produto.quantidadeEstoque
+    }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
     });
-
   }
 
   atualizarProduto(produto: ProdutoElement): Observable<ProdutoElement> {
@@ -34,6 +38,11 @@ export class ProdutoService {
       preco: produto.preco,
       img: produto.img,
       codBarras: produto.codBarras
+    }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
     });
   }
 
@@ -41,12 +50,22 @@ export class ProdutoService {
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto/adicionarEstoque', {
       codBarras: codBarras,
       quantidade: quantidade
+    }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
     });
   }
 
 
   verificarProdutoJaExiste(nome: string): Observable<boolean> {
-    return this.http.get<boolean>(this.apiUrl + '/produto/nome/' + nome);
+    return this.http.get<boolean>(this.apiUrl + '/produto/nome/' + nome, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
   salvarImagemProduto(fotoProduto: File): Observable<ProdutoFileIdResponse> {
@@ -58,7 +77,12 @@ export class ProdutoService {
 
     console.log(formData);
     // Faça a requisição usando o HttpClient
-    return this.http.post<ProdutoFileIdResponse>(endpoint, formData);
+    return this.http.post<ProdutoFileIdResponse>(endpoint, formData, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
   // deletarImagemProduto(imgUrl: string): Observable<any> {
@@ -75,19 +99,39 @@ export class ProdutoService {
   // }
 
   getProdutoById(id: number): Observable<ProdutoElement> {
-    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/' + id);
+    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/' + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
   getProdutoByCodBarras(codBarras: string): Observable<ProdutoElement> {
-    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/cod/' + codBarras);
+    return this.http.get<ProdutoElement>(this.apiUrl + '/produto/cod/' + codBarras, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
   deleteProduto(id: number): Observable<ProdutoElement> {
-    return this.http.delete<ProdutoElement>(this.apiUrl + '/produto/' + id);
+    return this.http.delete<ProdutoElement>(this.apiUrl + '/produto/' + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
   getProdutos(): Observable<ProdutoElement[]> {
-    return this.http.get<ProdutoElement[]>(this.apiUrl + '/produto');
+    return this.http.get<ProdutoElement[]>(this.apiUrl + '/produto', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    });
   }
 
 }
