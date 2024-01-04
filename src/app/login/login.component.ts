@@ -1,6 +1,8 @@
+import { NotificationService } from 'src/app/service/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private notification: NotificationService,
+    private snackbar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       username: [''],
@@ -25,7 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    this.notification.isAuthenticated$.subscribe(data => {
+      this.snackbar.open('Você não está logado', 'OK', {
+        duration: 3000
+      });
+    });
   }
 
 }

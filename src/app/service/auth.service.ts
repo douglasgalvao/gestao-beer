@@ -2,12 +2,15 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterLink, RouterStateSna
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, Observable, shareReplay, catchError } from 'rxjs';
+import { NotificationService } from './notification.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpCliente: HttpClient, private route: Router) { }
+  constructor(private httpCliente: HttpClient, private route: Router, private notificationService: NotificationService,
+    private snackbar: MatSnackBar) { }
 
   efetuarLogin(login: string, password: string) {
 
@@ -31,7 +34,13 @@ export class AuthService {
         }
       }).pipe(
         catchError(error => {
-          this.route.navigate(['/login']);
+          this.snackbar.open('Sessão expirada', 'OK', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          }).afterDismissed().subscribe(() => {
+            this.route.navigate(['/login']);
+          });
           return of(false);
         }),
         shareReplay(1)
