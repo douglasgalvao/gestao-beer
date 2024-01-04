@@ -1,17 +1,31 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { NotificationService } from 'src/app/service/notification.service';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { map } from 'rxjs/operators';
+import { Observable, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
+
+  constructor(private authService: AuthService, private notificationService: NotificationService, private router: Router) {
+
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isAuthenticated().pipe(
-      map(data => Boolean(data))
+      tap(isAuthenticated => {
+        if (!isAuthenticated) {
+          this.router.navigate(['/login']);
+        }
+      }),
+      map(isAuthenticated => {
+        // Se o usuário não está autenticado, permita a navegação para '/login'
+        return isAuthenticated || state.url === '/login';
+      })
     );
   }
 }
