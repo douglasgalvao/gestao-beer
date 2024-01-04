@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MaterialModule } from '../material-module';
 
-
 @NgModule({
   declarations: [
-    ToolbarComponent
+    ToolbarComponent,
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
-  exports: [ToolbarComponent]
+  exports: [
+    ToolbarComponent
+  ]
 })
 export class SharedModule { }

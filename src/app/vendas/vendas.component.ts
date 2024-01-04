@@ -37,7 +37,7 @@ export interface ProdutoElementRequest {
   nome: string,
   quantidade?: number,
   preco: number,
-  img:string,
+  img: string,
   categoria_Produto: string
 }
 
@@ -159,7 +159,7 @@ export class VendasComponent implements OnInit {
     console.log('vai ser implementado');
   }
 
-  abrirDialogInformation(venda: VendaElement) {
+  abrirDialogInformation(venda: any) {
     this.vendasService.getVenda(venda.id).subscribe(
       data => {
       },
@@ -167,7 +167,7 @@ export class VendasComponent implements OnInit {
     );
   }
 
-  openDeleteVenda(venda: VendaElement) {
+  openDeleteVenda(venda: any) {
     this.vendasService.getVenda(venda.id).subscribe(
       data => {
       },

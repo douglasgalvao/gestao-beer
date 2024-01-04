@@ -44,7 +44,6 @@
                     <mat-label>Quantidade</mat-label>
                     <input type="number" placeholder="digite a quantidade do produto" (change)="onInput($event)"
                     autocapitalize="false"
-                    autofocus="true"
                         autocomplete="false" aria-label="Number" matInput formControlName="quantidade" #quantidadeInput
                         min="0" max="1000" (keypress)="onKeyPress($event)"
                         oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null">
