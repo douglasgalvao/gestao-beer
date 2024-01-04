@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="p1">
+    <mat-card class="cardForm">
+      <mat-card-header class="headerForm">
+        <mat-card-title class="titleHeader">
+          <h4>Login</h4>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="contentForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="usernameFormField">
+            <input matInput placeholder="Usuário" formControlName="username">
+          </mat-form-field>
+          <mat-form-field class="passwordFormField">
+            <input matInput placeholder="Senha" type="password" formControlName="password">
+          </mat-form-field>
+          <div class="buttonsContent">
+            <button mat-button class="buttonForm" type="submit">Entrar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+/* Adicione esses estilos ao seu arquivo CSS correspondente usando SCSS/Sass */
+
+$font-size-base: 1.6rem;
+$card-max-width: 25rem;
+$spacing-unit: 1.6rem;
+$primary-color: yellow;
+/* Amarelo */
+$secondary-color: #121212;
+/* Preto */
+$shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+
+html {
+  font-size: 62.5%;
+  /* Defina o tamanho base da fonte para 10 pixels (1 rem = 10 pixels) */
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background-color: $secondary-color;
+  color: white;
+  font-size: $font-size-base;
+}
+.buttonsContent{
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+.cardForm {
+  width: 100%;
+  max-width: $card-max-width;
+  box-shadow: $shadow;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+.headerForm {
+  background-color: $primary-color;
+  color: $secondary-color;
+  padding: $spacing-unit;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  border-bottom: 0.2rem solid darken($primary-color, 10%);
+
+  .titleHeader {
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.contentForm {
+  padding: $spacing-unit;
+}
+
+.formField {
+  width: 100%;
+  margin-bottom: $spacing-unit;
+}
+
+.usernameFormField,
+.passwordFormField {
+  @extend .formField;
+}
+
+
+.buttonForm {
+  margin-top: $spacing-unit;
+  background-color: rgba(255, 255, 0, 0.868);
+  color: $secondary-color;
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
