@@ -8,7 +8,6 @@ import { DialogInformationVendaComponent } from './dialog-information-venda/dial
 import { VendasService } from '../service/vendas.service';
 import { DialogDeleteConfirmationVendaComponent } from './dialog-delete-confirmation-venda/dialog-delete-confirmation-venda.component';
 import { NovaVendaDialogComponent } from './nova-venda-dialog/nova-venda-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { DataFilterComponent } from './data-filter/data-filter.component';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
