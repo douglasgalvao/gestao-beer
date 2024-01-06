@@ -13,7 +13,8 @@ import { ProdutoElement } from 'src/app/vendas/vendas.component';
 export class DialogDeleteProdutoComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ProdutoElement,
-    private dialogRef: MatDialogRef<DialogDeleteProdutoComponent>, private produtoService: ProdutoService,
+    private dialogRef: MatDialogRef<DialogDeleteProdutoComponent>, 
+    private produtoService: ProdutoService,
     private notificationService: NotificationService,
     private _snackBar: MatSnackBar) { }
 
@@ -23,7 +24,7 @@ export class DialogDeleteProdutoComponent implements OnInit {
     this.produtoService.getProdutoById(this.produtoObject.id).subscribe(produto => {
       this.produtoObject = produto;
       this.produtoService.deleteProduto(this.produtoObject.id).subscribe(
-        () => {
+        (data) => {
           this.notificationService.notificarProdutoDeletado(this.produtoObject.id);
           this._snackBar.open('Produto deletado com sucesso!', 'Fechar', {
             duration: 3000,
@@ -33,7 +34,6 @@ export class DialogDeleteProdutoComponent implements OnInit {
           this.dialogRef.close();
         }
       );
-      this.dialogRef.close();
     });
   }
 
@@ -43,6 +43,7 @@ export class DialogDeleteProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.produtoObject = this.data;
+    
   }
 
 }

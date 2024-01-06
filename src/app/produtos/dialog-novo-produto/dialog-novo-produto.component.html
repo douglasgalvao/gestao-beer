@@ -1,63 +1,73 @@
 <mat-toolbar class="toolbarContent">
     <div></div>
     <mat-card-title class="title">Cadastrar Produto</mat-card-title>
-    <button mat-icon-button mat-dialog-close>
-        <mat-icon>close</mat-icon>
-    </button>
+    <div style="display: flex;" class="contentCloseDialog">
+        <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
 </mat-toolbar>
-<mat-card>
+<mat-card class="content">
     <mat-card-content>
         <mat-dialog-content class="dialogContainer">
             <form [formGroup]="form" class="formContainer">
-                <mat-form-field appearance="fill">
-                    <mat-label>Nome do Produto</mat-label>
-                    <input matInput formControlName="nome" required>
-                </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Categoria do Produto</mat-label>
-                    <mat-select placeholder="Selecione a categoria" formControlName="categoria_Produto" required>
-                        <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-                            {{categoria.nome.toUpperCase()}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill" class="hide-spinner-buttons">
-                    <mat-label>Preço do Produto</mat-label>
-                    <input matInput type="number" formControlName="preco" required>
-                </mat-form-field>
+                <div class="file-uploadedContent">
+                    <div class="file-uploaded" *ngIf="existsPhoto">
+                        <mat-card>
+                            <mat-card-content class="photoContent">
+                                <img [src]="photoImgUrlAPI" class="fotoProduto" />
+                            </mat-card-content>
+                            <span>Nome: {{nomeProdutoAPI}}</span>
+                        </mat-card>
+                    </div>
+                    <div class="file-upload" [class.foto-selecionada]="fotoSelecionada"
+                        *ngIf="!photoImgUrlAPI.length && !existsPhoto">
+                        <label for="file-input" class="upload-label">
+                            <mat-icon>cloud_upload</mat-icon>
+                            <span *ngIf="!fotoSelecionada">Clique para fazer o upload<br>ou arraste e solte aqui</span>
+                            <span *ngIf="fotoSelecionada">Foto Selecionada! Clique para fazer o upload<br>ou arraste e
+                                solte
+                                aqui</span>
+                        </label>
+                        <input type="file" id="file-input" (change)="salvarFotoAtual($event)">
+                    </div>
+                </div>
 
 
                 <mat-form-field appearance="fill" class="hide-spinner-buttons">
                     <mat-label>Código de Barras</mat-label>
-                    <input matInput type="text" formControlName="codBarras" required>
+                    <input matInput type="text" formControlName="codBarras" #codBarrasElement required>
                 </mat-form-field>
-                <!-- 
-                <mat-slide-toggle (change)="gerarCodBarrasProduto()">
-                    Gerar Código de Barras
-                </mat-slide-toggle> -->
+                <div style="display: flex; gap:1rem">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nome do Produto</mat-label>
+                        <input matInput formControlName="nome" required>
+                    </mat-form-field>
 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Categoria do Produto</mat-label>
+                        <mat-select placeholder="Selecione a categoria" formControlName="categoria_Produto" required>
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                                {{categoria.nome.toUpperCase()}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div style="display: flex; gap:1rem">
+                    <mat-form-field appearance="fill" class="hide-spinner-buttons">
+                        <mat-label>Preço do Produto</mat-label>
+                        <input matInput type="number" formControlName="preco" required>
+                    </mat-form-field>
 
-
-                <mat-form-field appearance="fill" class="hide-spinner-buttons">
-                    <mat-label>Estoque Inicial</mat-label>
-                    <input matInput type="text" formControlName="estoqueInicial"
-                        oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null"
-                        required>
-                </mat-form-field>
-
+                    <mat-form-field appearance="fill" class="hide-spinner-buttons">
+                        <mat-label>Estoque Inicial</mat-label>
+                        <input matInput type="text" formControlName="estoqueInicial"
+                            oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null"
+                            required>
+                    </mat-form-field>
+                </div>
             </form>
 
-            <div class="file-upload" [class.foto-selecionada]="fotoSelecionada">
-                <label for="file-input" class="upload-label">
-                    <mat-icon>cloud_upload</mat-icon>
-                    <span *ngIf="!fotoSelecionada">Clique para fazer o upload<br>ou arraste e solte aqui</span>
-                    <span *ngIf="fotoSelecionada">Foto Selecionada! Clique para fazer o upload<br>ou arraste e solte
-                        aqui</span>
-                </label>
-                <input type="file" id="file-input" (change)="salvarFotoAtual($event)">
-            </div>
+
 
         </mat-dialog-content>
         <div class="errorProdutoContainer">

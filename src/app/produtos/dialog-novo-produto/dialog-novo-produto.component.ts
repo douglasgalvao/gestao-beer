@@ -1,14 +1,14 @@
 
 // dialog-novo-produto.component.ts
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { categoria_ProdutoElement, ProdutoElement } from 'src/app/vendas/vendas.component';
-import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoriaService } from 'src/app/service/categoria.service';
 declare var page: any
 @Component({
   selector: 'app-dialog-novo-produto',
@@ -24,15 +24,32 @@ declare var page: any
   ]
 })
 
-export class DialogNovoProdutoComponent implements OnInit {
+export class DialogNovoProdutoComponent implements OnInit, AfterViewInit {
+  gerarCodBarras: boolean = false;
+  form: FormGroup;
+  existsPhoto: boolean = false;
+  photoImgUrlAPI: string = '';
+  nomeProdutoAPI: string = '';
+  callAPIRequested: boolean = false;
+  categorias!: categoria_ProdutoElement[];
+  fotoProduto: File | undefined;
+  fotoSelecionada: boolean = false;
+  produtoJaExiste: boolean = true;
+  produtoJaVerificada: boolean = false;
+  produtoModificada: boolean = false;
+
+  @ViewChild('codBarrasElement') codBarrasInput!: ElementRef<HTMLInputElement> | undefined;
+
+
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogNovoProdutoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private categoriaService: CategoriaService,
     private produtoService: ProdutoService,
     private notificationService: NotificationService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private categoriaService: CategoriaService
   ) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
@@ -44,25 +61,17 @@ export class DialogNovoProdutoComponent implements OnInit {
 
   }
 
-  gerarCodBarras: boolean = false;
-  form: FormGroup;
-  categorias!: categoria_ProdutoElement[];
-  fotoProduto: File | undefined;
-  fotoSelecionada: boolean = false;
-  produtoJaExiste: boolean = true;
-  produtoJaVerificada: boolean = false;
-  produtoModificada: boolean = false;
 
-
-
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.codBarrasInput?.nativeElement.focus();
+    }, 0);
+  }
 
   ngOnInit(): void {
     this.categoriaService.obterCategorias().subscribe(
-      categorias => {
-        this.categorias = categorias;
-      },
-      error => {
-        console.error('Erro ao obter categorias', error);
+      (res) => {
+        this.categorias = res;
       }
     );
   }
@@ -73,36 +82,47 @@ export class DialogNovoProdutoComponent implements OnInit {
   }
 
   cadastrarNovoProduto(produto: ProdutoElement) {
-    this.produtoService.salvarImagemProduto(this.fotoProduto!).subscribe(
-      res => {
-        produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
-        produto.img = 'https://ucarecdn.com/' + res.file + '/';
-        produto.quantidadeEstoque = this.form.value.estoqueInicial;
-        this.produtoService.cadastrarNovoProduto(produto).subscribe(
-          produto => {
-            this.notificationService.notificarProdutoCriado(produto);
-            this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-            });
-            this.dialogRef.close(produto);
-          },
-          error => {
-            console.error('Erro ao cadastrar produto', error);
-          }
-        );
-      },
-      error => {
-        console.error('Erro ao salvar imagem do produto', error);
-      }
-    );
-
+    if (!this.photoImgUrlAPI.length && this.fotoSelecionada) {
+      this.produtoService.salvarImagemProduto(this.fotoProduto!).subscribe(
+        res => {
+          produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
+          produto.img = 'https://ucarecdn.com/' + res.file + '/';
+          produto.codBarras = this.form.get('codBarras')?.value;
+          produto.quantidadeEstoque = this.form.value.estoqueInicial;
+          this.produtoService.cadastrarNovoProduto(produto).subscribe(
+            produto => {
+              this.notificationService.notificarProdutoCriado(produto);
+              this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
+                duration: 3000,
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+              });
+              this.dialogRef.close(produto);
+            }
+          );
+        }
+      );
+    } else if (this.photoImgUrlAPI.length && !this.fotoSelecionada) {
+      produto.preco = parseFloat(produto.preco.toString().replace(',', '.'));
+      produto.img = this.photoImgUrlAPI;
+      produto.codBarras = this.form.get('codBarras')?.value;
+      produto.quantidadeEstoque = this.form.value.estoqueInicial;
+      this.produtoService.cadastrarNovoProduto(produto).subscribe(
+        produto => {
+          this.notificationService.notificarProdutoCriado(produto);
+          this._snackBar.open('Produto cadastrado com sucesso!', 'Fechar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+          this.dialogRef.close(produto);
+        }
+      );
+    }
   }
 
   gerarCodBarrasProduto() {
     this.gerarCodBarras = true;
-    console.log('gerarCodBarrasProduto');
     this.form.get('codBarras')?.disable();
   }
 
@@ -119,9 +139,6 @@ export class DialogNovoProdutoComponent implements OnInit {
       }
     );
   }
-
-
-
   closeDialog(): void {
     this.dialogRef.close();
   }
