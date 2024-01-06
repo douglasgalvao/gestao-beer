@@ -4,9 +4,9 @@
 <mat-card>
 
     <mat-card-content>
-        <img src="{{produto.img}}" width="72px" height="72px">
+        <img src="{{produto.img}}" class="imgProdutoEstoque">
         <div class="containerProdutoInformations">
-            <h3>{{produto.nome}}</h3>
+            <h3>{{produto.nome.length > 13 ? (produto.nome | slice:0:13) + '...' : produto.nome}}</h3>
             <p>Preço : {{produto.preco}}</p>
             <p>Estoque : {{produto.quantidadeEstoque}}</p>
         </div>

@@ -1,5 +1,4 @@
 <mat-toolbar>Detalhes da Venda</mat-toolbar>
-<mat-divider></mat-divider>
 <div class="container" mat-dialog-content>
     <form>
         <mat-form-field>
@@ -38,9 +37,10 @@
         <mat-form-field appearance="fill" matBadge={{p.quantidade}} matBadgeSize="medium" matBadgeOverlap="false"
             matBadgeColor="primary" *ngFor="let p of vendaObjeto?.produtos">
             <div class="containerImgProduto">
-                <img [src]="p.img" alt="Imagem do Produto" width="80px" height="80px">
+                <img [src]="p.img" alt="Imagem do Produto" class="informationImg" >
             </div>
-            <div class="mat-labelDiv"><mat-label>{{p.nome}} R$ {{p.preco}}</mat-label></div>
+            <div class="mat-labelDiv"><mat-label>{{p.nome.length > 13 ? (p.nome | slice:0:13) + '...' :p.nome }} R$
+                    {{p.preco}}</mat-label></div>
             <div class="containerProduto">
                 <span>Quantidade: {{p.quantidade}}</span>
                 <textarea matInput class="textAreaProduto" disabled

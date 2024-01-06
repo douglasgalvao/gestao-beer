@@ -1,7 +1,7 @@
 <mat-card matBadge="{{produto.quantidade}}" class="cardProduto" [@fadeIn]>
     <mat-card-content class="cardContent">
-        <img src="{{produto.img}}" width="80px" height="80px">
-        <h3>{{produto.nome}}</h3>
+        <img src="{{produto.img}}" class="imgProduto">
+        <h3>{{produto.nome.length > 20 ? (produto.nome | slice:0:20) + '...' : produto.nome }}</h3>
         <p>Preço : {{produto.preco | currency:'BRL'}} </p>
         <p>Estoque : {{produto.quantidadeEstoque}}</p>
         <div class="containerButtonsProduto">
