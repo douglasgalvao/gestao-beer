@@ -2,7 +2,11 @@ mat-card {
     padding: 1rem;
 }
 
-
+.imgProdutoEstoque {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
 
 mat-toolbar {
     background-color: yellow;
@@ -21,6 +25,9 @@ mat-form-field {
     justify-content: space-between;
     gap: 1rem;
     flex-direction: column;
+    p{
+        font-weight: bold;
+    }
 }
 mat-error{
     width: 100%;

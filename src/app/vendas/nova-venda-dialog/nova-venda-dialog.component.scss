@@ -1,7 +1,18 @@
 .formFieldCliente,
 .formFieldmetodoPagamento,
-.formFieldStatusPagamento {
+.formFieldStatusPagamento,
+.formFieldQuantidadeProdutos {
     width: 100%;
+    padding: 1rem;
+}
+
+.dialogContent {
+    background-color: #121212b2;
+}
+
+.formFieldProdutos {
+    display: flex;
+    width: 70%;
     padding: 1rem;
 }
 
@@ -9,11 +20,6 @@
 .containerProdutos {
     display: flex;
     width: 100%;
-
-    .formFieldProdutos {
-        width: 100%;
-        padding: 1rem;
-    }
 }
 
 .actionsContent {
@@ -53,6 +59,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: center;
 
     .cardProdutosSelecionados {
         display: flex;
@@ -86,19 +93,19 @@
     flex-wrap: wrap;
 }
 
-.produtoSemEstoque{
+.produtoSemEstoque {
     color: red;
     font-weight: 600;
     margin-top: 1rem;
 }
 
-.add_circle{
+.add_circle {
     color: green;
     padding: 0.5rem;
     border-radius: 100%;
 }
 
-.remove_circle{
+.remove_circle {
     color: red;
     padding: 0.5rem;
     border-radius: 100%;
@@ -111,12 +118,18 @@
     justify-content: space-between;
 }
 
-.imageProduct{
+.imageProduct {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    .imageProductimg {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
 }
 
 .informationsProduct2 {
@@ -126,27 +139,27 @@
     justify-content: center;
 }
 
-.containerProdutos {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
 
 .selected-products {
-    margin-top: 16px;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .selected-product {
     background-color: #e0e0e0;
     border: 1px solid #ccc;
     padding: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 .quantity-controls {
