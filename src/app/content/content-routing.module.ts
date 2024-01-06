@@ -16,7 +16,8 @@ const routes: Routes = [
       { path: "produtos", loadChildren: () => import('../produtos/produtos.module').then(module => module.ProdutosModule) },
       { path: "estoque", loadChildren: () => import('../estoque/estoque.module').then(module => module.EstoqueModule) },
       { path: "despesas", loadChildren: () => import('../despesas/despesas.module').then(module => module.DespesasModule) },
-      { path: "fornecedores", loadChildren: () => import('../fornecedores/fornecedores.module').then(module => module.FornecedoresModule) }
+      { path: "fornecedores", loadChildren: () => import('../fornecedores/fornecedores.module').then(module => module.FornecedoresModule) },
+      { path: "**", redirectTo: "/auth/content/home" }
     ]
   }
 

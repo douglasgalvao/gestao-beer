@@ -4,8 +4,7 @@ import { DespesasComponent } from './despesas.component';
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "/despesas/despesas", pathMatch: 'full' },
-  { path: "despesas", component: DespesasComponent }
+  { path: "", component: DespesasComponent }
 ];
 
 @NgModule({

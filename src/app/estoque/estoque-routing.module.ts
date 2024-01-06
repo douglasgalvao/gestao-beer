@@ -5,8 +5,7 @@ import { EstoqueComponent } from './estoque.component';
 const context = "/auth/content/estoque/"
 
 const routes: Routes = [
-  { path: "", redirectTo: { context } + "/estoque", pathMatch: 'full' },
-  { path: "estoque", component: EstoqueComponent }
+  { path: "", component: EstoqueComponent }
 ];
 
 @NgModule({
