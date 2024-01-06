@@ -31,7 +31,6 @@ export class DialogInformationVendaComponent implements OnInit {
 
     ngOnInit(): void {
         this.vendaObjeto = this.data;
-        console.log(this.data);
     }
 
 }
