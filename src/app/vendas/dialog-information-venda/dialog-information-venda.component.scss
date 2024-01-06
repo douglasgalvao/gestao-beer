@@ -28,14 +28,17 @@ mat-form-field {
     height: 100%;
     margin: 0.5rem 1rem;
     padding: 0px;
+    text-align: center;
+    align-items: center;
     display: flex;
-    text-wrap: wrap;
+    // text-wrap: wrap;
 
     flex-wrap: wrap;
     z-index: 1;
 
     input {
         text-align: center;
+        align-items: center;
         // justify-content: center;
         text-wrap: wrap;
         color: black !important;
@@ -44,6 +47,14 @@ mat-form-field {
 
 }
 
+.informationImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
 
 .containerProduto {
     text-align: center;
@@ -63,7 +74,7 @@ mat-form-field {
 .container {
     width: 100%;
     background-color: inherit;
-    background-color: rgba(87, 87, 87, 0.281);
+    background-color: #121212de;
 
     form {
         display: flex;
@@ -87,7 +98,7 @@ mat-form-field {
     justify-content: center;
 
     h2 {
-        color: #121212;
+        color: white;
     }
 
     text-align: center;

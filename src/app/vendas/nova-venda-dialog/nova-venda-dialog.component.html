@@ -1,77 +1,85 @@
 <mat-toolbar class="toolBarCadastroVenda">
     Cadastrar uma Venda
 </mat-toolbar>
-<mat-divider></mat-divider>
-<div mat-dialog-content>
-    <mat-card [@fadeIn]>
+<div mat-dialog-content class="dialogContent">
+    <mat-card [@fadeIn] class="dialogContent">
         <form id="formNovaVenda" class="formContainer" [formGroup]="form">
-            <mat-form-field class="formFieldCliente" appearance="fill">
-                <mat-label>Selecione um Cliente</mat-label>
-                <mat-select mat-autocomplete class="clienteSelect" formControlName="cliente"
-                    [value]="form.controls.cliente.value" name="cliente">
-                    <mat-option>Nenhum</mat-option>
-                    <mat-option *ngFor="let cliente of clientes; trackBy: trackByClienteFn" [value]="cliente.id">
-                        {{cliente.nome}} - {{cliente.email}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div style="display: flex; gap:1rem; width: 100%;">
+                <mat-form-field class="formFieldCliente" appearance="fill">
+                    <mat-label>Selecione um Cliente</mat-label>
+                    <mat-select mat-autocomplete class="clienteSelect" formControlName="cliente"
+                        [value]="form.controls.cliente.value" name="cliente">
+                        <mat-option>Nenhum</mat-option>
+                        <mat-option *ngFor="let cliente of clientes; trackBy: trackByClienteFn" [value]="cliente.id">
+                            {{cliente.nome}} - {{cliente.email}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field class="formFieldmetodoPagamento" appearance="fill">
-                <mat-label>Selecione a Forma de Pagamento</mat-label>
-                <mat-select class="metodoPagamentoSelect" [formControl]="metodoPagamentoControl" #metodoPagamento
-                    name="metodoPagamento">
-                    <mat-option value="DINHEIRO">Dinheiro</mat-option>
-                    <mat-option value="PIX">PIX</mat-option>
-                    <mat-option value="CARTAO_DEBITO">Cartão de Débito</mat-option>
-                    <mat-option value="CARTAO_CREDITO">Cartão de Crédito</mat-option>
-                </mat-select>
-                <div *ngIf="form.get('metodoPagamento')?.hasError('required') && form.get('metodoPagamento')?.touched">
-                    <mat-error>Forma de Pagamento é obrigatório</mat-error>
-                </div>
-            </mat-form-field>
+                <mat-form-field class="formFieldmetodoPagamento" appearance="fill">
+                    <mat-label>Selecione a Forma de Pagamento</mat-label>
+                    <mat-select class="metodoPagamentoSelect" [formControl]="metodoPagamentoControl" #metodoPagamento
+                        name="metodoPagamento">
+                        <mat-option value="DINHEIRO">Dinheiro</mat-option>
+                        <mat-option value="PIX">PIX</mat-option>
+                        <mat-option value="CARTAO_DEBITO">Cartão de Débito</mat-option>
+                        <mat-option value="CARTAO_CREDITO">Cartão de Crédito</mat-option>
+                    </mat-select>
+                    <div
+                        *ngIf="form.get('metodoPagamento')?.hasError('required') && form.get('metodoPagamento')?.touched">
+                        <mat-error>Forma de Pagamento é obrigatório</mat-error>
+                    </div>
+                </mat-form-field>
+            </div>
 
-            <mat-form-field class="formFieldStatusPagamento" appearance="fill">
-                <mat-label>Status Pagamento</mat-label>
-                <mat-select class="statusPagamentoSelect" [formControl]="statusPagamentoControl" #statusPagamento
-                    name="statusPagamento">
-                    <mat-option value="PAGO">Pago</mat-option>
-                    <mat-option value="PENDENTE">Pendente</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div style="display: flex; width: 100%; gap: 1rem;">
 
-            <div class="containerProdutos">
-                <mat-form-field class="formFieldProdutos" appearance="fill">
+                <mat-form-field class="formFieldStatusPagamento" appearance="fill">
+                    <mat-label>Status Pagamento</mat-label>
+                    <mat-select class="statusPagamentoSelect" [formControl]="statusPagamentoControl" #statusPagamento
+                        name="statusPagamento">
+                        <mat-option value="PAGO">Pago</mat-option>
+                        <mat-option value="PENDENTE">Pendente</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="formFieldQuantidadeProdutos" appearance="fill">
                     <mat-label>Quantidade</mat-label>
                     <input type="number" placeholder="digite a quantidade do produto" (change)="onInput($event)"
-                    autocapitalize="false"
-                        autocomplete="false" aria-label="Number" matInput formControlName="quantidade" #quantidadeInput
-                        min="0" max="1000" (keypress)="onKeyPress($event)"
+                        autocapitalize="false" autocomplete="false" aria-label="Number" matInput
+                        formControlName="quantidade" #quantidadeInput min="0" max="1000" (keypress)="onKeyPress($event)"
                         oninput="this.value = !!this.value && Math.abs(this.value) >= 0? Math.abs(this.value):null">
                 </mat-form-field>
 
+            </div>
+            <div style="display: flex; justify-content: center; width: 100%;">
                 <mat-form-field class="formFieldProdutos" appearance="fill">
                     <mat-label>Adicionar Produtos</mat-label>
                     <input type="text" placeholder="digite o cod_barras" (change)="onInput($event)" aria-label="Number"
                         matInput formControlName="produto" #produtoInput>
                 </mat-form-field>
             </div>
-            <div class=" cardsSelecionadosContent" *ngIf="produtosSelecionados.length">
+
+            <div class="cardsSelecionadosContent" style="width: 100%;" *ngIf="produtosSelecionados.length">
                 <mat-card class="cardProdutosSelecionados">
                     <div class="titleContent">
                         <mat-toolbar class="toolBarProdutosSelecionados">
                             Produtos Selecionados
                         </mat-toolbar>
                     </div>
+
                     <mat-card-content>
                         <div class="selected-products">
                             <div *ngFor="let produto of produtosSelecionados" class="selected-product"
                                 matBadge="{{ produto.quantidade ? produto.quantidade : 1 }}"
                                 [matBadgeColor]="produto.quantidade! > produto.quantidadeEstoque ? 'warn' : 'primary'">
                                 <div class="imageProduct">
-                                    <img [src]="produto.img" alt="Foto do Produto" width="64px" height="64px">
+                                    <img [src]="produto.img" alt="Foto do Produto" class="imageProductimg">
                                 </div>
                                 <div class="informationsProduct">
-                                    <span>{{ produto.nome }}:</span>
+                                    <span>{{ produto.nome.length > 20 ? (produto.nome | slice:0:20) + '...' :
+                                        produto.nome
+                                        }}:</span>
                                     <span>{{ produto.preco | currency:'BRL' }}</span>
                                 </div>
                                 <div class="informationsProduct">
@@ -105,7 +113,9 @@
                     </mat-card-content>
                 </mat-card>
             </div>
+
         </form>
+        
         <mat-card-actions class="actionsContent">
             <div class="fieldACtionsButtons">
                 <button type="submit" form="formNovaVenda"
