@@ -1,0 +1,32 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 6em;
+    color: #ccc;
+}
+
+h2 {
+    color: #999;
+}
+
+p {
+    color: #666;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: #f8f8f8;
+}
