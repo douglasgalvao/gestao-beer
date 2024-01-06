@@ -17,7 +17,7 @@ export class AuthService {
     this.httpCliente.post('http://localhost:8080/auth/login', { login, password }).subscribe(
       (data: any) => {
         localStorage.setItem('token', data.token);
-        this.route.navigate(['content/home']);
+        this.route.navigate(['/auth/content/home']);
       }
     );
 
@@ -26,7 +26,6 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     let token = localStorage.getItem('token');
-    let boolean = false;
     if (token != null) {
       return this.httpCliente.get<boolean>('http://localhost:8080/auth/validate', {
         headers: {
@@ -34,13 +33,23 @@ export class AuthService {
         }
       }).pipe(
         catchError(error => {
-          this.snackbar.open('Sessão expirada', 'OK', {
-            duration: 5000,
-            horizontalPosition: 'center',
-            verticalPosition: 'top'
-          }).afterDismissed().subscribe(() => {
-            this.route.navigate(['/login']);
-          });
+          if (error.status == 403) {
+            this.snackbar.open('Sessão expirada', 'OK', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            }).afterDismissed().subscribe(() => {
+              this.route.navigate(['/login']);
+            });
+          } else if (error.status == 401) {
+            this.snackbar.open('Não possui permissão para acesso ', 'OK', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            }).afterDismissed().subscribe(() => {
+              this.route.navigate(['/login']);
+            });
+          }
           return of(false);
         }),
         shareReplay(1)
