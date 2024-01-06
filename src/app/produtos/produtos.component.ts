@@ -10,6 +10,18 @@ export interface ProdutoFileIdResponse {
   file: string;
 }
 
+
+export interface ProdutoAPIResponse {
+  description: string;
+  gtin: string;
+  price: string;
+  avg_price: number;
+  max_price: number;
+  min_price: number;
+  barcode_image: string;
+  thumbnail: string;
+}
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
@@ -29,8 +41,8 @@ export class ProdutosComponent {
 
   abrirDialogNovoProduto() {
     this.dialog.open(DialogNovoProdutoComponent, {
-      width: 'max-content',
-      height: 'max-content',
+      width: '50vw',
+      height: '90vh',
       panelClass: '',
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'
