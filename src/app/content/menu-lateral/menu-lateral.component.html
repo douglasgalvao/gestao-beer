@@ -4,10 +4,10 @@
             <mat-list-item *ngFor="let d of data">
                 <div class="containerItems">
                     <div class="containerIcon">
-                        <mat-icon class="iconItem">{{d.iconName}}</mat-icon>
+                        <mat-icon class="iconItem" [class.active]="d === selectedItem">{{d.iconName}}</mat-icon>
                     </div>
                     <div class="containerButton">
-                        <button class="buttonItem" mat-button [routerLink]="d.linkRouter">
+                        <button class="buttonItem" [class.active]="d === selectedItem" mat-button [routerLink]="d.linkRouter" (click)="selectItem(d)">
                             {{d.nome}}
                         </button>
                     </div>

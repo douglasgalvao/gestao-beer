@@ -36,19 +36,39 @@ mat-list-item {
             padding: 1rem;
         }
 
+        .iconItem.active {
+            color: yellow;
+            // background-color: yellow;
+            width: 100%;
+        }
+
         .containerButton {
             display: flex;
             width: 100%;
             justify-content: flex-start;
+
             .buttonItem {
                 color: white;
                 width: 100%;
+
             }
 
             .buttonItem:hover {
                 color: #121212;
                 width: 100%;
             }
+
+            .buttonItem.active {
+                color: yellow;
+            }
+
+            .buttonItem.active:hover {
+                color: #121212;
+            }
+
+
+
+
         }
 
     }
@@ -56,6 +76,7 @@ mat-list-item {
     .containerButton:hover {
         border-color: none;
         color: #121212;
+        border-radius: 4px;
         background-color: yellow;
     }
 

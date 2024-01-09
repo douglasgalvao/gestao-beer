@@ -16,6 +16,9 @@ export interface MenuLateralItens {
 export class MenuLateralComponent implements OnInit {
   data: MenuLateralItens[] = Menu;
   isDrawerOpened: boolean = true;
+  selectedItem: MenuLateralItens | undefined;
+
+
   constructor(private drawer: DrawerService) {
 
     drawer.drawerState.subscribe((isOpen) => {
@@ -25,5 +28,9 @@ export class MenuLateralComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  selectItem(item: MenuLateralItens) {
+    this.selectedItem = item;
   }
 }
