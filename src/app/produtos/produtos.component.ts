@@ -41,8 +41,8 @@ export class ProdutosComponent {
 
   abrirDialogNovoProduto() {
     this.dialog.open(DialogNovoProdutoComponent, {
-      width: '50vw',
-      height: '90vh',
+      width: 'max-content',
+      height: 'max-content',
       panelClass: '',
       enterAnimationDuration: '350ms',
       exitAnimationDuration: '350ms'
