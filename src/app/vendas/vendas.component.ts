@@ -109,7 +109,7 @@ export class VendasComponent implements OnInit {
   filtrarVendas() {
     this.vendasService.filtrarVendas(this.range.controls.start.value?.toISOString()!, this.range.controls.end.value?.toISOString()!).subscribe(
       data => {
-        this.vendas = data;
+        this.vendas = [...data];
         this.notificationService.notificarVendasFiltradas(this.vendas);
       },
       error => console.error('Erro ao filtrar vendas:', error)
@@ -126,17 +126,24 @@ export class VendasComponent implements OnInit {
     this.convertionService.exportToExcel(vendasToExport, 'relatorio.xlsx');
   }
 
-  ngBeforeViewInit() {
-
-  }
 
   ngOnInit(): void {
+
     this.vendasService.getVendas().subscribe(
       data => {
-        this.vendas = data;
-      },
-      error => console.error('Erro ao obter vendas:', error)
+        this.vendas = [...data];
+      }
+
     );
+
+    this.notificationService.vendaCriada$.subscribe(() => {
+      this.vendasService.getVendas().subscribe(
+        data => {
+          this.vendas = [...data];
+        }
+      );
+    })
+
   }
 
 

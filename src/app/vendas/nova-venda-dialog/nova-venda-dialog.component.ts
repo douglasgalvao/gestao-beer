@@ -162,15 +162,14 @@ export class NovaVendaDialogComponent implements OnInit, AfterViewInit {
         produtos: produtosRequest
       }
 
-      console.log(vendaRequest);
       this.vendaService.createVenda(vendaRequest).subscribe(
         data => {
+          this.notificationService.notificarVendaCriada(data);
           this._snackBar.open('Venda cadastrada com sucesso!', 'Fechar', {
             duration: 2000,
             verticalPosition: 'top',
             horizontalPosition: 'center',
           });
-          this.notificationService.notificarVendaCriada(data);
           this.dialog.close();
         },
         error => console.error('Erro ao cadastrar venda:', error)

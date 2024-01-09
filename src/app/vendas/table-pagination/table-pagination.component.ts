@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, ViewChild, OnInit, Output, EventEmitter, Input, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -32,7 +32,8 @@ export class TableSortPaginationComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private vendasService: VendasService, private notificationService: NotificationService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private cdr: ChangeDetectorRef) { }
 
 
 
@@ -125,6 +126,9 @@ export class TableSortPaginationComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.notificationService.vendaCriada$.subscribe(() => {
+      this.updateTable();
+    });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -136,14 +140,17 @@ export class TableSortPaginationComponent implements OnInit {
       this.updateTableByDelete(this.vendas);
     });
 
-    this.notificationService.vendaCriada$.subscribe(() => {
-      this.updateTable();
-    });
 
     this.notificationService.vendasFiltradas$.subscribe((vendas) => {
       this.updateTableVendas(vendas);
     });
 
     this.updateTable();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['vendasInput']) {
+      this.updateTable();
+    }
   }
 }

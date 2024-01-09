@@ -1,5 +1,9 @@
-<mat-toolbar class="toolBarCadastroVenda">
+<mat-toolbar class="toolBarContent">
+    <div></div>
     Cadastrar uma Venda
+    <div style="display: flex;" class="contentCloseDialog">
+        <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
 </mat-toolbar>
 <div mat-dialog-content class="dialogContent">
     <mat-card [@fadeIn] class="dialogContent">
@@ -115,7 +119,7 @@
             </div>
 
         </form>
-        
+
         <mat-card-actions class="actionsContent">
             <div class="fieldACtionsButtons">
                 <button type="submit" form="formNovaVenda"
