@@ -1,0 +1,24 @@
+<div class="content">
+    <mat-card class="card" style="border-radius: 4px;" *ngFor="let homeBalance of homeBalances">
+        <mat-toolbar class="toolbar">
+            {{homeBalance.toolbarTitle}}
+            <mat-icon>{{homeBalance.toolbarIcon}}</mat-icon>
+        </mat-toolbar>
+        <mat-card-content class="contentCard">
+            <div class="homeBalance">
+                <span [ngClass]="{
+                    'homeBalanceValuePositive': homeBalance.value >= 0,
+                    'homeBalanceValueNegative': homeBalance.value < 0
+                  }" *ngIf="homeBalance.value">{{homeBalance.value | currency:homeBalance.currency}}</span>
+
+                <mat-icon class="iconUp" [ngClass]="{
+                    'iconUpPositive': homeBalance.arrowType == 'up',
+                    'iconUpNegative': homeBalance.arrowType == 'down'
+                  
+                }">{{homeBalance.arrowType == 'up' ?
+                    'arrow_upward' : 'arrow_downward'}}</mat-icon>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>
