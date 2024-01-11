@@ -19,14 +19,12 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated().pipe(
       tap(isAuthenticated => {
         if (!isAuthenticated) {
-          localStorage.removeItem('token');
+          if (localStorage.getItem('token') != null) {
+            localStorage.removeItem('token');
+          }
           this.router.navigate(['/login']);
           return;
         }
-      }),
-      map(isAuthenticated => {
-        // Se o usuário não está autenticado, permita a navegação para '/login'
-        return isAuthenticated || state.url === '/login';
       })
     );
   }
