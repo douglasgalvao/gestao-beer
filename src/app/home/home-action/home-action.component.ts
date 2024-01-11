@@ -24,12 +24,28 @@ export class HomeActionComponent implements OnInit {
     {
       title: 'Novo Produto',
       icon: 'fastfood',
-      action: () => { console.log('implementar') },
+      action: () => {
+        this.dialog.open(DialogNovoProdutoComponent, {
+          width: 'max-content',
+          height: 'max-content',
+          panelClass: '',
+          enterAnimationDuration: '350ms',
+          exitAnimationDuration: '350ms'
+        });
+      },
     },
     {
       title: 'Nova Venda',
       icon: 'sell',
-      action: () => { console.log('implementar') },
+      action: () => {
+        this.dialog.open(NovaVendaDialogComponent, {
+          width: 'max-content',
+          height: 'max-content',
+          panelClass: '',
+          enterAnimationDuration: '350ms',
+          exitAnimationDuration: '350ms'
+        });
+      },
     },
     {
       title: 'Add Item Comanda',
@@ -44,8 +60,11 @@ export class HomeActionComponent implements OnInit {
   ];
 
   constructor(
-    private dialogProduto: MatDialogRef<DialogNovoProdutoComponent>,
-    private dialogVenda:MatDialogRef<NovaVendaDialogComponent>) { }
+    private dialog: MatDialog) { }
+
+
+
+
 
   ngOnInit(): void {
 
