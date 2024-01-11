@@ -15,7 +15,7 @@ export class ProdutoService {
   apiUrl = environment.apiUrl;
 
   cadastrarNovoProduto(produto: ProdutoElement): Observable<ProdutoElement> {
-    
+
     return this.http.post<ProdutoElement>(this.apiUrl + '/produto', {
       nome: produto.nome,
       categoria_Produto: produto.categoria_Produto,
@@ -59,8 +59,8 @@ export class ProdutoService {
     });
   }
 
-  verificarProdutoJaExiste(nome: string): Observable<boolean> {
-    return this.http.get<boolean>(this.apiUrl + '/produto/nome/' + nome, {
+  getProdutoByNome(nome: string): Observable<boolean> {
+    return this.http.post <boolean>(this.apiUrl + '/produto/nome/' + nome, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')

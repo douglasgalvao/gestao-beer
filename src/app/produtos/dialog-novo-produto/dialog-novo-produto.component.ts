@@ -127,15 +127,28 @@ export class DialogNovoProdutoComponent implements OnInit, AfterViewInit {
   }
 
   verificarProduto() {
-    this.produtoService.verificarProdutoJaExiste(this.form.value.nome).subscribe(
+    this.produtoService.getProdutoByNome(this.form.value.nome).subscribe(
       (res) => {
         if (res) {
           this.produtoJaExiste = true
+          return;
         } else {
+          this.produtoService.getProdutoByCodBarras(this.form.value.codBarras).subscribe(
+            (res) => {
+              if (res) {
+                this.produtoJaExiste = true
+                this.produtoJaVerificada = true;
+                return;
+              } else {
+                this.produtoJaExiste = false;
+                this.produtoJaVerificada = true;
+                return;
+              }
+            }
+          );
           this.produtoJaExiste = false;
         }
         this.produtoJaVerificada = true;
-        this.produtoModificada = false;
       }
     );
   }
