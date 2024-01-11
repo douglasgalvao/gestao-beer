@@ -6,6 +6,12 @@ mat-nav-list {
     width: 100%;
     display: flex;
     flex-direction: column;
+    
+}
+
+.drawerLateral {
+    position: fixed;
+    top: 56px;
 }
 
 mat-checkbox {
