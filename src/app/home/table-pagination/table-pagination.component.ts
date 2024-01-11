@@ -112,7 +112,7 @@ export class TableSortPaginationComponent implements OnInit {
       });
 
     })
-    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas);
+    this.dataSource = new MatTableDataSource<VendaElement>(this.vendas.sort((a, b) => b.id - a.id));
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -144,6 +144,8 @@ export class TableSortPaginationComponent implements OnInit {
     this.notificationService.vendasFiltradas$.subscribe((vendas) => {
       this.updateTableVendas(vendas);
     });
+
+    
 
     this.updateTable();
   }
