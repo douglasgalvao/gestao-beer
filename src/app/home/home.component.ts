@@ -1,7 +1,9 @@
+import { VendasService } from './../service/vendas.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { NovaVendaDialogComponent } from '../vendas/nova-venda-dialog/nova-venda-dialog.component';
+import { VendaElement } from '../vendas/vendas.component';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +20,6 @@ import { NovaVendaDialogComponent } from '../vendas/nova-venda-dialog/nova-venda
 })
 export class HomeComponent implements OnInit {
 
-  displayedColumns: string[] = ['id'];
-
-  // vendas: VendaElement[] = HistoricoVendasHome;
-
-  // dataSource = new MatTableDataSource(this.vendas);
 
   constructor(private dialog: MatDialog) {
     this.dialog = dialog;
@@ -32,7 +29,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+   
   }
 
   abrirDialogVenda() {
