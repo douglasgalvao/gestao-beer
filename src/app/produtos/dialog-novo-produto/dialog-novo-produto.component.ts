@@ -131,6 +131,7 @@ export class DialogNovoProdutoComponent implements OnInit, AfterViewInit {
       (res) => {
         if (res) {
           this.produtoJaExiste = true
+          this.produtoJaVerificada = true;
           return;
         } else {
           this.produtoService.getProdutoByCodBarras(this.form.value.codBarras).subscribe(
@@ -146,9 +147,7 @@ export class DialogNovoProdutoComponent implements OnInit, AfterViewInit {
               }
             }
           );
-          this.produtoJaExiste = false;
         }
-        this.produtoJaVerificada = true;
       }
     );
   }
