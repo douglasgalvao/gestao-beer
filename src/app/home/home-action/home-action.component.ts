@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DialogNovoProdutoComponent } from 'src/app/produtos/dialog-novo-produto/dialog-novo-produto.component';
 import { NovaVendaDialogComponent } from 'src/app/vendas/nova-venda-dialog/nova-venda-dialog.component';
 
@@ -51,20 +52,11 @@ export class HomeActionComponent implements OnInit {
       title: 'Add Item Comanda',
       icon: 'assignment',
       action: () => { console.log('implementar') },
-    },
-    {
-      title: 'Gerenciar Estoque',
-      icon: 'credit_card',
-      action: () => { console.log('implementar') },
-    },
+    }
   ];
 
   constructor(
     private dialog: MatDialog) { }
-
-
-
-
 
   ngOnInit(): void {
 
