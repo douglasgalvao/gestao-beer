@@ -13,7 +13,6 @@ import { ProdutoElement } from 'src/app/vendas/vendas.component';
 export class MenuBarComponent {
 
   isScrolled = false;
-  marginTop = 64;
   produtoEstoqueBaixo: ProdutoElement[] = [];
   @ViewChild('toolbar', { static: true }) toolbar!: MatToolbar;
 
