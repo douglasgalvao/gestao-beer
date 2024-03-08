@@ -39,7 +39,7 @@ export class AuthService {
               horizontalPosition: 'center',
               verticalPosition: 'top'
             }).afterDismissed().subscribe(() => {
-              this.route.navigate(['/login']);
+              // this.route.navigate(['/login']);
             });
           } else if (error.status == 401) {
             this.snackbar.open('Não possui permissão para acesso ', 'OK', {
