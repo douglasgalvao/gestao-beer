@@ -6,15 +6,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ContentComponent } from './content/content.component';
-import { HomeActionComponent } from './home-action/home-action.component';
 import { HomeBalanceComponent } from './home-balance/home-balance.component';
 import { TableSortPaginationComponent } from './table-pagination/table-pagination.component';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     HomeComponent,
     ToolbarComponent,
     ContentComponent,
-    HomeActionComponent,
     HomeBalanceComponent,
     TableSortPaginationComponent
   ],
@@ -22,7 +21,8 @@ import { TableSortPaginationComponent } from './table-pagination/table-paginatio
     CommonModule,
     MaterialModule,
     HomeRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

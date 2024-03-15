@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MaterialModule } from '../material-module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DialogActionComponent } from './dialog-action/dialog-action.component';
+
 
 @NgModule({
   declarations: [
     ToolbarComponent,
+    DialogActionComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -14,7 +17,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MaterialModule,
   ],
   exports: [
-    ToolbarComponent
+    ToolbarComponent,
+    DialogActionComponent
   ]
 })
 export class SharedModule { }
