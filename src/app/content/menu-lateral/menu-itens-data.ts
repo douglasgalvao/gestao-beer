@@ -5,5 +5,6 @@ export const Menu: MenuLateralItens[] = [
     { nome: "Produtos", linkRouter: "/auth/content/produtos", iconName: "fastfood" },
     { nome: "Estoque", linkRouter: "/auth/content/estoque", iconName: "credit_card" },
     { nome: "Comandas", linkRouter: "/auth/content/comanda", iconName: "assignment" },
+    // { nome: "Fornecedores", linkRouter: "/auth/content/fornecedores", iconName: "local_shipping" },
 ]
 

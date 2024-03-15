@@ -24,9 +24,7 @@
                         <label for="file-input" class="upload-label">
                             <mat-icon>cloud_upload</mat-icon>
                             <span *ngIf="!fotoSelecionada">Clique para fazer o upload<br>ou arraste e solte aqui</span>
-                            <span *ngIf="fotoSelecionada">Foto Selecionada! Clique para fazer o upload<br>ou arraste e
-                                solte
-                                aqui</span>
+                            <span *ngIf="fotoSelecionada">Foto Selecionada!<br> </span>
                         </label>
                         <input type="file" id="file-input" (change)="salvarFotoAtual($event)">
                     </div>
