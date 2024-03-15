@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeBalance } from './home-balance.data';
+import { HomeBalance } from './home-balance.model';
 
 @Component({
   selector: 'app-home-balance',

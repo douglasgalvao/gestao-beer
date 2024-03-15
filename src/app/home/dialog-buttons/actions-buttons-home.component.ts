@@ -1,26 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogNovoProdutoComponent } from 'src/app/produtos/dialog-novo-produto/dialog-novo-produto.component';
 import { NovaVendaDialogComponent } from 'src/app/vendas/nova-venda-dialog/nova-venda-dialog.component';
+import { ActionButton } from './action-button.model';
 
-
-
-export interface DialogAction {
-  title: string;
-  icon: string;
-  action: () => void;
-}
 
 @Component({
-  selector: 'app-dialog-action',
-  templateUrl: './dialog-action.component.html',
-  styleUrls: ['./dialog-action.component.scss']
+  selector: 'app-actions-buttons-home',
+  templateUrl: './actions-buttons-home.component.html',
+  styleUrls: ['./actions-buttons-home.component.scss']
 })
 
 
 export class DialogActionComponent implements OnInit {
 
-  dialogActions: DialogAction[] = [
+  dialogActions: ActionButton[] = [
     {
       title: 'Novo Produto',
       icon: 'fastfood',

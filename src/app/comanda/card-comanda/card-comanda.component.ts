@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-
 @Component({
   selector: 'app-card-comanda',
   templateUrl: './card-comanda.component.html',
@@ -8,5 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 
 export class CardComandaComponent {
-  @Input() comanda: any;
+
+
+
+
 }
