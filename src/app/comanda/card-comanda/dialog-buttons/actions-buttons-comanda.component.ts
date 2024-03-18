@@ -2,6 +2,8 @@ import { Component, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActionButton } from './action-button.model';
 import { DialogAddItemComandaComponent } from '../../dialog-add-item-comanda/dialog-add-item-comanda.component';
+import { DialogListEditComandaComponent } from '../../dialog-list-edit-comanda/dialog-list-edit-comanda.component';
+import { DialogFinalizarComandaComponent } from '../../dialog-finalizar-comanda/dialog-finalizar-comanda.component';
 
 
 @Component({
@@ -31,7 +33,7 @@ export class DialogActionComandaComponent implements OnInit {
       title: 'Listar/Editar',
       icon: 'edit',
       action: () => {
-        this.dialog.open(DialogAddItemComandaComponent, {
+        this.dialog.open(DialogListEditComandaComponent, {
           width: 'max-content',
           height: 'max-content',
           panelClass: '',
@@ -44,7 +46,7 @@ export class DialogActionComandaComponent implements OnInit {
       title: 'Finalizar Comanda',
       icon: 'check_circle',
       action: () => {
-        this.dialog.open(DialogAddItemComandaComponent, {
+        this.dialog.open(DialogFinalizarComandaComponent, {
           width: 'max-content',
           height: 'max-content',
           panelClass: '',
@@ -52,7 +54,7 @@ export class DialogActionComandaComponent implements OnInit {
           exitAnimationDuration: '350ms'
         });
       },
-    }
+    },
   ];
 
   constructor(

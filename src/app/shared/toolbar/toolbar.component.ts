@@ -20,6 +20,7 @@ import { DialogNovoProdutoComponent } from 'src/app/produtos/dialog-novo-produto
 })
 export class ToolbarComponent {
   @Input() toolbarTitle!: string;
+  @Input() style!: string;
   @Input() actions: {
     icon: string;
     label: string;

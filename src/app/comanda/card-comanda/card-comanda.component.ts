@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card-comanda',
@@ -6,9 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-comanda.component.scss']
 })
 
-export class CardComandaComponent {
+export class CardComandaComponent implements OnInit {
 
+  @Input() numeroComanda!: number;
+  @Input() numeroMesa!: number;
 
+constructor() { }
+
+ngOnInit(): void {
+}
 
 
 }

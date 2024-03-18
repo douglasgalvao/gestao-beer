@@ -1,17 +1,17 @@
 <mat-card class="card">
-    <div class="toolbar">
-        <mat-toolbar>
-            <h4 class="toolbarText">Comanda</h4>
-        </mat-toolbar>
-    </div>
+<div class="toolbar">
+    <mat-toolbar>
+        <h4 class="toolbarText">Comanda - {{numeroComanda}}</h4>
+    </mat-toolbar>
+</div>
+
     <div class="body">
         <mat-card-content class="content">
-            <p class="comandaNumberText">Mesa 01</p>
+            <p class="comandaNumberText">Mesa {{numeroMesa}}</p>
         </mat-card-content>
 
-        <mat-card-content class="content" id="test">
-                <app-actions-buttons-comanda></app-actions-buttons-comanda>
+        <mat-card-content class="content">
+            <app-actions-buttons-comanda></app-actions-buttons-comanda>
         </mat-card-content>
     </div>
-
 </mat-card>
